@@ -1,0 +1,93 @@
+/dts-v1/;
+
+/ {
+	#address-cells = < 0x1 >;
+	#size-cells = < 0x1 >;
+	compatible = "ChipsAlliance,Veerwolf-Nexys";
+	model = "ChipsAlliance Veerwolf-Nexys";
+	cpus {
+		#address-cells = < 0x1 >;
+		#size-cells = < 0x0 >;
+		cpu@0 {
+			clock-frequency = < 0x0 >;
+			compatible = "ChipsAlliance,VeeR-EH1-v1.2", "riscv";
+			device_type = "cpu";
+			reg = < 0x0 >;
+			riscv,isa = "rv32imac";
+			status = "okay";
+			timebase-frequency = < 0x8000 >;
+		};
+	};
+	soc {
+		#address-cells = < 0x1 >;
+		#size-cells = < 0x1 >;
+		compatible = "ChipsAlliance,VeeRwolf-soc", "simple-bus";
+		ranges;
+		pic: interrupt-controller@f00c0000 {
+			#interrupt-cells = < 0x2 >;
+			compatible = "swerv,pic";
+			interrupt-controller;
+			reg = < 0xf00c0000 0x2000 >;
+			reg-names = "reg";
+			riscv,max-priority = < 0xf >;
+			phandle = < 0x1 >;
+		};
+		uart0: uart@80002000 {
+			compatible = "ns16550";
+			clock-frequency = < 0x2faf080 >;
+			reg = < 0x80002000 0x1000 >;
+			reg-names = "control";
+			label = "uart0";
+			interrupt-parent = < &pic >;
+			interrupts = < 0xc 0xf >;
+			status = "okay";
+			current-speed = < 0x1c200 >;
+		};
+		spi0: spi@80001040 {
+			compatible = "opencores,spi-simple";
+			reg = < 0x80001040 0x40 >;
+			reg-names = "control";
+			label = "SPI0";
+			status = "okay";
+			#address-cells = < 0x1 >;
+			#size-cells = < 0x0 >;
+			flash0: flash@0 {
+				compatible = "jedec,spi-nor";
+				label = "FLASH0";
+				jedec-id = [ 01 20 18 ];
+				size = < 0x1000000 >;
+				reg = < 0x0 >;
+				spi-max-frequency = < 0x1e8480 >;
+			};
+		};
+		gpio_led0: gpio@80001010 {
+			compatible = "veerwolf,gpio";
+			reg = < 0x80001010 0x10 >;
+			gpio-controller;
+			#gpio-cells = < 0x2 >;
+			ngpios = < 0x20 >;
+			label = "LED0";
+			status = "okay";
+			phandle = < 0x2 >;
+		};
+	};
+	aliases {
+		led0 = &led_0;
+	};
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,sram = &sram;
+	};
+	sram: memory@0 {
+		compatible = "mmio-sram";
+		reg = < 0x0 0x800000 >;
+	};
+	leds {
+		compatible = "gpio-leds";
+		led_0: led {
+			gpios = < &gpio_led0 0x0 0x0 >;
+			label = "Red LED";
+		};
+	};
+};

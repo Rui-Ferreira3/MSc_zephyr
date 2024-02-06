@@ -1,0 +1,72 @@
+menu "swervolf (/home/rui/SweRVolf/fusesoc_libraries/swervolf)"
+osource "/home/rui/SweRVolf/fusesoc_libraries/swervolf/zephyr/Kconfig"
+config ZEPHYR_SWERVOLF_MODULE
+	bool
+	default y
+endmenu
+menu "CANopenNode (/home/rui/SweRVolf/modules/lib/canopennode)"
+osource "$(ZEPHYR_CANOPENNODE_KCONFIG)"
+config ZEPHYR_CANOPENNODE_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nordic (/home/rui/SweRVolf/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nxp (/home/rui/SweRVolf/modules/hal/nxp)"
+osource "$(ZEPHYR_HAL_NXP_KCONFIG)"
+config ZEPHYR_HAL_NXP_MODULE
+	bool
+	default y
+endmenu
+menu "loramac-node (/home/rui/SweRVolf/modules/lib/loramac-node)"
+osource "$(ZEPHYR_LORAMAC_NODE_KCONFIG)"
+config ZEPHYR_LORAMAC_NODE_MODULE
+	bool
+	default y
+endmenu
+menu "lz4 (/home/rui/SweRVolf/modules/lib/lz4)"
+osource "$(ZEPHYR_LZ4_KCONFIG)"
+config ZEPHYR_LZ4_MODULE
+	bool
+	default y
+endmenu
+menu "mbedtls (/home/rui/SweRVolf/modules/crypto/mbedtls)"
+osource "$(ZEPHYR_MBEDTLS_KCONFIG)"
+config ZEPHYR_MBEDTLS_MODULE
+	bool
+	default y
+endmenu
+menu "nanopb (/home/rui/SweRVolf/modules/lib/nanopb)"
+osource "$(ZEPHYR_NANOPB_KCONFIG)"
+config ZEPHYR_NANOPB_MODULE
+	bool
+	default y
+endmenu
+menu "sof (/home/rui/SweRVolf/modules/audio/sof)"
+osource "/home/rui/SweRVolf/modules/audio/sof/zephyr/Kconfig"
+config ZEPHYR_SOF_MODULE
+	bool
+	default y
+endmenu
+menu "tflite-micro (/home/rui/SweRVolf/modules/lib/tflite-micro)"
+osource "$(ZEPHYR_TFLITE_MICRO_KCONFIG)"
+config ZEPHYR_TFLITE_MICRO_MODULE
+	bool
+	default y
+endmenu
+menu "TraceRecorder (/home/rui/SweRVolf/modules/debug/TraceRecorder)"
+osource "/home/rui/SweRVolf/modules/debug/TraceRecorder/kernelports/Zephyr/Kconfig"
+config ZEPHYR_TRACERECORDER_MODULE
+	bool
+	default y
+endmenu
+menu "trusted-firmware-m (/home/rui/SweRVolf/modules/tee/tfm)"
+osource "$(ZEPHYR_TRUSTED_FIRMWARE_M_KCONFIG)"
+config ZEPHYR_TRUSTED_FIRMWARE_M_MODULE
+	bool
+	default y
+endmenu

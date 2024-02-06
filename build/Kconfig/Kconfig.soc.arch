@@ -1,0 +1,2 @@
+osource "/home/rui/SweRVolf/fusesoc_libraries/swervolf/zephyr/soc/$(ARCH)/Kconfig"
+osource "/home/rui/SweRVolf/fusesoc_libraries/swervolf/zephyr/soc/$(ARCH)/*/Kconfig"

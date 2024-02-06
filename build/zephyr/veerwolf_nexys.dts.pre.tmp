@@ -1,0 +1,103 @@
+/dts-v1/;
+/ {
+ #address-cells = <1>;
+ #size-cells = <1>;
+ compatible = "ChipsAlliance,VeeRwolf-dev";
+ model = "ChipsAlliance,VeeRwolf";
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+  cpu@0 {
+   clock-frequency = <0>;
+   compatible = "ChipsAlliance,VeeR-EH1-v1.2", "riscv";
+   device_type = "cpu";
+   reg = <0>;
+   riscv,isa = "rv32imac";
+   status = "okay";
+   timebase-frequency = <32768>;
+  };
+ };
+ soc {
+  #address-cells = <1>;
+  #size-cells = <1>;
+  compatible = "ChipsAlliance,VeeRwolf-soc", "simple-bus";
+  ranges;
+  pic: interrupt-controller@f00c0000 {
+   #interrupt-cells = <2>;
+   compatible = "swerv,pic";
+   interrupt-controller;
+   reg = <0xf00c0000 0x2000>;
+   reg-names = "reg";
+   riscv,max-priority = <15>;
+  };
+  uart0: uart@80002000 {
+   compatible = "ns16550";
+   clock-frequency = <50000000>;
+   reg = <0x80002000 0x1000>;
+   reg-names = "control";
+   label = "uart0";
+   interrupt-parent = <&pic>;
+   interrupts = <12 15>;
+   status = "disabled";
+  };
+  spi0: spi@80001040 {
+   compatible = "opencores,spi-simple";
+   reg = <0x80001040 0x40>;
+   reg-names = "control";
+   label = "SPI0";
+   status = "disabled";
+   #address-cells = <1>;
+   #size-cells = <0>;
+  };
+  gpio_led0: gpio@80001010 {
+   compatible = "veerwolf,gpio";
+   reg = <0x80001010 0x10>;
+   gpio-controller;
+   #gpio-cells = <2>;
+   ngpios = <32>;
+   label = "LED0";
+  };
+ };
+};
+/ {
+ model = "ChipsAlliance Veerwolf-Nexys";
+ compatible = "ChipsAlliance,Veerwolf-Nexys";
+ aliases {
+  led0 = &led_0;
+ };
+ chosen {
+  zephyr,console = &uart0;
+  zephyr,shell-uart = &uart0;
+  zephyr,sram = &sram;
+ };
+ sram: memory@0 {
+  compatible = "mmio-sram";
+  reg = <0x00000000 0x00800000>;
+ };
+ leds {
+  compatible = "gpio-leds";
+  led_0: led {
+   gpios = <&gpio_led0 0 (0 << 0)>;
+   label = "Red LED";
+  };
+ };
+};
+&gpio_led0 {
+ status = "okay";
+};
+&uart0 {
+ status = "okay";
+ current-speed = <115200>;
+ clock-frequency = <50000000>;
+};
+&spi0 {
+ status = "okay";
+ flash0: flash@0 {
+  compatible = "jedec,spi-nor";
+  label = "FLASH0";
+  jedec-id = [01 20 18];
+  size = <0x1000000>;
+  reg = <0>;
+  spi-max-frequency = <2000000>;
+ };
+};
