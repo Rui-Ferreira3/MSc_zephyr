@@ -38,16 +38,47 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
+  # Include the install script for the subdirectory.
   include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/interrupt_controller/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/misc/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/pcie/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/disk/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/usb/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/console/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/gpio/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/serial/cmake_install.cmake")
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/timer/cmake_install.cmake")
+endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/misc/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/pcie/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/disk/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/usb/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/gpio/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/serial/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/drivers/timer/cmake_install.cmake")
 endif()
 

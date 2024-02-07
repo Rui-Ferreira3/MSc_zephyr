@@ -75,6 +75,7 @@
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/ipc/CMakeFiles/rebuild_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/mgmt/CMakeFiles/edit_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/mgmt/CMakeFiles/rebuild_cache.dir
+/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/random/CMakeFiles/subsys__random.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/random/CMakeFiles/edit_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/random/CMakeFiles/rebuild_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/subsys/storage/CMakeFiles/edit_cache.dir

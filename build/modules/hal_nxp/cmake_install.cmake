@@ -38,8 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
+  # Include the install script for the subdirectory.
   include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/modules/hal_nxp/hal_nxp/cmake_install.cmake")
-
 endif()
 
