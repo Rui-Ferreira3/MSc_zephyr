@@ -11,7 +11,7 @@ zephyr/linker.cmd: \
  /home/rui/SweRVolf/zephyr/include/sys/util_macro.h \
  /home/rui/SweRVolf/zephyr/include/sys/util_internal.h \
  /home/rui/SweRVolf/zephyr/include/sys/util_loops.h \
- /home/rui/SweRVolf/zephyr/lib/libc/minimal/include/stdbool.h \
+ /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/lib/gcc/riscv64-zephyr-elf/10.3.0/include/stdbool.h \
  /home/rui/SweRVolf/zephyr/include/devicetree/io-channels.h \
  /home/rui/SweRVolf/zephyr/include/devicetree/clocks.h \
  /home/rui/SweRVolf/zephyr/include/devicetree/gpio.h \

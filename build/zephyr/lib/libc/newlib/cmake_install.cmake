@@ -1,4 +1,4 @@
-# Install script for directory: /home/rui/SweRVolf/zephyr/lib/libc
+# Install script for directory: /home/rui/SweRVolf/zephyr/lib/libc/newlib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,10 +35,5 @@ endif()
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/riscv64-zephyr-elf-objdump")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/newlib/cmake_install.cmake")
 endif()
 

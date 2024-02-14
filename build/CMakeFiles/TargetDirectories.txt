@@ -45,9 +45,9 @@
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/CMakeFiles/rebuild_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/CMakeFiles/edit_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/CMakeFiles/rebuild_cache.dir
-/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/minimal/CMakeFiles/lib__libc__minimal.dir
-/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/minimal/CMakeFiles/edit_cache.dir
-/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/minimal/CMakeFiles/rebuild_cache.dir
+/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/newlib/CMakeFiles/lib__libc__newlib.dir
+/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/newlib/CMakeFiles/edit_cache.dir
+/home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/libc/newlib/CMakeFiles/rebuild_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/posix/CMakeFiles/lib__posix.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/posix/CMakeFiles/edit_cache.dir
 /home/rui/SweRVolf/zephyr/samples/my_zephyr_app/build/zephyr/lib/posix/CMakeFiles/rebuild_cache.dir
