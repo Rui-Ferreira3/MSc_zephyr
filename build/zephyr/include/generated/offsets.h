@@ -21,11 +21,11 @@
 #define ___thread_base_t_prio_OFFSET 0xe
 #define ___thread_base_t_sched_locked_OFFSET 0xf
 #define ___thread_base_t_preempt_OFFSET 0xe
-#define ___thread_base_t_swap_data_OFFSET 0x14
+#define ___thread_base_t_swap_data_OFFSET 0x18
 #define ___thread_t_base_OFFSET 0x0
-#define ___thread_t_callee_saved_OFFSET 0x30
-#define ___thread_t_arch_OFFSET 0x78
-#define K_THREAD_SIZEOF 0x80
+#define ___thread_t_callee_saved_OFFSET 0x38
+#define ___thread_t_arch_OFFSET 0xa0
+#define K_THREAD_SIZEOF 0xa8
 #define _DEVICE_STRUCT_SIZEOF 0x18
 #define _DEVICE_STRUCT_HANDLES_OFFSET 0x14
 #define ___thread_arch_t_swap_return_value_OFFSET 0x0
@@ -62,6 +62,6 @@
 #define __z_arch_esf_t_mepc_OFFSET 0x44
 #define __z_arch_esf_t_mstatus_OFFSET 0x48
 #define __z_arch_esf_t_SIZEOF 0x50
-#define _K_THREAD_NO_FLOAT_SIZEOF 0x80
+#define _K_THREAD_NO_FLOAT_SIZEOF 0xb0
 
 #endif /* __GEN_OFFSETS_H__ */

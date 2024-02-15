@@ -1,15 +1,18 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
-#include <stdio.h>
-#include <zephyr.h>
-#include <kernel.h>
-#include <sys/printk.h>
-#include <random/rand32.h>
+int mat_address_1;
+int mat_rows_1;
+int mat_cols_1;
+float *matrix1;
 
-#include "defines.h"
-#include "matrix.h"
-#include "multiply.h"
+int mat_address_2;
+int mat_rows_2;
+int mat_cols_2;
+float *matrix2;
+
+int result_hw_address;
+int result_sw_address;
 
 #define MATI_BASE_ADDRESS 0x02000000
 #define MATI_ROWS 8
@@ -31,11 +34,5 @@ float *mat2 = (float *)MAT2_BASE_ADDRESS;
 #define MAT3_COLS 8
 float *mat3 = (float *)MAT3_BASE_ADDRESS;
 
-void threadAccelerator();
-void threadData();
 
-void init_mats();
-void software(int num_matmuls);
-
-
-#endif //HEADER_H
+#endif //MATRIX_H
