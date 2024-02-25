@@ -1,10 +1,8 @@
 #include "multiply.h"
 
-void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+void multiply_mat_sw(float *mat1, float *mat2, int result_address, int rows1, int cols1, int cols2)
 {
-    float *result = (float *)resultAddress;
-    float *mat1 = (float *)mat1Address;
-    float *mat2 = (float *)mat2Address;
+    float *result = (float *)result_address;
 
     for (int i=0; i<rows1; i++) {
         for (int j=0; j<cols2; j++) {
@@ -17,7 +15,7 @@ void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int ro
     }
 }
 
-void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+void multiply_mat_hw(int mat1_address, int mat2_address, int result_address, int rows1, int cols1, int cols2)
 {
     volatile int *do_matp_mem = (int *)(ACCELERATOR_BASE_ADDRESS + 0x00);
     volatile int *a = (int *)(ACCELERATOR_BASE_ADDRESS + 0x10);
@@ -27,14 +25,14 @@ void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int ro
 	volatile int *colsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x30);
 	volatile int *colsB = (int *)(ACCELERATOR_BASE_ADDRESS + 0x38);
 
-    *a = mat1Address;
-    *b = mat2Address;
-    *c = resultAddress;
+    *a = mat1_address;
+    *b = mat2_address;
+    *c = result_address;
     *rowsA = rows1;
     *colsA = cols1;
     *colsB = cols2;
 
     *do_matp_mem = 1;
 
-    // while ((*do_matp_mem & 2) == 0);
+    while ((*do_matp_mem & 2) == 0);
 }

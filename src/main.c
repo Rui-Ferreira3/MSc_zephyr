@@ -1,133 +1,99 @@
 #include "header.h"
 
-/* size of stack area used by each thread */
-#define STACKSIZE 1024
+#define mat1Addr 0x02000000
+#define mat2Addr 0x02000100
+#define resultSwAddr 0x02000200
+#define resultHwAddr 0x02000300
 
-/* scheduling priority used by each thread */
-#define PRIORITY 7
+#define MY_DEV_IRQ  15       /* device uses IRQ 13 */
+#define MY_DEV_PRIO  10       /* device uses interrupt priority 10 */
 
-/* delay between greetings (in ms) */
-#define SLEEPTIME 500
 
-/* define semaphores */
-K_SEM_DEFINE(usingAccelerator_sem, 1, 1);	/* starts off "available" */
-K_SEM_DEFINE(usingData_sem, 0, 1);	/* starts off "not available" */
+int mat1Rows=8, mat1Cols=8, mat2Rows=8, mat2Cols=8;
+int accelFlag=0;
 
-int mat_address_1;
-int mat_rows_1;
-int mat_cols_1;
-float *matrix1;
+void my_isr_installer(void) {
+    ARCH_IRQ_CONNECT(MY_DEV_IRQ, MY_DEV_PRIO, my_isr, NULL, 0);
+    arch_irq_enable(MY_DEV_IRQ);
+}
 
-int mat_address_2;
-int mat_rows_2;
-int mat_cols_2;
-float *matrix2;
-
-int result_hw_address;
-int result_sw_address;
-
-K_THREAD_STACK_DEFINE(threadA_stack_area, STACKSIZE);
-static struct k_thread threadA_data;
-
-K_THREAD_STACK_DEFINE(threadB_stack_area, STACKSIZE);
-static struct k_thread threadB_data;
+void my_isr(const void *arg) {
+    *acceleratorGIER = 0;
+    *acceleratorIP_IER = 0;
+    printf("Inside my isr!\n");
+    accelFlag=1;
+    return;
+}
 
 int main()
 {
-    init_mats();
+    *acceleratorGIER = 1;
+    *acceleratorIP_IER = 1;
 
-    mat_address_1 = MATI_BASE_ADDRESS;
-    mat_rows_1 = MATI_ROWS;
-    mat_cols_1 = MATI_COLS;
-    matrix1 = matI;
+    printf("Starting swerv irq!\n");
+    my_isr_installer();
 
-    mat_address_2 = MAT1_BASE_ADDRESS;
-    mat_rows_2 = MAT1_ROWS;
-    mat_cols_2 = MAT1_COLS;
-    matrix2 = mat1;
+    create_mat(mat1Addr, mat1Rows, mat1Cols);
+    create_mat(mat2Addr, mat2Rows, mat2Cols);
 
-    software(NUM_MATMULS);
+    printf("Starting matmul in hardware!\n");
+    multiply_mat_hw(mat1Addr, mat2Addr, resultHwAddr, mat1Rows, mat1Cols, mat2Cols);
+    // print_mat(resultHwAddr, mat1Rows, mat2Cols);
+    while(accelFlag == 0) {}
+    printf("Hardware matmul done!\n");
+    multiply_mat_sw(mat1Addr, mat2Addr, resultSwAddr, mat1Rows, mat1Cols, mat2Cols);
+    print_mat(resultSwAddr, mat1Rows, mat2Cols);
 
-    k_thread_create(&threadA_data, threadA_stack_area,
-            K_THREAD_STACK_SIZEOF(threadA_stack_area),
-            threadAccelerator, NULL, NULL, NULL,
-            PRIORITY, 0, K_FOREVER);
-	k_thread_name_set(&threadA_data, "thread_accelerator");
-
-    k_thread_create(&threadB_data, threadB_stack_area,
-			K_THREAD_STACK_SIZEOF(threadB_stack_area),
-			threadData, NULL, NULL, NULL,
-			PRIORITY, 0, K_FOREVER);
-	k_thread_name_set(&threadB_data, "thread_b");
-
-    k_thread_start(&threadA_data);
-	k_thread_start(&threadB_data);
+    int errors = verify_matmul(resultHwAddr, resultSwAddr, mat1Rows, mat2Cols);
+    printf("Matmul done with %d errors!\n", errors);
 
 
     return 0;
 }
 
-void threadAccelerator() {
-        int num_errors, total_errors=0;
-        uint32_t start_ms, finish_ms;
+// void reset_csr(int CSR_ADDR, int MASK) {
+//     volatile uint32_t *csr = (uint32_t *)CSR_ADDR;
+//     csr &= ~MASK;
+// }
 
-        int result_hw_base_address = MEM_BASE_ADDRESS + mat_rows_1*mat_cols_2*sizeof(float);
-        float *result_sw = (float *)(result_sw_address);
-        float *result_hw = (float *)(result_hw_base_address);
+// void set_csr(int CSR_ADDR, int MASK) {
+//     volatile uint32_t *csr = (uint32_t *)CSR_ADDR;
+//     csr |= MASK;
+// }
 
-    while (1) {
-        k_sem_take(&usingAccelerator_sem, K_FOREVER);
-        printf("\nStarting %d matmuls with hardware accelerator!\n", NUM_MATMULS);
+// void setup_interrupts() {
+//     reset_csr(MIE_ADDR, MIE_EIE_MASK); // disable external interrupts
 
-        start_ms = k_uptime_get();
-        for(int i=0; i<NUM_MATMULS; i++) {
-            multiply_mat_hw(mat_address_1, mat_address_2, result_hw_base_address, mat_rows_1, mat_cols_1, mat_cols_2);
+//     printf("1\n");
 
-            num_errors = verify_matmul(result_hw, result_sw, mat_rows_1, mat_cols_2);
-            total_errors += num_errors;
-        }
-        finish_ms = k_uptime_get();
+//     reset_CSR(PIC_MPICCFG_ADDR, MPICCFG_PRIORD_MASK); // configure priority order 0=lowest to 15=highest 
 
-        printf("Testing done with %d errors!\nTook %u miliseconds!\n", total_errors, finish_ms-start_ms);
+//     printf("2\n");
 
-        /* wait a while, then let other thread have a turn */
-		k_busy_wait(100000);
-		k_msleep(SLEEPTIME);
-		k_sem_give(&usingData_sem);
-    }
-}
+//     reset_csr(MEIPT_ADDR, MEIPT_PRITHRESH_MASK); // set priority threshold to 0
 
-void threadData() {
-    while(1) {
-        k_sem_take(&usingData_sem, K_FOREVER);
+//     printf("4\n");
 
-        printf("Collecting data...\n");
+//     volatile int *meigwctrlS = (int *)(PIC_BASE_ADDRESS + 0x4004); // Address of meigwctrlS register
+//     volatile int *meigwclrS = (int *)(PIC_BASE_ADDRESS + 0x5004); // Address of meigwclrS register
+//     volatile int *meipIS = (int *)(PIC_BASE_ADDRESS + 0x0004); // Address of meipIS register
+//     volatile int *meieS = (int *)(PIC_BASE_ADDRESS + 0x2004); // Address of meieS register
+//     volatile int *addressTable = (int *)EXTERNAL_INTERRUPT_ADDRESS_TABLE;
+//     for(int i=0; i<8; i++) {
+//         set_csr(PIC_MEIGWCTRL_ADDR+4*i, 0x0002); // set type to edge triggered
+//         reset_csr(PIC_MEIGWCTRL_ADDR+4*i, 0x0001); // set polarity to active-high
+//         meigwclrS[i] = 0; // clear the IP bit in the meigwclrS register
+//         meipIS[i] = 2; // set priority threshold to 2 for each external interrupt (bits 3 to 0)
+//         meieS[i] |= 0x0001; // set inten (bit 0) to enable interrupts
+//         addressTable[i] = &my_isr;
+//     }
 
-        /* wait a while, then let other thread have a turn */
-		k_busy_wait(100000);
-		k_msleep(SLEEPTIME);
-		k_sem_give(&usingAccelerator_sem);
-    }
-}
+//     printf("5\n");
 
-void software(int num_matmuls) {
-    uint32_t start_ms, finish_ms;
+//     volatile int *mstatus = (int *)(CSR_BASE_ADDRESS + 0x300); // Address of mstatus register
+//     *mstatus |= 1 << 3; // set bit mie (bit 3) of the mstatus CSR
 
-    result_sw_address = MEM_BASE_ADDRESS;
-    printf("Starting %d matmuls in software!\n", num_matmuls);
-    start_ms = k_uptime_get();
-    for(int i=0; i<num_matmuls; i++)
-        multiply_mat_sw(matrix1, matrix2, result_sw_address, mat_rows_1, mat_cols_1, mat_cols_2);
-    finish_ms = k_uptime_get();
-    printf("Took %u miliseconds!\n", finish_ms-start_ms);
-}
+//     printf("6\n");
 
-void init_mats() {
-    for(int i=0; i<MATI_ROWS ; i++)
-        for(int j=0; j<MATI_COLS; j++) {
-            if(i == j) matI[i*MATI_COLS + j] = 1;
-            mat1[i*MATI_COLS + j] = 1;
-            mat2[i*MATI_COLS + j] = 2;
-            mat3[i*MATI_COLS + j] = i;
-        }
-}
+//     *mie |= (1 << 11); // set bit miep (bit 11) of the mie CSR
+// }

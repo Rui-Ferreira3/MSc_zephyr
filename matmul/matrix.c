@@ -12,10 +12,8 @@ void create_mat(int address, int rows, int cols)
     }
 }
 
-void print_mat(int address, int rows, int cols)
+void print_mat(float *matrix, int rows, int cols)
 {
-    float *matrix = (float *)address;
-
     for (int i=0; i<rows; i++) {
         for (int j=0; j<cols; j++) {
             printf("%.4f\n", matrix[i*cols+j]);
@@ -25,10 +23,8 @@ void print_mat(int address, int rows, int cols)
     printk("\n\n");
 }
 
-int verify_matmul(int mat1Address, int mat2Address, int rows, int cols)
+int verify_matmul(float *mat1, float *mat2, int rows, int cols)
 {
-    float *mat1 = (float *)mat1Address;
-    float *mat2 = (float *)mat2Address;
     int num_errors = 0;
 
     for (int i=0; i<rows; i++) {
