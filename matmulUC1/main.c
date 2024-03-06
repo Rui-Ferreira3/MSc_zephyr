@@ -85,7 +85,7 @@ void thread_accelerator() {
         calculatingNode = NULL;
     }
 
-    if(head->next != NULL && calculatingNode == NULL) {
+    if(head->next != NULL) {
         perform_matmul(head, &calculatingNode);
     }
 }

@@ -1606,7 +1606,7 @@ exceptions      0x0000000000000030      0x2c0
                 0x00000000000002cc       0x24 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(swap.S.obj)
                 0x00000000000002cc                arch_swap
 
-text            0x00000000000002f0     0xd114
+text            0x00000000000002f0     0xd110
                 0x00000000000002f0                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(.openocd_debug))
  *(SORT_BY_ALIGNMENT(.openocd_debug.*))
@@ -1668,1027 +1668,1027 @@ text            0x00000000000002f0     0xd114
                 0x00000000000040fc        0x4 zephyr/CMakeFiles/offsets.dir/./arch/riscv/core/offsets/offsets.c.obj
                 0x00000000000040fc                _OffsetAbsSyms
  .text.thread_accelerator
-                0x0000000000004100       0x80 app/libapp.a(main.c.obj)
+                0x0000000000004100       0x7c app/libapp.a(main.c.obj)
                 0x0000000000004100                thread_accelerator
- .text.my_isr   0x0000000000004180       0x8c app/libapp.a(main.c.obj)
-                0x0000000000004180                my_isr
+ .text.my_isr   0x000000000000417c       0x8c app/libapp.a(main.c.obj)
+                0x000000000000417c                my_isr
  .text.my_isr_installer
-                0x000000000000420c        0x8 app/libapp.a(main.c.obj)
-                0x000000000000420c                my_isr_installer
- .text.main     0x0000000000004214      0x13c app/libapp.a(main.c.obj)
-                0x0000000000004214                main
+                0x0000000000004208        0x8 app/libapp.a(main.c.obj)
+                0x0000000000004208                my_isr_installer
+ .text.main     0x0000000000004210      0x13c app/libapp.a(main.c.obj)
+                0x0000000000004210                main
  .text.create_mat
-                0x0000000000004350       0xc0 app/libapp.a(matrix.c.obj)
-                0x0000000000004350                create_mat
+                0x000000000000434c       0xc0 app/libapp.a(matrix.c.obj)
+                0x000000000000434c                create_mat
  .text.verify_matmul
-                0x0000000000004410       0xec app/libapp.a(matrix.c.obj)
-                0x0000000000004410                verify_matmul
+                0x000000000000440c       0xec app/libapp.a(matrix.c.obj)
+                0x000000000000440c                verify_matmul
  .text.init_matmul
-                0x00000000000044fc       0x9c app/libapp.a(matrix.c.obj)
-                0x00000000000044fc                init_matmul
+                0x00000000000044f8       0x9c app/libapp.a(matrix.c.obj)
+                0x00000000000044f8                init_matmul
  .text.fill_matmul
-                0x0000000000004598       0x58 app/libapp.a(matrix.c.obj)
-                0x0000000000004598                fill_matmul
+                0x0000000000004594       0x58 app/libapp.a(matrix.c.obj)
+                0x0000000000004594                fill_matmul
  .text.push_matmul
-                0x00000000000045f0       0x18 app/libapp.a(matrix.c.obj)
-                0x00000000000045f0                push_matmul
+                0x00000000000045ec       0x18 app/libapp.a(matrix.c.obj)
+                0x00000000000045ec                push_matmul
  .text.pop2_matmul
-                0x0000000000004608       0x24 app/libapp.a(matrix.c.obj)
-                0x0000000000004608                pop2_matmul
+                0x0000000000004604       0x24 app/libapp.a(matrix.c.obj)
+                0x0000000000004604                pop2_matmul
  .text.save_matmul
-                0x000000000000462c       0x78 app/libapp.a(matrix.c.obj)
-                0x000000000000462c                save_matmul
+                0x0000000000004628       0x78 app/libapp.a(matrix.c.obj)
+                0x0000000000004628                save_matmul
  .text.perform_matmul
-                0x00000000000046a4       0xf4 app/libapp.a(matrix.c.obj)
-                0x00000000000046a4                perform_matmul
+                0x00000000000046a0       0xf4 app/libapp.a(matrix.c.obj)
+                0x00000000000046a0                perform_matmul
  .text.free_matmul
-                0x0000000000004798       0x48 app/libapp.a(matrix.c.obj)
-                0x0000000000004798                free_matmul
+                0x0000000000004794       0x48 app/libapp.a(matrix.c.obj)
+                0x0000000000004794                free_matmul
  .text.multiply_mat_sw
-                0x00000000000047e0      0x13c app/libapp.a(multiply.c.obj)
-                0x00000000000047e0                multiply_mat_sw
+                0x00000000000047dc      0x13c app/libapp.a(multiply.c.obj)
+                0x00000000000047dc                multiply_mat_sw
  .text.multiply_mat_hw
-                0x000000000000491c       0x4c app/libapp.a(multiply.c.obj)
-                0x000000000000491c                multiply_mat_hw
+                0x0000000000004918       0x4c app/libapp.a(multiply.c.obj)
+                0x0000000000004918                multiply_mat_hw
  .text.arch_printk_char_out
-                0x0000000000004968        0x8 zephyr/libzephyr.a(printk.c.obj)
-                0x0000000000004968                arch_printk_char_out
+                0x0000000000004964        0x8 zephyr/libzephyr.a(printk.c.obj)
+                0x0000000000004964                arch_printk_char_out
  .text.char_out
-                0x0000000000004970       0x18 zephyr/libzephyr.a(printk.c.obj)
- .text.str_out  0x0000000000004988       0x40 zephyr/libzephyr.a(printk.c.obj)
+                0x000000000000496c       0x18 zephyr/libzephyr.a(printk.c.obj)
+ .text.str_out  0x0000000000004984       0x40 zephyr/libzephyr.a(printk.c.obj)
  .text.__printk_hook_install
-                0x00000000000049c8        0xc zephyr/libzephyr.a(printk.c.obj)
-                0x00000000000049c8                __printk_hook_install
- .text.vprintk  0x00000000000049d4       0x30 zephyr/libzephyr.a(printk.c.obj)
-                0x00000000000049d4                vprintk
- .text.printk   0x0000000000004a04       0x3c zephyr/libzephyr.a(printk.c.obj)
-                0x0000000000004a04                printk
+                0x00000000000049c4        0xc zephyr/libzephyr.a(printk.c.obj)
+                0x00000000000049c4                __printk_hook_install
+ .text.vprintk  0x00000000000049d0       0x30 zephyr/libzephyr.a(printk.c.obj)
+                0x00000000000049d0                vprintk
+ .text.printk   0x0000000000004a00       0x3c zephyr/libzephyr.a(printk.c.obj)
+                0x0000000000004a00                printk
  .text.vsnprintk
-                0x0000000000004a40       0x50 zephyr/libzephyr.a(printk.c.obj)
-                0x0000000000004a40                vsnprintk
+                0x0000000000004a3c       0x50 zephyr/libzephyr.a(printk.c.obj)
+                0x0000000000004a3c                vsnprintk
  .text.snprintk
-                0x0000000000004a90       0x34 zephyr/libzephyr.a(printk.c.obj)
-                0x0000000000004a90                snprintk
+                0x0000000000004a8c       0x34 zephyr/libzephyr.a(printk.c.obj)
+                0x0000000000004a8c                snprintk
  .text.z_thread_entry
-                0x0000000000004ac4       0x24 zephyr/libzephyr.a(thread_entry.c.obj)
-                0x0000000000004ac4                z_thread_entry
+                0x0000000000004ac0       0x24 zephyr/libzephyr.a(thread_entry.c.obj)
+                0x0000000000004ac0                z_thread_entry
  .text.chunk_field
-                0x0000000000004ae8       0x34 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004ae4       0x34 zephyr/libzephyr.a(heap.c.obj)
  .text.chunk_set
-                0x0000000000004b1c       0x34 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004b18       0x34 zephyr/libzephyr.a(heap.c.obj)
  .text.chunk_size
-                0x0000000000004b50       0x20 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004b4c       0x20 zephyr/libzephyr.a(heap.c.obj)
  .text.set_chunk_used
-                0x0000000000004b70       0x4c zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004b6c       0x4c zephyr/libzephyr.a(heap.c.obj)
  .text.set_chunk_size
-                0x0000000000004bbc        0xc zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004bb8        0xc zephyr/libzephyr.a(heap.c.obj)
  .text.bucket_idx.isra.0
-                0x0000000000004bc8       0x44 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004bc4       0x44 zephyr/libzephyr.a(heap.c.obj)
  .text.free_list_remove_bidx
-                0x0000000000004c0c       0xe4 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004c08       0xe4 zephyr/libzephyr.a(heap.c.obj)
  .text.free_list_remove
-                0x0000000000004cf0       0x7c zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004cec       0x7c zephyr/libzephyr.a(heap.c.obj)
  .text.alloc_chunk
-                0x0000000000004d6c       0xf4 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004d68       0xf4 zephyr/libzephyr.a(heap.c.obj)
  .text.split_chunks
-                0x0000000000004e60       0xa4 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004e5c       0xa4 zephyr/libzephyr.a(heap.c.obj)
  .text.merge_chunks
-                0x0000000000004f04       0x84 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004f00       0x84 zephyr/libzephyr.a(heap.c.obj)
  .text.free_list_add
-                0x0000000000004f88      0x128 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000004f84      0x128 zephyr/libzephyr.a(heap.c.obj)
  .text.free_chunk
-                0x00000000000050b0       0xe8 zephyr/libzephyr.a(heap.c.obj)
+                0x00000000000050ac       0xe8 zephyr/libzephyr.a(heap.c.obj)
  .text.sys_heap_free
-                0x0000000000005198       0x58 zephyr/libzephyr.a(heap.c.obj)
-                0x0000000000005198                sys_heap_free
+                0x0000000000005194       0x58 zephyr/libzephyr.a(heap.c.obj)
+                0x0000000000005194                sys_heap_free
  .text.sys_heap_alloc
-                0x00000000000051f0       0xd8 zephyr/libzephyr.a(heap.c.obj)
-                0x00000000000051f0                sys_heap_alloc
+                0x00000000000051ec       0xd8 zephyr/libzephyr.a(heap.c.obj)
+                0x00000000000051ec                sys_heap_alloc
  .text.sys_heap_aligned_alloc
-                0x00000000000052c8      0x1c8 zephyr/libzephyr.a(heap.c.obj)
-                0x00000000000052c8                sys_heap_aligned_alloc
+                0x00000000000052c4      0x1c8 zephyr/libzephyr.a(heap.c.obj)
+                0x00000000000052c4                sys_heap_aligned_alloc
  .text.sys_heap_init
-                0x0000000000005490      0x13c zephyr/libzephyr.a(heap.c.obj)
-                0x0000000000005490                sys_heap_init
+                0x000000000000548c      0x13c zephyr/libzephyr.a(heap.c.obj)
+                0x000000000000548c                sys_heap_init
  .text.extract_decimal
-                0x00000000000055cc       0x48 zephyr/libzephyr.a(cbprintf_complete.c.obj)
+                0x00000000000055c8       0x48 zephyr/libzephyr.a(cbprintf_complete.c.obj)
  .text.encode_uint
-                0x0000000000005614      0x16c zephyr/libzephyr.a(cbprintf_complete.c.obj)
- .text.outs     0x0000000000005780       0x78 zephyr/libzephyr.a(cbprintf_complete.c.obj)
+                0x0000000000005610      0x16c zephyr/libzephyr.a(cbprintf_complete.c.obj)
+ .text.outs     0x000000000000577c       0x78 zephyr/libzephyr.a(cbprintf_complete.c.obj)
  .text.cbvprintf
-                0x00000000000057f8      0xa7c zephyr/libzephyr.a(cbprintf_complete.c.obj)
-                0x00000000000057f8                cbvprintf
+                0x00000000000057f4      0xa7c zephyr/libzephyr.a(cbprintf_complete.c.obj)
+                0x00000000000057f4                cbvprintf
  .text._ConfigAbsSyms
-                0x0000000000006274        0x4 zephyr/libzephyr.a(configs.c.obj)
-                0x0000000000006274                _ConfigAbsSyms
+                0x0000000000006270        0x4 zephyr/libzephyr.a(configs.c.obj)
+                0x0000000000006270                _ConfigAbsSyms
  .text.soc_interrupt_init
-                0x0000000000006278       0x14 zephyr/libzephyr.a(irq.c.obj)
-                0x0000000000006278                soc_interrupt_init
+                0x0000000000006274       0x14 zephyr/libzephyr.a(irq.c.obj)
+                0x0000000000006274                soc_interrupt_init
  .text.fix_baud_rate
-                0x000000000000628c       0x58 zephyr/libzephyr.a(soc.c.obj)
+                0x0000000000006288       0x58 zephyr/libzephyr.a(soc.c.obj)
  .text.arch_cpu_idle
-                0x00000000000062e4        0xc zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
-                0x00000000000062e4                arch_cpu_idle
+                0x00000000000062e0        0xc zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
+                0x00000000000062e0                arch_cpu_idle
  .text.z_riscv_fatal_error
-                0x00000000000062f0        0xc zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
-                0x00000000000062f0                z_riscv_fatal_error
- .text._Fault   0x00000000000062fc       0x1c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
-                0x00000000000062fc                _Fault
+                0x00000000000062ec        0xc zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
+                0x00000000000062ec                z_riscv_fatal_error
+ .text._Fault   0x00000000000062f8       0x1c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
+                0x00000000000062f8                _Fault
  .text.z_irq_spurious
-                0x0000000000006318       0x18 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
-                0x0000000000006318                z_irq_spurious
- .text._PrepC   0x0000000000006330       0x14 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
-                0x0000000000006330                _PrepC
+                0x0000000000006314       0x18 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
+                0x0000000000006314                z_irq_spurious
+ .text._PrepC   0x000000000000632c       0x14 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
+                0x000000000000632c                _PrepC
  .text.__initialize
-                0x0000000000006344       0x2c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(reset.S.obj)
-                0x0000000000006344                __initialize
+                0x0000000000006340       0x2c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(reset.S.obj)
+                0x0000000000006340                __initialize
  .text.z_thread_entry_wrapper
-                0x0000000000006370        0x4 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(swap.S.obj)
-                0x0000000000006370                z_thread_entry_wrapper
+                0x000000000000636c        0x4 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(swap.S.obj)
+                0x000000000000636c                z_thread_entry_wrapper
  .text.arch_new_thread
-                0x0000000000006374       0x38 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
-                0x0000000000006374                arch_new_thread
+                0x0000000000006370       0x38 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
+                0x0000000000006370                arch_new_thread
  .text.malloc_prepare
-                0x00000000000063ac        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000063a8        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
  .text._stdout_hook_default
-                0x00000000000063b4        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000063b0        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
  .text._stdin_hook_default
-                0x00000000000063bc        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000063b8        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
  .text.__stdout_hook_install
-                0x00000000000063c4        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000063c4                __stdout_hook_install
+                0x00000000000063c0        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000063c0                __stdout_hook_install
  .text.z_impl_zephyr_read_stdin
-                0x00000000000063d0       0x80 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000063d0                z_impl_zephyr_read_stdin
+                0x00000000000063cc       0x80 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000063cc                z_impl_zephyr_read_stdin
  .text.z_impl_zephyr_write_stdout
-                0x0000000000006450       0x98 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006450                z_impl_zephyr_write_stdout
- .text._read    0x00000000000064e8        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000064e8                read
-                0x00000000000064e8                _read
- .text._write   0x00000000000064f4        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000064f4                write
-                0x00000000000064f4                _write
- .text._close   0x0000000000006500        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006500                close
-                0x0000000000006500                _close
- .text._lseek   0x0000000000006508        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006508                lseek
-                0x0000000000006508                _lseek
- .text._isatty  0x0000000000006510        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006510                isatty
-                0x0000000000006510                _isatty
- .text._kill    0x0000000000006518        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006518                kill
-                0x0000000000006518                _kill
- .text._getpid  0x0000000000006520        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006520                _getpid
-                0x0000000000006520                getpid
- .text._fstat   0x0000000000006528       0x10 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006528                _fstat
-                0x0000000000006528                fstat
- .text._exit    0x0000000000006538       0x1c zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006538                _exit
- .text._sbrk    0x0000000000006554       0x38 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x0000000000006554                _sbrk
-                0x0000000000006554                sbrk
+                0x000000000000644c       0x98 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x000000000000644c                z_impl_zephyr_write_stdout
+ .text._read    0x00000000000064e4        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000064e4                read
+                0x00000000000064e4                _read
+ .text._write   0x00000000000064f0        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000064f0                write
+                0x00000000000064f0                _write
+ .text._close   0x00000000000064fc        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000064fc                close
+                0x00000000000064fc                _close
+ .text._lseek   0x0000000000006504        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006504                lseek
+                0x0000000000006504                _lseek
+ .text._isatty  0x000000000000650c        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x000000000000650c                isatty
+                0x000000000000650c                _isatty
+ .text._kill    0x0000000000006514        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006514                kill
+                0x0000000000006514                _kill
+ .text._getpid  0x000000000000651c        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x000000000000651c                _getpid
+                0x000000000000651c                getpid
+ .text._fstat   0x0000000000006524       0x10 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006524                _fstat
+                0x0000000000006524                fstat
+ .text._exit    0x0000000000006534       0x1c zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006534                _exit
+ .text._sbrk    0x0000000000006550       0x38 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006550                _sbrk
+                0x0000000000006550                sbrk
  .text.__retarget_lock_init_recursive
-                0x000000000000658c       0x2c zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x000000000000658c                __retarget_lock_init_recursive
+                0x0000000000006588       0x2c zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x0000000000006588                __retarget_lock_init_recursive
  .text.__retarget_lock_acquire_recursive
-                0x00000000000065b8        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000065b8                __retarget_lock_acquire_recursive
+                0x00000000000065b4        0xc zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000065b4                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x00000000000065c4        0x4 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
-                0x00000000000065c4                __retarget_lock_release_recursive
+                0x00000000000065c0        0x4 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x00000000000065c0                __retarget_lock_release_recursive
  .text.z_impl_sys_rand32_get
-                0x00000000000065c8       0x3c zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
-                0x00000000000065c8                z_impl_sys_rand32_get
+                0x00000000000065c4       0x3c zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
+                0x00000000000065c4                z_impl_sys_rand32_get
  .text.swerv_pic_init
-                0x0000000000006604       0x8c zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x0000000000006600       0x8c zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
  .text.swerv_pic_irq_handler
-                0x0000000000006690       0x88 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x000000000000668c       0x88 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
  .text.swerv_pic_irq_enable
-                0x0000000000006718       0x38 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
-                0x0000000000006718                swerv_pic_irq_enable
+                0x0000000000006714       0x38 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x0000000000006714                swerv_pic_irq_enable
  .text.arch_irq_enable
-                0x0000000000006750       0x1c zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
-                0x0000000000006750                arch_irq_enable
+                0x000000000000674c       0x1c zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x000000000000674c                arch_irq_enable
  .text.uart_console_init
-                0x000000000000676c       0x58 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+                0x0000000000006768       0x58 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
  .text.console_out
-                0x00000000000067c4       0x64 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+                0x00000000000067c0       0x64 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
  .text.gpio_mmio32_config
-                0x0000000000006828       0x98 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x0000000000006824       0x98 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_port_get_raw
-                0x00000000000068c0       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x00000000000068bc       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_port_set_masked_raw
-                0x00000000000068e4       0x40 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x00000000000068e0       0x40 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_port_set_bits_raw
-                0x0000000000006924       0x38 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x0000000000006920       0x38 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_port_clear_bits_raw
-                0x000000000000695c       0x3c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x0000000000006958       0x3c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_port_toggle_bits
-                0x0000000000006998       0x38 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x0000000000006994       0x38 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_pin_interrupt_configure
-                0x00000000000069d0       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x00000000000069cc       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
  .text.gpio_mmio32_init
-                0x00000000000069e4       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
-                0x00000000000069e4                gpio_mmio32_init
+                0x00000000000069e0       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x00000000000069e0                gpio_mmio32_init
  .text.gpio_veerwolf_init
-                0x00000000000069f8        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x00000000000069f4        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_configure
-                0x0000000000006a00        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x00000000000069fc        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_port_get_raw
-                0x0000000000006a08       0x18 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a04       0x18 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_port_set_masked_raw
-                0x0000000000006a20       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a1c       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_port_set_bits_raw
-                0x0000000000006a44       0x1c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a40       0x1c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_port_clear_bits_raw
-                0x0000000000006a60       0x20 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a5c       0x20 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_port_toggle_bits
-                0x0000000000006a80       0x1c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a7c       0x1c zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.gpio_veerwolf_pin_interrupt_configure
-                0x0000000000006a9c       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x0000000000006a98       0x14 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .text.uart_ns16550_configure
-                0x0000000000006ab0      0x130 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x0000000000006aac      0x130 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .text.uart_ns16550_config_get
-                0x0000000000006be0       0x34 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x0000000000006bdc       0x34 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .text.uart_ns16550_init
-                0x0000000000006c14        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x0000000000006c10        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .text.uart_ns16550_poll_in
-                0x0000000000006c1c       0x38 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x0000000000006c18       0x38 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .text.uart_ns16550_poll_out
-                0x0000000000006c54       0x30 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x0000000000006c50       0x30 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .text.uart_ns16550_err_check
-                0x0000000000006c84       0x2c zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
- .text.mtime    0x0000000000006cb0       0x18 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006c80       0x2c zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+ .text.mtime    0x0000000000006cac       0x18 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
  .text.timer_isr
-                0x0000000000006cc8       0xfc zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006cc4       0xfc zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
  .text.sys_clock_driver_init
-                0x0000000000006dc4       0x7c zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
-                0x0000000000006dc4                sys_clock_driver_init
+                0x0000000000006dc0       0x7c zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006dc0                sys_clock_driver_init
  .text.sys_clock_set_timeout
-                0x0000000000006e40        0x4 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
-                0x0000000000006e40                sys_clock_set_timeout
+                0x0000000000006e3c        0x4 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006e3c                sys_clock_set_timeout
  .text.sys_clock_elapsed
-                0x0000000000006e44        0x8 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
-                0x0000000000006e44                sys_clock_elapsed
+                0x0000000000006e40        0x8 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006e40                sys_clock_elapsed
  .text.sys_clock_cycle_get_32
-                0x0000000000006e4c       0x18 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
-                0x0000000000006e4c                sys_clock_cycle_get_32
+                0x0000000000006e48       0x18 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x0000000000006e48                sys_clock_cycle_get_32
  .text.z_device_state_init
-                0x0000000000006e64        0x4 zephyr/kernel/libkernel.a(device.c.obj)
-                0x0000000000006e64                z_device_state_init
+                0x0000000000006e60        0x4 zephyr/kernel/libkernel.a(device.c.obj)
+                0x0000000000006e60                z_device_state_init
  .text.z_sys_init_run_level
-                0x0000000000006e68       0xa8 zephyr/kernel/libkernel.a(device.c.obj)
-                0x0000000000006e68                z_sys_init_run_level
+                0x0000000000006e64       0xa8 zephyr/kernel/libkernel.a(device.c.obj)
+                0x0000000000006e64                z_sys_init_run_level
  .text.z_device_ready
-                0x0000000000006f10       0x24 zephyr/kernel/libkernel.a(device.c.obj)
-                0x0000000000006f10                z_device_ready
+                0x0000000000006f0c       0x24 zephyr/kernel/libkernel.a(device.c.obj)
+                0x0000000000006f0c                z_device_ready
  .text.arch_system_halt
-                0x0000000000006f34        0xc zephyr/kernel/libkernel.a(fatal.c.obj)
-                0x0000000000006f34                arch_system_halt
+                0x0000000000006f30        0xc zephyr/kernel/libkernel.a(fatal.c.obj)
+                0x0000000000006f30                arch_system_halt
  .text.k_sys_fatal_error_handler
-                0x0000000000006f40        0xc zephyr/kernel/libkernel.a(fatal.c.obj)
-                0x0000000000006f40                k_sys_fatal_error_handler
+                0x0000000000006f3c        0xc zephyr/kernel/libkernel.a(fatal.c.obj)
+                0x0000000000006f3c                k_sys_fatal_error_handler
  .text.z_fatal_error
-                0x0000000000006f4c       0x5c zephyr/kernel/libkernel.a(fatal.c.obj)
-                0x0000000000006f4c                z_fatal_error
+                0x0000000000006f48       0x5c zephyr/kernel/libkernel.a(fatal.c.obj)
+                0x0000000000006f48                z_fatal_error
  .text.init_idle_thread
-                0x0000000000006fa8       0xb4 zephyr/kernel/libkernel.a(init.c.obj)
+                0x0000000000006fa4       0xb4 zephyr/kernel/libkernel.a(init.c.obj)
  .text.bg_thread_main
-                0x000000000000705c       0x50 zephyr/kernel/libkernel.a(init.c.obj)
+                0x0000000000007058       0x50 zephyr/kernel/libkernel.a(init.c.obj)
  .text.z_bss_zero
-                0x00000000000070ac       0x20 zephyr/kernel/libkernel.a(init.c.obj)
-                0x00000000000070ac                z_bss_zero
+                0x00000000000070a8       0x20 zephyr/kernel/libkernel.a(init.c.obj)
+                0x00000000000070a8                z_bss_zero
  .text.z_cstart
-                0x00000000000070cc       0xe0 zephyr/kernel/libkernel.a(init.c.obj)
-                0x00000000000070cc                z_cstart
+                0x00000000000070c8       0xe0 zephyr/kernel/libkernel.a(init.c.obj)
+                0x00000000000070c8                z_cstart
  .text.z_impl_k_thread_name_set
-                0x00000000000071ac       0x40 zephyr/kernel/libkernel.a(thread.c.obj)
-                0x00000000000071ac                z_impl_k_thread_name_set
+                0x00000000000071a8       0x40 zephyr/kernel/libkernel.a(thread.c.obj)
+                0x00000000000071a8                z_impl_k_thread_name_set
  .text.z_impl_k_thread_start
-                0x00000000000071ec        0x4 zephyr/kernel/libkernel.a(thread.c.obj)
-                0x00000000000071ec                z_impl_k_thread_start
+                0x00000000000071e8        0x4 zephyr/kernel/libkernel.a(thread.c.obj)
+                0x00000000000071e8                z_impl_k_thread_start
  .text.z_setup_new_thread
-                0x00000000000071f0       0xb8 zephyr/kernel/libkernel.a(thread.c.obj)
-                0x00000000000071f0                z_setup_new_thread
+                0x00000000000071ec       0xb8 zephyr/kernel/libkernel.a(thread.c.obj)
+                0x00000000000071ec                z_setup_new_thread
  .text.z_impl_k_thread_create
-                0x00000000000072a8       0x84 zephyr/kernel/libkernel.a(thread.c.obj)
-                0x00000000000072a8                z_impl_k_thread_create
+                0x00000000000072a4       0x84 zephyr/kernel/libkernel.a(thread.c.obj)
+                0x00000000000072a4                z_impl_k_thread_create
  .text.z_init_static_threads
-                0x000000000000732c      0x118 zephyr/kernel/libkernel.a(thread.c.obj)
-                0x000000000000732c                z_init_static_threads
- .text.idle     0x0000000000007444       0x1c zephyr/kernel/libkernel.a(idle.c.obj)
-                0x0000000000007444                idle
+                0x0000000000007328      0x118 zephyr/kernel/libkernel.a(thread.c.obj)
+                0x0000000000007328                z_init_static_threads
+ .text.idle     0x0000000000007440       0x1c zephyr/kernel/libkernel.a(idle.c.obj)
+                0x0000000000007440                idle
  .text.adjust_owner_prio.isra.0
-                0x0000000000007460       0x14 zephyr/kernel/libkernel.a(mutex.c.obj)
+                0x000000000000745c       0x14 zephyr/kernel/libkernel.a(mutex.c.obj)
  .text.z_impl_k_mutex_init
-                0x0000000000007474       0x18 zephyr/kernel/libkernel.a(mutex.c.obj)
-                0x0000000000007474                z_impl_k_mutex_init
+                0x0000000000007470       0x18 zephyr/kernel/libkernel.a(mutex.c.obj)
+                0x0000000000007470                z_impl_k_mutex_init
  .text.z_impl_k_mutex_lock
-                0x000000000000748c      0x160 zephyr/kernel/libkernel.a(mutex.c.obj)
-                0x000000000000748c                z_impl_k_mutex_lock
+                0x0000000000007488      0x160 zephyr/kernel/libkernel.a(mutex.c.obj)
+                0x0000000000007488                z_impl_k_mutex_lock
  .text.z_impl_k_mutex_unlock
-                0x00000000000075ec       0xc8 zephyr/kernel/libkernel.a(mutex.c.obj)
-                0x00000000000075ec                z_impl_k_mutex_unlock
+                0x00000000000075e8       0xc8 zephyr/kernel/libkernel.a(mutex.c.obj)
+                0x00000000000075e8                z_impl_k_mutex_unlock
  .text.sys_dlist_remove
-                0x00000000000076b4       0x1c zephyr/kernel/libkernel.a(sched.c.obj)
+                0x00000000000076b0       0x1c zephyr/kernel/libkernel.a(sched.c.obj)
  .text.unpend_thread_no_timeout
-                0x00000000000076d0       0x34 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x00000000000076cc       0x34 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.z_reset_time_slice
-                0x0000000000007704       0x58 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007704                z_reset_time_slice
+                0x0000000000007700       0x58 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007700                z_reset_time_slice
  .text.update_cache
-                0x000000000000775c       0xa4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007758       0xa4 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.move_thread_to_end_of_prio_q
-                0x0000000000007800       0xc0 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x00000000000077fc       0xc0 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.ready_thread
-                0x00000000000078c0       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x00000000000078bc       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.z_thread_timeout
-                0x0000000000007960       0x6c zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007960                z_thread_timeout
+                0x000000000000795c       0x6c zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000795c                z_thread_timeout
  .text.unready_thread
-                0x00000000000079cc       0x4c zephyr/kernel/libkernel.a(sched.c.obj)
+                0x00000000000079c8       0x4c zephyr/kernel/libkernel.a(sched.c.obj)
  .text.add_to_waitq_locked
-                0x0000000000007a18       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007a14       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.pend_locked
-                0x0000000000007ab8       0x5c zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007ab4       0x5c zephyr/kernel/libkernel.a(sched.c.obj)
  .text.k_sched_time_slice_set
-                0x0000000000007b14       0x7c zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007b14                k_sched_time_slice_set
+                0x0000000000007b10       0x7c zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007b10                k_sched_time_slice_set
  .text.z_time_slice
-                0x0000000000007b90       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007b90                z_time_slice
+                0x0000000000007b8c       0xa0 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007b8c                z_time_slice
  .text.z_ready_thread
-                0x0000000000007c30       0x30 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007c30                z_ready_thread
+                0x0000000000007c2c       0x30 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007c2c                z_ready_thread
  .text.z_pend_curr
-                0x0000000000007c60       0x44 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007c60                z_pend_curr
+                0x0000000000007c5c       0x44 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007c5c                z_pend_curr
  .text.z_unpend_thread
-                0x0000000000007ca4       0x40 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007ca4                z_unpend_thread
+                0x0000000000007ca0       0x40 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007ca0                z_unpend_thread
  .text.z_set_prio
-                0x0000000000007ce4       0xfc zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007ce4                z_set_prio
+                0x0000000000007ce0       0xfc zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007ce0                z_set_prio
  .text.z_reschedule
-                0x0000000000007de0       0x34 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007de0                z_reschedule
+                0x0000000000007ddc       0x34 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007ddc                z_reschedule
  .text.z_sched_start
-                0x0000000000007e14       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007e14                z_sched_start
+                0x0000000000007e10       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007e10                z_sched_start
  .text.z_reschedule_irqlock
-                0x0000000000007e64       0x20 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007e64                z_reschedule_irqlock
+                0x0000000000007e60       0x20 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007e60                z_reschedule_irqlock
  .text.z_reschedule_unlocked
-                0x0000000000007e84       0x10 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007e80       0x10 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.z_impl_k_thread_suspend
-                0x0000000000007e94       0xac zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007e94                z_impl_k_thread_suspend
+                0x0000000000007e90       0xac zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007e90                z_impl_k_thread_suspend
  .text.k_sched_lock
-                0x0000000000007f40       0x28 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007f40                k_sched_lock
+                0x0000000000007f3c       0x28 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007f3c                k_sched_lock
  .text.k_sched_unlock
-                0x0000000000007f68       0x48 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007f68                k_sched_unlock
+                0x0000000000007f64       0x48 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007f64                k_sched_unlock
  .text.z_priq_dumb_best
-                0x0000000000007fb0       0x14 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007fb0                z_priq_dumb_best
+                0x0000000000007fac       0x14 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007fac                z_priq_dumb_best
  .text.z_unpend_first_thread
-                0x0000000000007fc4       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000007fc4                z_unpend_first_thread
+                0x0000000000007fc0       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000007fc0                z_unpend_first_thread
  .text.z_unpend_all
-                0x0000000000008014       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008014                z_unpend_all
+                0x0000000000008010       0x50 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008010                z_unpend_all
  .text.z_sched_init
-                0x0000000000008064       0x24 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008064                z_sched_init
+                0x0000000000008060       0x24 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008060                z_sched_init
  .text.z_impl_k_yield
-                0x0000000000008088       0xd8 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008088                z_impl_k_yield
+                0x0000000000008084       0xd8 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008084                z_impl_k_yield
  .text.z_tick_sleep
-                0x0000000000008160       0xf4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000815c       0xf4 zephyr/kernel/libkernel.a(sched.c.obj)
  .text.z_impl_k_sleep
-                0x0000000000008254       0x40 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008254                z_impl_k_sleep
+                0x0000000000008250       0x40 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008250                z_impl_k_sleep
  .text.z_impl_z_current_get
-                0x0000000000008294        0xc zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008294                z_impl_z_current_get
+                0x0000000000008290        0xc zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008290                z_impl_z_current_get
  .text.z_thread_abort
-                0x00000000000082a0       0xf4 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x00000000000082a0                z_thread_abort
+                0x000000000000829c       0xf4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000829c                z_thread_abort
  .text.z_impl_k_thread_abort
-                0x0000000000008394        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x0000000000008394                z_impl_k_thread_abort
- .text.elapsed  0x0000000000008398       0x18 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x0000000000008390        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x0000000000008390                z_impl_k_thread_abort
+ .text.elapsed  0x0000000000008394       0x18 zephyr/kernel/libkernel.a(timeout.c.obj)
  .text.next_timeout
-                0x00000000000083b0       0x90 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x00000000000083ac       0x90 zephyr/kernel/libkernel.a(timeout.c.obj)
  .text.remove_timeout
-                0x0000000000008440       0x58 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x000000000000843c       0x58 zephyr/kernel/libkernel.a(timeout.c.obj)
  .text.z_add_timeout
-                0x0000000000008498      0x1b0 zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x0000000000008498                z_add_timeout
+                0x0000000000008494      0x1b0 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x0000000000008494                z_add_timeout
  .text.z_abort_timeout
-                0x0000000000008648       0x44 zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x0000000000008648                z_abort_timeout
+                0x0000000000008644       0x44 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x0000000000008644                z_abort_timeout
  .text.z_set_timeout_expiry
-                0x000000000000868c       0x58 zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x000000000000868c                z_set_timeout_expiry
+                0x0000000000008688       0x58 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x0000000000008688                z_set_timeout_expiry
  .text.sys_clock_announce
-                0x00000000000086e4      0x13c zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x00000000000086e4                sys_clock_announce
+                0x00000000000086e0      0x13c zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x00000000000086e0                sys_clock_announce
  .text.sys_clock_tick_get
-                0x0000000000008820       0x50 zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x0000000000008820                sys_clock_tick_get
+                0x000000000000881c       0x50 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x000000000000881c                sys_clock_tick_get
  .text.sys_clock_tick_get_32
-                0x0000000000008870        0xc zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x0000000000008870                sys_clock_tick_get_32
+                0x000000000000886c        0xc zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x000000000000886c                sys_clock_tick_get_32
  .text.sys_clock_timeout_end_calc
-                0x000000000000887c       0xa0 zephyr/kernel/libkernel.a(timeout.c.obj)
-                0x000000000000887c                sys_clock_timeout_end_calc
+                0x0000000000008878       0xa0 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x0000000000008878                sys_clock_timeout_end_calc
  .text.z_impl_atomic_add
-                0x000000000000891c       0x24 zephyr/kernel/libkernel.a(atomic_c.c.obj)
-                0x000000000000891c                z_impl_atomic_add
+                0x0000000000008918       0x24 zephyr/kernel/libkernel.a(atomic_c.c.obj)
+                0x0000000000008918                z_impl_atomic_add
  .text.z_heap_aligned_alloc
-                0x0000000000008940       0x58 zephyr/kernel/libkernel.a(mempool.c.obj)
- .text.k_free   0x0000000000008998       0x14 zephyr/kernel/libkernel.a(mempool.c.obj)
-                0x0000000000008998                k_free
+                0x000000000000893c       0x58 zephyr/kernel/libkernel.a(mempool.c.obj)
+ .text.k_free   0x0000000000008994       0x14 zephyr/kernel/libkernel.a(mempool.c.obj)
+                0x0000000000008994                k_free
  .text.k_aligned_alloc
-                0x00000000000089ac       0x14 zephyr/kernel/libkernel.a(mempool.c.obj)
-                0x00000000000089ac                k_aligned_alloc
+                0x00000000000089a8       0x14 zephyr/kernel/libkernel.a(mempool.c.obj)
+                0x00000000000089a8                k_aligned_alloc
  .text.k_malloc
-                0x00000000000089c0        0xc zephyr/kernel/libkernel.a(mempool.c.obj)
-                0x00000000000089c0                k_malloc
+                0x00000000000089bc        0xc zephyr/kernel/libkernel.a(mempool.c.obj)
+                0x00000000000089bc                k_malloc
  .text.boot_banner
-                0x00000000000089cc       0x1c zephyr/kernel/libkernel.a(banner.c.obj)
-                0x00000000000089cc                boot_banner
+                0x00000000000089c8       0x1c zephyr/kernel/libkernel.a(banner.c.obj)
+                0x00000000000089c8                boot_banner
  .text.k_heap_init
-                0x00000000000089e8       0x10 zephyr/kernel/libkernel.a(kheap.c.obj)
-                0x00000000000089e8                k_heap_init
+                0x00000000000089e4       0x10 zephyr/kernel/libkernel.a(kheap.c.obj)
+                0x00000000000089e4                k_heap_init
  .text.statics_init
-                0x00000000000089f8       0x54 zephyr/kernel/libkernel.a(kheap.c.obj)
+                0x00000000000089f4       0x54 zephyr/kernel/libkernel.a(kheap.c.obj)
  .text.k_heap_aligned_alloc
-                0x0000000000008a4c       0xf8 zephyr/kernel/libkernel.a(kheap.c.obj)
-                0x0000000000008a4c                k_heap_aligned_alloc
+                0x0000000000008a48       0xf8 zephyr/kernel/libkernel.a(kheap.c.obj)
+                0x0000000000008a48                k_heap_aligned_alloc
  .text.k_heap_free
-                0x0000000000008b44       0x64 zephyr/kernel/libkernel.a(kheap.c.obj)
-                0x0000000000008b44                k_heap_free
- .text.malloc   0x0000000000008ba8       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-malloc.o)
-                0x0000000000008ba8                malloc
- .text._free_r  0x0000000000008bb8      0x104 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-freer.o)
-                0x0000000000008bb8                _free_r
+                0x0000000000008b40       0x64 zephyr/kernel/libkernel.a(kheap.c.obj)
+                0x0000000000008b40                k_heap_free
+ .text.malloc   0x0000000000008ba4       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-malloc.o)
+                0x0000000000008ba4                malloc
+ .text._free_r  0x0000000000008bb4      0x104 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-freer.o)
+                0x0000000000008bb4                _free_r
  .text._malloc_r
-                0x0000000000008cbc      0x158 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000000008cbc                _malloc_r
- .text.__cvt    0x0000000000008e14      0x158 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x0000000000008e14                __cvt
+                0x0000000000008cb8      0x158 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000000008cb8                _malloc_r
+ .text.__cvt    0x0000000000008e10      0x158 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0000000000008e10                __cvt
  .text.__exponent
-                0x0000000000008f6c       0xc0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x0000000000008f6c                __exponent
+                0x0000000000008f68       0xc0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0000000000008f68                __exponent
  .text._printf_float
-                0x000000000000902c      0x794 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
-                0x000000000000902c                _printf_float
+                0x0000000000009028      0x794 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0000000000009028                _printf_float
  .text._printf_common
-                0x00000000000097c0      0x1b0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x00000000000097c0                _printf_common
+                0x00000000000097bc      0x1b0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00000000000097bc                _printf_common
  .text._printf_i
-                0x0000000000009970      0x3a0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
-                0x0000000000009970                _printf_i
- .text.printf   0x0000000000009d10       0x70 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-printf.o)
-                0x0000000000009d10                printf
-                0x0000000000009d10                iprintf
- .text._sbrk_r  0x0000000000009d80       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-sbrkr.o)
-                0x0000000000009d80                _sbrk_r
- .text.strlen   0x0000000000009dcc       0x1c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strlen.o)
-                0x0000000000009dcc                strlen
- .text.strncpy  0x0000000000009de8       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strncpy.o)
-                0x0000000000009de8                strncpy
- .text.strnlen  0x0000000000009e20       0x24 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strnlen.o)
-                0x0000000000009e20                strnlen
- .text.quorem   0x0000000000009e44      0x1cc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
- .text._dtoa_r  0x000000000000a010     0x11d8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
-                0x000000000000a010                _dtoa_r
- .text.std      0x000000000000b1e8       0x88 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000996c      0x3a0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000996c                _printf_i
+ .text.printf   0x0000000000009d0c       0x70 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-printf.o)
+                0x0000000000009d0c                printf
+                0x0000000000009d0c                iprintf
+ .text._sbrk_r  0x0000000000009d7c       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-sbrkr.o)
+                0x0000000000009d7c                _sbrk_r
+ .text.strlen   0x0000000000009dc8       0x1c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strlen.o)
+                0x0000000000009dc8                strlen
+ .text.strncpy  0x0000000000009de4       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strncpy.o)
+                0x0000000000009de4                strncpy
+ .text.strnlen  0x0000000000009e1c       0x24 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strnlen.o)
+                0x0000000000009e1c                strnlen
+ .text.quorem   0x0000000000009e40      0x1cc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x000000000000a00c     0x11d8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
+                0x000000000000a00c                _dtoa_r
+ .text.std      0x000000000000b1e4       0x88 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
  .text._cleanup_r
-                0x000000000000b270        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b270                _cleanup_r
+                0x000000000000b26c        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b26c                _cleanup_r
  .text.__sfmoreglue
-                0x000000000000b27c       0x6c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b27c                __sfmoreglue
+                0x000000000000b278       0x6c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b278                __sfmoreglue
  .text.__sfp_lock_acquire
-                0x000000000000b2e8        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b2e8                __sfp_lock_acquire
+                0x000000000000b2e4        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b2e4                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x000000000000b2f4        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b2f4                __sfp_lock_release
+                0x000000000000b2f0        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b2f0                __sfp_lock_release
  .text.__sinit_lock_acquire
-                0x000000000000b300        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b300                __sinit_lock_acquire
+                0x000000000000b2fc        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b2fc                __sinit_lock_acquire
  .text.__sinit_lock_release
-                0x000000000000b30c        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b30c                __sinit_lock_release
- .text.__sinit  0x000000000000b318       0xb8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b318                __sinit
- .text.__sfp    0x000000000000b3d0      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000b3d0                __sfp
+                0x000000000000b308        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b308                __sinit_lock_release
+ .text.__sinit  0x000000000000b314       0xb8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b314                __sinit
+ .text.__sfp    0x000000000000b3cc      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000b3cc                __sfp
  .text._fwalk_reent
-                0x000000000000b4d0       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fwalk.o)
-                0x000000000000b4d0                _fwalk_reent
+                0x000000000000b4cc       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fwalk.o)
+                0x000000000000b4cc                _fwalk_reent
  .text._localeconv_r
-                0x000000000000b580        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-localeconv.o)
-                0x000000000000b580                _localeconv_r
- .text.memchr   0x000000000000b58c       0x24 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-memchr.o)
-                0x000000000000b58c                memchr
+                0x000000000000b57c        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-localeconv.o)
+                0x000000000000b57c                _localeconv_r
+ .text.memchr   0x000000000000b588       0x24 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-memchr.o)
+                0x000000000000b588                memchr
  .text.__malloc_lock
-                0x000000000000b5b0        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
-                0x000000000000b5b0                __malloc_lock
+                0x000000000000b5ac        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
+                0x000000000000b5ac                __malloc_lock
  .text.__malloc_unlock
-                0x000000000000b5bc        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
-                0x000000000000b5bc                __malloc_unlock
- .text._Balloc  0x000000000000b5c8      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b5c8                _Balloc
- .text._Bfree   0x000000000000b6c8       0x94 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b6c8                _Bfree
+                0x000000000000b5b8        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
+                0x000000000000b5b8                __malloc_unlock
+ .text._Balloc  0x000000000000b5c4      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b5c4                _Balloc
+ .text._Bfree   0x000000000000b6c4       0x94 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b6c4                _Bfree
  .text.__multadd
-                0x000000000000b75c      0x120 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b75c                __multadd
+                0x000000000000b758      0x120 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b758                __multadd
  .text.__hi0bits
-                0x000000000000b87c       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b87c                __hi0bits
+                0x000000000000b878       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b878                __hi0bits
  .text.__lo0bits
-                0x000000000000b8f0       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b8f0                __lo0bits
- .text.__i2b    0x000000000000b9a0       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b9a0                __i2b
+                0x000000000000b8ec       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b8ec                __lo0bits
+ .text.__i2b    0x000000000000b99c       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b99c                __i2b
  .text.__multiply
-                0x000000000000b9f4      0x208 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000b9f4                __multiply
+                0x000000000000b9f0      0x208 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000b9f0                __multiply
  .text.__pow5mult
-                0x000000000000bbfc      0x144 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000bbfc                __pow5mult
+                0x000000000000bbf8      0x144 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000bbf8                __pow5mult
  .text.__lshift
-                0x000000000000bd40      0x184 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000bd40                __lshift
- .text.__mcmp   0x000000000000bec4       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000bec4                __mcmp
- .text.__mdiff  0x000000000000bf18      0x1fc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000bf18                __mdiff
- .text.__d2b    0x000000000000c114      0x15c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000c114                __d2b
+                0x000000000000bd3c      0x184 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000bd3c                __lshift
+ .text.__mcmp   0x000000000000bec0       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000bec0                __mcmp
+ .text.__mdiff  0x000000000000bf14      0x1fc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000bf14                __mdiff
+ .text.__d2b    0x000000000000c110      0x15c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000c110                __d2b
  .text._calloc_r
-                0x000000000000c270       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-callocr.o)
-                0x000000000000c270                _calloc_r
+                0x000000000000c26c       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-callocr.o)
+                0x000000000000c26c                _calloc_r
  .text.__sfputc_r
-                0x000000000000c2b4       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c2b0       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x000000000000c2f0       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000000000c2f0                __sfputs_r
+                0x000000000000c2ec       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c2ec                __sfputs_r
  .text._vfprintf_r
-                0x000000000000c364      0x434 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
-                0x000000000000c364                _vfiprintf_r
-                0x000000000000c364                _vfprintf_r
- .text.__sread  0x000000000000c798       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
-                0x000000000000c798                __sread
+                0x000000000000c360      0x434 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
+                0x000000000000c360                _vfiprintf_r
+                0x000000000000c360                _vfprintf_r
+ .text.__sread  0x000000000000c794       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
+                0x000000000000c794                __sread
  .text.__swrite
-                0x000000000000c7e8       0x84 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
-                0x000000000000c7e8                __swrite
- .text.__sseek  0x000000000000c86c       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
-                0x000000000000c86c                __sseek
+                0x000000000000c7e4       0x84 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
+                0x000000000000c7e4                __swrite
+ .text.__sseek  0x000000000000c868       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
+                0x000000000000c868                __sseek
  .text.__sclose
-                0x000000000000c8c4        0x8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
-                0x000000000000c8c4                __sclose
+                0x000000000000c8c0        0x8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
+                0x000000000000c8c0                __sclose
  .text.__swbuf_r
-                0x000000000000c8cc      0x138 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wbuf.o)
-                0x000000000000c8cc                __swbuf_r
+                0x000000000000c8c8      0x138 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wbuf.o)
+                0x000000000000c8c8                __swbuf_r
  .text._write_r
-                0x000000000000ca04       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-writer.o)
-                0x000000000000ca04                _write_r
+                0x000000000000ca00       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-writer.o)
+                0x000000000000ca00                _write_r
  .text.__swsetup_r
-                0x000000000000ca58      0x178 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wsetup.o)
-                0x000000000000ca58                __swsetup_r
+                0x000000000000ca54      0x178 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wsetup.o)
+                0x000000000000ca54                __swsetup_r
  .text.__assert_func
-                0x000000000000cbd0       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
-                0x000000000000cbd0                __assert_func
+                0x000000000000cbcc       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
+                0x000000000000cbcc                __assert_func
  .text._close_r
-                0x000000000000cc24       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-closer.o)
-                0x000000000000cc24                _close_r
+                0x000000000000cc20       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-closer.o)
+                0x000000000000cc20                _close_r
  .text.__sflush_r
-                0x000000000000cc70      0x1f4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
-                0x000000000000cc70                __sflush_r
+                0x000000000000cc6c      0x1f4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
+                0x000000000000cc6c                __sflush_r
  .text._fflush_r
-                0x000000000000ce64       0xdc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
-                0x000000000000ce64                _fflush_r
- .text.fprintf  0x000000000000cf40       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fprintf.o)
-                0x000000000000cf40                fprintf
-                0x000000000000cf40                fiprintf
+                0x000000000000ce60       0xdc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
+                0x000000000000ce60                _fflush_r
+ .text.fprintf  0x000000000000cf3c       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fprintf.o)
+                0x000000000000cf3c                fprintf
+                0x000000000000cf3c                fiprintf
  .text._lseek_r
-                0x000000000000cf88       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-lseekr.o)
-                0x000000000000cf88                _lseek_r
+                0x000000000000cf84       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-lseekr.o)
+                0x000000000000cf84                _lseek_r
  .text.__swhatbuf_r
-                0x000000000000cfdc       0x90 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
-                0x000000000000cfdc                __swhatbuf_r
+                0x000000000000cfd8       0x90 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
+                0x000000000000cfd8                __swhatbuf_r
  .text.__smakebuf_r
-                0x000000000000d06c       0xf0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
-                0x000000000000d06c                __smakebuf_r
+                0x000000000000d068       0xf0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
+                0x000000000000d068                __smakebuf_r
  .text.__ascii_mbtowc
-                0x000000000000d15c       0x5c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mbtowc_r.o)
-                0x000000000000d15c                __ascii_mbtowc
- .text._read_r  0x000000000000d1b8       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-readr.o)
-                0x000000000000d1b8                _read_r
+                0x000000000000d158       0x5c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mbtowc_r.o)
+                0x000000000000d158                __ascii_mbtowc
+ .text._read_r  0x000000000000d1b4       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-readr.o)
+                0x000000000000d1b4                _read_r
  .text.__ascii_wctomb
-                0x000000000000d20c       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wctomb_r.o)
-                0x000000000000d20c                __ascii_wctomb
- .text.abort    0x000000000000d23c       0x18 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-abort.o)
-                0x000000000000d23c                abort
+                0x000000000000d208       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wctomb_r.o)
+                0x000000000000d208                __ascii_wctomb
+ .text.abort    0x000000000000d238       0x18 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-abort.o)
+                0x000000000000d238                abort
  .text._fstat_r
-                0x000000000000d254       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fstatr.o)
-                0x000000000000d254                _fstat_r
+                0x000000000000d250       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fstatr.o)
+                0x000000000000d250                _fstat_r
  .text._isatty_r
-                0x000000000000d2a4       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-isattyr.o)
-                0x000000000000d2a4                _isatty_r
+                0x000000000000d2a0       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-isattyr.o)
+                0x000000000000d2a0                _isatty_r
  .text._raise_r
-                0x000000000000d2f0       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
-                0x000000000000d2f0                _raise_r
- .text.raise    0x000000000000d3a0       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
-                0x000000000000d3a0                raise
- .text._kill_r  0x000000000000d3b0       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
-                0x000000000000d3b0                _kill_r
+                0x000000000000d2ec       0xb0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
+                0x000000000000d2ec                _raise_r
+ .text.raise    0x000000000000d39c       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
+                0x000000000000d39c                raise
+ .text._kill_r  0x000000000000d3ac       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
+                0x000000000000d3ac                _kill_r
  .text._getpid_r
-                0x000000000000d400        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
-                0x000000000000d400                _getpid_r
+                0x000000000000d3fc        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
+                0x000000000000d3fc                _getpid_r
  *(SORT_BY_ALIGNMENT(.gnu.linkonce.t.*))
-                0x000000000000d404                __text_region_end = .
-                0x000000000000d404                __rodata_region_start = .
+                0x000000000000d400                __text_region_end = .
+                0x000000000000d400                __rodata_region_start = .
 
-initlevel       0x000000000000d404       0x48
-                0x000000000000d404                __init_start = .
-                0x000000000000d404                __init_PRE_KERNEL_1_start = .
+initlevel       0x000000000000d400       0x48
+                0x000000000000d400                __init_start = .
+                0x000000000000d400                __init_PRE_KERNEL_1_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_PRE_KERNEL_1[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_PRE_KERNEL_1[1-9][0-9]_*)))
  .z_init_PRE_KERNEL_130_
-                0x000000000000d404        0x8 zephyr/kernel/libkernel.a(kheap.c.obj)
+                0x000000000000d400        0x8 zephyr/kernel/libkernel.a(kheap.c.obj)
  .z_init_PRE_KERNEL_140_
-                0x000000000000d40c        0x8 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x000000000000d408        0x8 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
  .z_init_PRE_KERNEL_150_
-                0x000000000000d414        0x8 zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000d410        0x8 zephyr/libzephyr.a(soc.c.obj)
  .z_init_PRE_KERNEL_150_
-                0x000000000000d41c        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x000000000000d418        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .z_init_PRE_KERNEL_160_
-                0x000000000000d424        0x8 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
-                0x000000000000d42c                __init_PRE_KERNEL_2_start = .
+                0x000000000000d420        0x8 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+                0x000000000000d428                __init_PRE_KERNEL_2_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_PRE_KERNEL_2[0-9]_*)))
  .z_init_PRE_KERNEL_20_
-                0x000000000000d42c        0x8 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+                0x000000000000d428        0x8 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_PRE_KERNEL_2[1-9][0-9]_*)))
-                0x000000000000d434                __init_POST_KERNEL_start = .
+                0x000000000000d430                __init_POST_KERNEL_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_POST_KERNEL[0-9]_*)))
  .z_init_POST_KERNEL0_
-                0x000000000000d434        0x8 zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000d430        0x8 zephyr/libzephyr.a(soc.c.obj)
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_POST_KERNEL[1-9][0-9]_*)))
  .z_init_POST_KERNEL40_
-                0x000000000000d43c        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x000000000000d438        0x8 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
  .z_init_POST_KERNEL50_
-                0x000000000000d444        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
-                0x000000000000d44c                __init_APPLICATION_start = .
+                0x000000000000d440        0x8 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000d448                __init_APPLICATION_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_APPLICATION[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_APPLICATION[1-9][0-9]_*)))
-                0x000000000000d44c                __init_SMP_start = .
+                0x000000000000d448                __init_SMP_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_SMP[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_SMP[1-9][0-9]_*)))
-                0x000000000000d44c                __init_end = .
+                0x000000000000d448                __init_end = .
 
-devices         0x000000000000d44c       0x60
-                0x000000000000d44c                __device_start = .
-                0x000000000000d44c                __device_PRE_KERNEL_1_start = .
+devices         0x000000000000d448       0x60
+                0x000000000000d448                __device_start = .
+                0x000000000000d448                __device_PRE_KERNEL_1_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_PRE_KERNEL_1[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_PRE_KERNEL_1[1-9][0-9]_*)))
  .z_device_PRE_KERNEL_150_
-                0x000000000000d44c       0x18 zephyr/libzephyr.a(soc.c.obj)
-                0x000000000000d44c                __device_dts_ord_9
+                0x000000000000d448       0x18 zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000d448                __device_dts_ord_9
  .z_device_PRE_KERNEL_150_
-                0x000000000000d464       0x18 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
-                0x000000000000d464                __device_dts_ord_11
-                0x000000000000d47c                __device_PRE_KERNEL_2_start = .
+                0x000000000000d460       0x18 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x000000000000d460                __device_dts_ord_11
+                0x000000000000d478                __device_PRE_KERNEL_2_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_PRE_KERNEL_2[0-9]_*)))
  .z_device_PRE_KERNEL_20_
-                0x000000000000d47c       0x18 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+                0x000000000000d478       0x18 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_PRE_KERNEL_2[1-9][0-9]_*)))
-                0x000000000000d494                __device_POST_KERNEL_start = .
+                0x000000000000d490                __device_POST_KERNEL_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_POST_KERNEL[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_POST_KERNEL[1-9][0-9]_*)))
  .z_device_POST_KERNEL50_
-                0x000000000000d494       0x18 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
-                0x000000000000d4ac                __device_APPLICATION_start = .
+                0x000000000000d490       0x18 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000d4a8                __device_APPLICATION_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_APPLICATION[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_APPLICATION[1-9][0-9]_*)))
-                0x000000000000d4ac                __device_SMP_start = .
+                0x000000000000d4a8                __device_SMP_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_SMP[0-9]_*)))
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_device_SMP[1-9][0-9]_*)))
-                0x000000000000d4ac                __device_end = .
+                0x000000000000d4a8                __device_end = .
 
 initlevel_error
-                0x000000000000d404        0x0
+                0x000000000000d400        0x0
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.z_init_[_A-Z0-9]*)))
                 0x0000000000000001                ASSERT ((SIZEOF (initlevel_error) == 0x0), Undefined initialization levels used.)
 
 app_shmem_regions
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __app_shmem_regions_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __app_shmem_regions_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.app_regions.*)))
-                0x000000000000d4ac                __app_shmem_regions_end = .
+                0x000000000000d4a8                __app_shmem_regions_end = .
 
 bt_l2cap_fixed_chan_area
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                _bt_l2cap_fixed_chan_list_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                _bt_l2cap_fixed_chan_list_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._bt_l2cap_fixed_chan.static.*)))
-                0x000000000000d4ac                _bt_l2cap_fixed_chan_list_end = .
+                0x000000000000d4a8                _bt_l2cap_fixed_chan_list_end = .
 
 bt_gatt_service_static_area
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                _bt_gatt_service_static_list_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                _bt_gatt_service_static_list_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._bt_gatt_service_static.static.*)))
-                0x000000000000d4ac                _bt_gatt_service_static_list_end = .
+                0x000000000000d4a8                _bt_gatt_service_static_list_end = .
 
 k_p4wq_initparam_area
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                _k_p4wq_initparam_list_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                _k_p4wq_initparam_list_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._k_p4wq_initparam.static.*)))
-                0x000000000000d4ac                _k_p4wq_initparam_list_end = .
+                0x000000000000d4a8                _k_p4wq_initparam_list_end = .
 
 log_strings_sections
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __log_strings_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __log_strings_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.log_strings*)))
-                0x000000000000d4ac                __log_strings_end = .
+                0x000000000000d4a8                __log_strings_end = .
 
 log_const_sections
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __log_const_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __log_const_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.log_const_*)))
-                0x000000000000d4ac                __log_const_end = .
+                0x000000000000d4a8                __log_const_end = .
 
 log_backends_sections
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __log_backends_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __log_backends_start = .
  *(SORT_BY_ALIGNMENT(._log_backend.*))
-                0x000000000000d4ac                __log_backends_end = .
+                0x000000000000d4a8                __log_backends_end = .
 
-shell_area      0x000000000000d4ac        0x0
-                0x000000000000d4ac                _shell_list_start = .
+shell_area      0x000000000000d4a8        0x0
+                0x000000000000d4a8                _shell_list_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._shell.static.*)))
-                0x000000000000d4ac                _shell_list_end = .
+                0x000000000000d4a8                _shell_list_end = .
 
 shell_root_cmds_sections
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __shell_root_cmds_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __shell_root_cmds_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.shell_root_cmd_*)))
-                0x000000000000d4ac                __shell_root_cmds_end = .
+                0x000000000000d4a8                __shell_root_cmds_end = .
 
 font_entry_sections
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                __font_entry_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                __font_entry_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._cfb_font.*)))
-                0x000000000000d4ac                __font_entry_end = .
+                0x000000000000d4a8                __font_entry_end = .
 
 tracing_backend_area
-                0x000000000000d4ac        0x0
-                0x000000000000d4ac                _tracing_backend_list_start = .
+                0x000000000000d4a8        0x0
+                0x000000000000d4a8                _tracing_backend_list_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(._tracing_backend.static.*)))
-                0x000000000000d4ac                _tracing_backend_list_end = .
+                0x000000000000d4a8                _tracing_backend_list_end = .
 
 zephyr_dbg_info
  *(SORT_BY_ALIGNMENT(.dbg_thread_info))
 
-device_handles  0x000000000000d4ac       0x18
-                0x000000000000d4ac                __device_handles_start = .
+device_handles  0x000000000000d4a8       0x18
+                0x000000000000d4a8                __device_handles_start = .
  *(SORT_BY_NAME(SORT_BY_ALIGNMENT(.__device_handles_pass1*)))
  .__device_handles_pass1
-                0x000000000000d4ac        0x8 zephyr/libzephyr.a(soc.c.obj)
-                0x000000000000d4ac                __devicehdl_DT_N_S_leds_S_led
+                0x000000000000d4a8        0x8 zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000d4a8                __devicehdl_DT_N_S_leds_S_led
  .__device_handles_pass1
-                0x000000000000d4b4        0x4 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
-                0x000000000000d4b4                __devicehdl_veerwolf_gpio_0
+                0x000000000000d4b0        0x4 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000d4b0                __devicehdl_veerwolf_gpio_0
  .__device_handles_pass1
-                0x000000000000d4b8        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
-                0x000000000000d4b8                __devicehdl_DT_N_S_soc_S_uart_80002000
+                0x000000000000d4b4        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x000000000000d4b4                __devicehdl_DT_N_S_soc_S_uart_80002000
  .__device_handles_pass1
-                0x000000000000d4c0        0x4 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
-                0x000000000000d4c0                __devicehdl_sys_init_sys_clock_driver_init0
-                0x000000000000d4c4                __device_handles_end = .
+                0x000000000000d4bc        0x4 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+                0x000000000000d4bc                __devicehdl_sys_init_sys_clock_driver_init0
+                0x000000000000d4c0                __device_handles_end = .
 
-rodata          0x000000000000d4c8      0x9e0
-                0x000000000000d4c8                . = ALIGN (0x4)
+rodata          0x000000000000d4c0      0x9e0
+                0x000000000000d4c0                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(.srodata))
  *(SORT_BY_ALIGNMENT(.srodata.*))
- .srodata.cst8  0x000000000000d4c8        0x8 app/libapp.a(matrix.c.obj)
- .srodata.cst8  0x000000000000d4d0        0x8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
- .srodata.cst8  0x000000000000d4d8       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
- .srodata.cst4  0x000000000000d520        0x4 app/libapp.a(matrix.c.obj)
+ .srodata.cst8  0x000000000000d4c0        0x8 app/libapp.a(matrix.c.obj)
+ .srodata.cst8  0x000000000000d4c8        0x8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+ .srodata.cst8  0x000000000000d4d0       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
+ .srodata.cst4  0x000000000000d518        0x4 app/libapp.a(matrix.c.obj)
  .srodata.uart_ns16550_dev_cfg_0
-                0x000000000000d524        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x000000000000d51c        0x8 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .srodata._k_neg_eagain
-                0x000000000000d52c        0x4 zephyr/kernel/libkernel.a(errno.c.obj)
-                0x000000000000d52c                _k_neg_eagain
+                0x000000000000d524        0x4 zephyr/kernel/libkernel.a(errno.c.obj)
+                0x000000000000d524                _k_neg_eagain
  .srodata._global_impure_ptr
-                0x000000000000d530        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-impure.o)
-                0x000000000000d530                _global_impure_ptr
+                0x000000000000d528        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-impure.o)
+                0x000000000000d528                _global_impure_ptr
  *(SORT_BY_ALIGNMENT(.rodata))
- .rodata        0x000000000000d534      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_clz.o)
-                0x000000000000d534                __clz_tab
- .rodata        0x000000000000d634       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divdf3.o)
- .rodata        0x000000000000d670       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(muldf3.o)
- .rodata        0x000000000000d6ac       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divsf3.o)
- .rodata        0x000000000000d6e8       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(mulsf3.o)
+ .rodata        0x000000000000d52c      0x100 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_clz.o)
+                0x000000000000d52c                __clz_tab
+ .rodata        0x000000000000d62c       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divdf3.o)
+ .rodata        0x000000000000d668       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(muldf3.o)
+ .rodata        0x000000000000d6a4       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divsf3.o)
+ .rodata        0x000000000000d6e0       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(mulsf3.o)
  *(SORT_BY_ALIGNMENT(.rodata.*))
- *fill*         0x000000000000d724        0x4 
+ *fill*         0x000000000000d71c        0x4 
  .rodata.__mprec_bigtens
-                0x000000000000d728       0x28 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000d728                __mprec_bigtens
+                0x000000000000d720       0x28 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000d720                __mprec_bigtens
  .rodata.__mprec_tens
-                0x000000000000d750       0xc8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
-                0x000000000000d750                __mprec_tens
+                0x000000000000d748       0xc8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000d748                __mprec_tens
  .rodata.thread_accelerator.str1.4
-                0x000000000000d818       0x10 app/libapp.a(main.c.obj)
+                0x000000000000d810       0x10 app/libapp.a(main.c.obj)
  .rodata.my_isr.str1.4
-                0x000000000000d828        0x9 app/libapp.a(main.c.obj)
- *fill*         0x000000000000d831        0x3 
+                0x000000000000d820        0x9 app/libapp.a(main.c.obj)
+ *fill*         0x000000000000d829        0x3 
  .rodata.main.str1.4
-                0x000000000000d834       0x9d app/libapp.a(main.c.obj)
- *fill*         0x000000000000d8d1        0x3 
+                0x000000000000d82c       0x9d app/libapp.a(main.c.obj)
+ *fill*         0x000000000000d8c9        0x3 
  .rodata.pop_matmul.str1.4
-                0x000000000000d8d4       0x11 app/libapp.a(matrix.c.obj)
- *fill*         0x000000000000d8e5        0x3 
+                0x000000000000d8cc       0x11 app/libapp.a(matrix.c.obj)
+ *fill*         0x000000000000d8dd        0x3 
  .rodata.save_matmul.str1.4
-                0x000000000000d8e8       0x26 app/libapp.a(matrix.c.obj)
- *fill*         0x000000000000d90e        0x2 
+                0x000000000000d8e0       0x26 app/libapp.a(matrix.c.obj)
+ *fill*         0x000000000000d906        0x2 
  .rodata.perform_matmul.str1.4
-                0x000000000000d910       0x1d app/libapp.a(matrix.c.obj)
- *fill*         0x000000000000d92d        0x3 
+                0x000000000000d908       0x1d app/libapp.a(matrix.c.obj)
+ *fill*         0x000000000000d925        0x3 
  .rodata.multiply_mat_hw.str1.4
-                0x000000000000d930       0x13 app/libapp.a(multiply.c.obj)
- *fill*         0x000000000000d943        0x1 
+                0x000000000000d928       0x13 app/libapp.a(multiply.c.obj)
+ *fill*         0x000000000000d93b        0x1 
  .rodata.cbvprintf.str1.4
-                0x000000000000d944        0x6 zephyr/libzephyr.a(cbprintf_complete.c.obj)
- *fill*         0x000000000000d94a        0x2 
+                0x000000000000d93c        0x6 zephyr/libzephyr.a(cbprintf_complete.c.obj)
+ *fill*         0x000000000000d942        0x2 
  .rodata.cbvprintf
-                0x000000000000d94c       0xfc zephyr/libzephyr.a(cbprintf_complete.c.obj)
+                0x000000000000d944       0xfc zephyr/libzephyr.a(cbprintf_complete.c.obj)
  .rodata.str1.4
-                0x000000000000da48        0x8 zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000da40        0x8 zephyr/libzephyr.a(soc.c.obj)
  .rodata.dts_ord_9_cfg
-                0x000000000000da50        0xc zephyr/libzephyr.a(soc.c.obj)
+                0x000000000000da48        0xc zephyr/libzephyr.a(soc.c.obj)
  .rodata._exit.str1.4
-                0x000000000000da5c        0x6 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
- *fill*         0x000000000000da62        0x2 
+                0x000000000000da54        0x6 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+ *fill*         0x000000000000da5a        0x2 
  .rodata.gpio_mmio32_api
-                0x000000000000da64       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
-                0x000000000000da64                gpio_mmio32_api
+                0x000000000000da5c       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+                0x000000000000da5c                gpio_mmio32_api
  .rodata.str1.4
-                0x000000000000da88        0x5 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
- *fill*         0x000000000000da8d        0x3 
+                0x000000000000da80        0x5 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+ *fill*         0x000000000000da85        0x3 
  .rodata.gpio_veerwolf_cfg_0
-                0x000000000000da90        0xc zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000da88        0xc zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .rodata.gpio_veerwolf_driver_api
-                0x000000000000da9c       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000da94       0x24 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .rodata.str1.4
-                0x000000000000dac0        0x6 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
- *fill*         0x000000000000dac6        0x2 
+                0x000000000000dab8        0x6 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+ *fill*         0x000000000000dabe        0x2 
  .rodata.uart_ns16550_driver_api
-                0x000000000000dac8       0x14 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+                0x000000000000dac0       0x14 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
  .rodata.str1.4
-                0x000000000000dadc        0xa zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
- *fill*         0x000000000000dae6        0x2 
+                0x000000000000dad4        0xa zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+ *fill*         0x000000000000dade        0x2 
  .rodata.levels.0
-                0x000000000000dae8       0x14 zephyr/kernel/libkernel.a(device.c.obj)
+                0x000000000000dae0       0x14 zephyr/kernel/libkernel.a(device.c.obj)
  .rodata.init_idle_thread.str1.4
-                0x000000000000dafc        0xa zephyr/kernel/libkernel.a(init.c.obj)
- *fill*         0x000000000000db06        0x2 
+                0x000000000000daf4        0xa zephyr/kernel/libkernel.a(init.c.obj)
+ *fill*         0x000000000000dafe        0x2 
  .rodata.z_cstart.str1.4
-                0x000000000000db08        0x5 zephyr/kernel/libkernel.a(init.c.obj)
- *fill*         0x000000000000db0d        0x3 
+                0x000000000000db00        0x5 zephyr/kernel/libkernel.a(init.c.obj)
+ *fill*         0x000000000000db05        0x3 
  .rodata.boot_banner.str1.4
-                0x000000000000db10       0x2f zephyr/kernel/libkernel.a(banner.c.obj)
+                0x000000000000db08       0x2f zephyr/kernel/libkernel.a(banner.c.obj)
                                          0x33 (size before relaxing)
- *fill*         0x000000000000db3f        0x1 
+ *fill*         0x000000000000db37        0x1 
  .rodata._ctype_
-                0x000000000000db40      0x101 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-ctype_.o)
-                0x000000000000db40                _ctype_
- *fill*         0x000000000000dc41        0x3 
+                0x000000000000db38      0x101 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-ctype_.o)
+                0x000000000000db38                _ctype_
+ *fill*         0x000000000000dc39        0x3 
  .rodata._printf_float.str1.4
-                0x000000000000dc44       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+                0x000000000000dc3c       0x10 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
                                          0x12 (size before relaxing)
  .rodata._printf_i.str1.4
-                0x000000000000dc54       0x25 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
- *fill*         0x000000000000dc79        0x3 
+                0x000000000000dc4c       0x25 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
+ *fill*         0x000000000000dc71        0x3 
  .rodata._printf_i
-                0x000000000000dc7c       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000000000000dc74       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata._dtoa_r.str1.4
-                0x000000000000dcd4       0x9d /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
+                0x000000000000dccc       0x9d /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
                                          0xa1 (size before relaxing)
- *fill*         0x000000000000dd71        0x3 
+ *fill*         0x000000000000dd69        0x3 
  .rodata.__sf_fake_stderr
-                0x000000000000dd74       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000dd74                __sf_fake_stderr
+                0x000000000000dd6c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000dd6c                __sf_fake_stderr
  .rodata.__sf_fake_stdin
-                0x000000000000dd94       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000dd94                __sf_fake_stdin
+                0x000000000000dd8c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000dd8c                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x000000000000ddb4       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
-                0x000000000000ddb4                __sf_fake_stdout
+                0x000000000000ddac       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+                0x000000000000ddac                __sf_fake_stdout
  .rodata._Balloc.str1.4
-                0x000000000000ddd4       0x62 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000ddcc       0x62 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
                                          0x7a (size before relaxing)
  .rodata.__multadd.str1.4
-                0x000000000000de36       0x11 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
- *fill*         0x000000000000de36        0x2 
- .rodata.p05.0  0x000000000000de38        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+                0x000000000000de2e       0x11 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+ *fill*         0x000000000000de2e        0x2 
+ .rodata.p05.0  0x000000000000de30        0xc /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
  .rodata._vfprintf_r.str1.4
-                0x000000000000de44       0x13 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
- *fill*         0x000000000000de57        0x1 
+                0x000000000000de3c       0x13 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
+ *fill*         0x000000000000de4f        0x1 
  .rodata.__assert_func.str1.4
-                0x000000000000de58       0x3f /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
+                0x000000000000de50       0x3f /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
                                          0x43 (size before relaxing)
- *fill*         0x000000000000de97        0x1 
+ *fill*         0x000000000000de8f        0x1 
  .rodata._setlocale_r.str1.4
-                0x000000000000de98        0xa /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
+                0x000000000000de90        0xa /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
                                           0xd (size before relaxing)
- *fill*         0x000000000000dea2        0x2 
+ *fill*         0x000000000000de9a        0x2 
  .rodata.str1.4
-                0x000000000000dea4        0x2 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
+                0x000000000000de9c        0x2 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
  *(SORT_BY_ALIGNMENT(.gnu.linkonce.r.*))
  *(SORT_BY_ALIGNMENT(.sdata2) SORT_BY_ALIGNMENT(.sdata2.*) SORT_BY_ALIGNMENT(.gnu.linkonce.s2.*))
-                0x000000000000dea8                . = ALIGN (0x4)
- *fill*         0x000000000000dea6        0x2 
-                0x000000000000dea8                __rodata_region_end = .
-                0x000000000000dea8                . = ALIGN (0x4)
+                0x000000000000dea0                . = ALIGN (0x4)
+ *fill*         0x000000000000de9e        0x2 
+                0x000000000000dea0                __rodata_region_end = .
+                0x000000000000dea0                . = ALIGN (0x4)
 
-bss             0x000000000000dea8      0x314
-                0x000000000000dea8                . = ALIGN (0x4)
-                0x000000000000dea8                __bss_start = .
-                0x000000000000dea8                _image_ram_start = .
-                0x000000000000dea8                __kernel_ram_start = .
+bss             0x000000000000dea0      0x314
+                0x000000000000dea0                . = ALIGN (0x4)
+                0x000000000000dea0                __bss_start = .
+                0x000000000000dea0                _image_ram_start = .
+                0x000000000000dea0                __kernel_ram_start = .
  *(SORT_BY_ALIGNMENT(.sbss))
  *(SORT_BY_ALIGNMENT(.sbss.*))
  .sbss.last_count
-                0x000000000000dea8        0x8 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+                0x000000000000dea0        0x8 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
  .sbss.curr_tick
-                0x000000000000deb0        0x8 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x000000000000dea8        0x8 zephyr/kernel/libkernel.a(timeout.c.obj)
  .sbss.calculatingNode
-                0x000000000000deb8        0x4 app/libapp.a(main.c.obj)
-                0x000000000000deb8                calculatingNode
- .sbss.head     0x000000000000debc        0x4 app/libapp.a(main.c.obj)
-                0x000000000000debc                head
+                0x000000000000deb0        0x4 app/libapp.a(main.c.obj)
+                0x000000000000deb0                calculatingNode
+ .sbss.head     0x000000000000deb4        0x4 app/libapp.a(main.c.obj)
+                0x000000000000deb4                head
  .sbss.dts_ord_9_ctx
-                0x000000000000dec0        0x8 zephyr/libzephyr.a(soc.c.obj)
- .sbss.heap_sz  0x000000000000dec8        0x4 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+                0x000000000000deb8        0x8 zephyr/libzephyr.a(soc.c.obj)
+ .sbss.heap_sz  0x000000000000dec0        0x4 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
  .sbss._rand32_counter
-                0x000000000000decc        0x4 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
+                0x000000000000dec4        0x4 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
  .sbss.save_irq
-                0x000000000000ded0        0x4 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+                0x000000000000dec8        0x4 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
  .sbss.uart_console_dev
-                0x000000000000ded4        0x4 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+                0x000000000000decc        0x4 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
  .sbss.gpio_veerwolf_data_0
-                0x000000000000ded8        0x4 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+                0x000000000000ded0        0x4 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
  .sbss.slice_max_prio
-                0x000000000000dedc        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000ded4        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
  .sbss.slice_time
-                0x000000000000dee0        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000ded8        0x4 zephyr/kernel/libkernel.a(sched.c.obj)
  .sbss.announce_remaining
-                0x000000000000dee4        0x4 zephyr/kernel/libkernel.a(timeout.c.obj)
+                0x000000000000dedc        0x4 zephyr/kernel/libkernel.a(timeout.c.obj)
  .sbss.__malloc_free_list
-                0x000000000000dee8        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000000000dee8                __malloc_free_list
+                0x000000000000dee0        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000000000dee0                __malloc_free_list
  .sbss.__malloc_sbrk_start
-                0x000000000000deec        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
-                0x000000000000deec                __malloc_sbrk_start
- .sbss.errno    0x000000000000def0        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-reent.o)
-                0x000000000000def0                errno
+                0x000000000000dee4        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
+                0x000000000000dee4                __malloc_sbrk_start
+ .sbss.errno    0x000000000000dee8        0x4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-reent.o)
+                0x000000000000dee8                errno
  .sbss.z_sys_post_kernel
-                0x000000000000def4        0x1 zephyr/kernel/libkernel.a(init.c.obj)
-                0x000000000000def4                z_sys_post_kernel
+                0x000000000000deec        0x1 zephyr/kernel/libkernel.a(init.c.obj)
+                0x000000000000deec                z_sys_post_kernel
  *(SORT_BY_ALIGNMENT(.bss))
  *(SORT_BY_ALIGNMENT(.bss.*))
- *fill*         0x000000000000def5        0x3 
+ *fill*         0x000000000000deed        0x3 
  .bss.threadA_data
-                0x000000000000def8       0xa8 app/libapp.a(main.c.obj)
+                0x000000000000def0       0xa8 app/libapp.a(main.c.obj)
  .bss.threadB_data
-                0x000000000000dfa0       0xa8 app/libapp.a(main.c.obj)
+                0x000000000000df98       0xa8 app/libapp.a(main.c.obj)
  .bss.z_idle_threads
-                0x000000000000e048       0xa8 zephyr/kernel/libkernel.a(init.c.obj)
-                0x000000000000e048                z_idle_threads
+                0x000000000000e040       0xa8 zephyr/kernel/libkernel.a(init.c.obj)
+                0x000000000000e040                z_idle_threads
  .bss.z_main_thread
-                0x000000000000e0f0       0xa8 zephyr/kernel/libkernel.a(init.c.obj)
-                0x000000000000e0f0                z_main_thread
- .bss._kernel   0x000000000000e198       0x24 zephyr/kernel/libkernel.a(init.c.obj)
-                0x000000000000e198                _kernel
- .bss.lock      0x000000000000e1bc        0x0 zephyr/kernel/libkernel.a(mutex.c.obj)
+                0x000000000000e0e8       0xa8 zephyr/kernel/libkernel.a(init.c.obj)
+                0x000000000000e0e8                z_main_thread
+ .bss._kernel   0x000000000000e190       0x24 zephyr/kernel/libkernel.a(init.c.obj)
+                0x000000000000e190                _kernel
+ .bss.lock      0x000000000000e1b4        0x0 zephyr/kernel/libkernel.a(mutex.c.obj)
  .bss.sched_spinlock
-                0x000000000000e1bc        0x0 zephyr/kernel/libkernel.a(sched.c.obj)
-                0x000000000000e1bc                sched_spinlock
+                0x000000000000e1b4        0x0 zephyr/kernel/libkernel.a(sched.c.obj)
+                0x000000000000e1b4                sched_spinlock
  *(SORT_BY_ALIGNMENT(COMMON))
-                0x000000000000e1bc                __bss_end = ALIGN (0x4)
+                0x000000000000e1b4                __bss_end = ALIGN (0x4)
 
 noinit          0x000000000000e1c0     0x2600
  *(SORT_BY_ALIGNMENT(.noinit))
@@ -2867,7 +2867,7 @@ _net_buf_pool_area
                 0x0000000000010c14                _image_ram_end = .
                 0x0000000000010c14                _end = .
                 0x0000000000010c14                __kernel_ram_end = .
-                0x0000000000002d6c                __kernel_ram_size = (__kernel_ram_end - __kernel_ram_start)
+                0x0000000000002d74                __kernel_ram_size = (__kernel_ram_end - __kernel_ram_start)
 
 .intList        0x00000000fffff800       0x38
  *(SORT_BY_ALIGNMENT(.irq_info*))
@@ -3142,152 +3142,152 @@ _net_buf_pool_area
  .debug_abbrev  0x0000000000006467      0x35b zephyr/kernel/libkernel.a(kheap.c.obj)
  .debug_abbrev  0x00000000000067c2       0xd4 zephyr/arch/common/libisr_tables.a(isr_tables.c.obj)
 
-.debug_line     0x0000000000000000    0x16a5f
+.debug_line     0x0000000000000000    0x16a43
  *(SORT_BY_ALIGNMENT(.debug_line) SORT_BY_ALIGNMENT(.debug_line.*) SORT_BY_ALIGNMENT(.debug_line_end))
  .debug_line    0x0000000000000000      0x205 zephyr/CMakeFiles/offsets.dir/./arch/riscv/core/offsets/offsets.c.obj
- .debug_line    0x0000000000000205      0x8e8 app/libapp.a(main.c.obj)
- .debug_line    0x0000000000000aed      0xc4b app/libapp.a(matrix.c.obj)
- .debug_line    0x0000000000001738      0x350 app/libapp.a(multiply.c.obj)
- .debug_line    0x0000000000001a88      0x568 zephyr/libzephyr.a(printk.c.obj)
- .debug_line    0x0000000000001ff0      0x3b9 zephyr/libzephyr.a(thread_entry.c.obj)
- .debug_line    0x00000000000023a9     0x1ad9 zephyr/libzephyr.a(heap.c.obj)
- .debug_line    0x0000000000003e82     0x17b4 zephyr/libzephyr.a(cbprintf_complete.c.obj)
- .debug_line    0x0000000000005636      0x3ab zephyr/libzephyr.a(configs.c.obj)
- .debug_line    0x00000000000059e1       0xc8 zephyr/libzephyr.a(soc_irq.S.obj)
- .debug_line    0x0000000000005aa9       0xa5 zephyr/libzephyr.a(vector.S.obj)
- .debug_line    0x0000000000005b4e      0x126 zephyr/libzephyr.a(irq.c.obj)
- .debug_line    0x0000000000005c74      0x429 zephyr/libzephyr.a(soc.c.obj)
- .debug_line    0x000000000000609d      0x13a zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
- .debug_line    0x00000000000061d7      0x38b zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
- .debug_line    0x0000000000006562      0x382 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
- .debug_line    0x00000000000068e4      0x219 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(isr.S.obj)
- .debug_line    0x0000000000006afd      0x121 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
- .debug_line    0x0000000000006c1e       0x92 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(reset.S.obj)
- .debug_line    0x0000000000006cb0       0x9c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(swap.S.obj)
- .debug_line    0x0000000000006d4c      0x3b4 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
- .debug_line    0x0000000000007100      0xe5b zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
- .debug_line    0x0000000000007f5b      0x451 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
- .debug_line    0x00000000000083ac      0x921 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
- .debug_line    0x0000000000008ccd      0x406 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
- .debug_line    0x00000000000090d3      0x8bd zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
- .debug_line    0x0000000000009990      0x592 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
- .debug_line    0x0000000000009f22      0xb7c zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
- .debug_line    0x000000000000aa9e      0x23e zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
- .debug_line    0x000000000000acdc      0x75b zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
- .debug_line    0x000000000000b437      0x71c zephyr/kernel/libkernel.a(device.c.obj)
- .debug_line    0x000000000000bb53      0x317 zephyr/kernel/libkernel.a(errno.c.obj)
- .debug_line    0x000000000000be6a      0x6a2 zephyr/kernel/libkernel.a(fatal.c.obj)
- .debug_line    0x000000000000c50c      0xb23 zephyr/kernel/libkernel.a(init.c.obj)
- .debug_line    0x000000000000d02f      0xf75 zephyr/kernel/libkernel.a(thread.c.obj)
- .debug_line    0x000000000000dfa4      0x316 zephyr/kernel/libkernel.a(idle.c.obj)
- .debug_line    0x000000000000e2ba      0xc4d zephyr/kernel/libkernel.a(mutex.c.obj)
- .debug_line    0x000000000000ef07     0x4908 zephyr/kernel/libkernel.a(sched.c.obj)
- .debug_line    0x000000000001380f     0x169e zephyr/kernel/libkernel.a(timeout.c.obj)
- .debug_line    0x0000000000014ead      0xa88 zephyr/kernel/libkernel.a(atomic_c.c.obj)
- .debug_line    0x0000000000015935      0x6eb zephyr/kernel/libkernel.a(mempool.c.obj)
- .debug_line    0x0000000000016020      0x1cf zephyr/kernel/libkernel.a(banner.c.obj)
- .debug_line    0x00000000000161ef      0x720 zephyr/kernel/libkernel.a(kheap.c.obj)
- .debug_line    0x000000000001690f      0x150 zephyr/arch/common/libisr_tables.a(isr_tables.c.obj)
+ .debug_line    0x0000000000000205      0x8cc app/libapp.a(main.c.obj)
+ .debug_line    0x0000000000000ad1      0xc4b app/libapp.a(matrix.c.obj)
+ .debug_line    0x000000000000171c      0x350 app/libapp.a(multiply.c.obj)
+ .debug_line    0x0000000000001a6c      0x568 zephyr/libzephyr.a(printk.c.obj)
+ .debug_line    0x0000000000001fd4      0x3b9 zephyr/libzephyr.a(thread_entry.c.obj)
+ .debug_line    0x000000000000238d     0x1ad9 zephyr/libzephyr.a(heap.c.obj)
+ .debug_line    0x0000000000003e66     0x17b4 zephyr/libzephyr.a(cbprintf_complete.c.obj)
+ .debug_line    0x000000000000561a      0x3ab zephyr/libzephyr.a(configs.c.obj)
+ .debug_line    0x00000000000059c5       0xc8 zephyr/libzephyr.a(soc_irq.S.obj)
+ .debug_line    0x0000000000005a8d       0xa5 zephyr/libzephyr.a(vector.S.obj)
+ .debug_line    0x0000000000005b32      0x126 zephyr/libzephyr.a(irq.c.obj)
+ .debug_line    0x0000000000005c58      0x429 zephyr/libzephyr.a(soc.c.obj)
+ .debug_line    0x0000000000006081      0x13a zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
+ .debug_line    0x00000000000061bb      0x38b zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
+ .debug_line    0x0000000000006546      0x382 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
+ .debug_line    0x00000000000068c8      0x219 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(isr.S.obj)
+ .debug_line    0x0000000000006ae1      0x121 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
+ .debug_line    0x0000000000006c02       0x92 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(reset.S.obj)
+ .debug_line    0x0000000000006c94       0x9c zephyr/arch/arch/riscv/core/libarch__riscv__core.a(swap.S.obj)
+ .debug_line    0x0000000000006d30      0x3b4 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
+ .debug_line    0x00000000000070e4      0xe5b zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+ .debug_line    0x0000000000007f3f      0x451 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
+ .debug_line    0x0000000000008390      0x921 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+ .debug_line    0x0000000000008cb1      0x406 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+ .debug_line    0x00000000000090b7      0x8bd zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+ .debug_line    0x0000000000009974      0x592 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+ .debug_line    0x0000000000009f06      0xb7c zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+ .debug_line    0x000000000000aa82      0x23e zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+ .debug_line    0x000000000000acc0      0x75b zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+ .debug_line    0x000000000000b41b      0x71c zephyr/kernel/libkernel.a(device.c.obj)
+ .debug_line    0x000000000000bb37      0x317 zephyr/kernel/libkernel.a(errno.c.obj)
+ .debug_line    0x000000000000be4e      0x6a2 zephyr/kernel/libkernel.a(fatal.c.obj)
+ .debug_line    0x000000000000c4f0      0xb23 zephyr/kernel/libkernel.a(init.c.obj)
+ .debug_line    0x000000000000d013      0xf75 zephyr/kernel/libkernel.a(thread.c.obj)
+ .debug_line    0x000000000000df88      0x316 zephyr/kernel/libkernel.a(idle.c.obj)
+ .debug_line    0x000000000000e29e      0xc4d zephyr/kernel/libkernel.a(mutex.c.obj)
+ .debug_line    0x000000000000eeeb     0x4908 zephyr/kernel/libkernel.a(sched.c.obj)
+ .debug_line    0x00000000000137f3     0x169e zephyr/kernel/libkernel.a(timeout.c.obj)
+ .debug_line    0x0000000000014e91      0xa88 zephyr/kernel/libkernel.a(atomic_c.c.obj)
+ .debug_line    0x0000000000015919      0x6eb zephyr/kernel/libkernel.a(mempool.c.obj)
+ .debug_line    0x0000000000016004      0x1cf zephyr/kernel/libkernel.a(banner.c.obj)
+ .debug_line    0x00000000000161d3      0x720 zephyr/kernel/libkernel.a(kheap.c.obj)
+ .debug_line    0x00000000000168f3      0x150 zephyr/arch/common/libisr_tables.a(isr_tables.c.obj)
 
-.debug_frame    0x0000000000000000     0x3630
+.debug_frame    0x0000000000000000     0x362c
  *(SORT_BY_ALIGNMENT(.debug_frame))
  .debug_frame   0x0000000000000000       0x20 zephyr/CMakeFiles/offsets.dir/./arch/riscv/core/offsets/offsets.c.obj
- .debug_frame   0x0000000000000020       0xa0 app/libapp.a(main.c.obj)
- .debug_frame   0x00000000000000c0      0x1c4 app/libapp.a(matrix.c.obj)
- .debug_frame   0x0000000000000284       0x6c app/libapp.a(multiply.c.obj)
- .debug_frame   0x00000000000002f0      0x100 zephyr/libzephyr.a(printk.c.obj)
- .debug_frame   0x00000000000003f0       0x28 zephyr/libzephyr.a(thread_entry.c.obj)
- .debug_frame   0x0000000000000418      0x32c zephyr/libzephyr.a(heap.c.obj)
- .debug_frame   0x0000000000000744       0xec zephyr/libzephyr.a(cbprintf_complete.c.obj)
- .debug_frame   0x0000000000000830       0x20 zephyr/libzephyr.a(configs.c.obj)
- .debug_frame   0x0000000000000850       0x20 zephyr/libzephyr.a(irq.c.obj)
- .debug_frame   0x0000000000000870       0x20 zephyr/libzephyr.a(soc.c.obj)
- .debug_frame   0x0000000000000890       0x30 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
- .debug_frame   0x00000000000008c0       0x40 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
- .debug_frame   0x0000000000000900       0x48 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
- .debug_frame   0x0000000000000948       0x28 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
- .debug_frame   0x0000000000000970       0x20 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
- .debug_frame   0x0000000000000990      0x298 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
- .debug_frame   0x0000000000000c28       0x60 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
- .debug_frame   0x0000000000000c88       0xc0 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
- .debug_frame   0x0000000000000d48       0x54 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
- .debug_frame   0x0000000000000d9c       0x90 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
- .debug_frame   0x0000000000000e2c       0x90 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
- .debug_frame   0x0000000000000ebc       0x70 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
- .debug_frame   0x0000000000000f2c       0x70 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
- .debug_frame   0x0000000000000f9c       0xb4 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
- .debug_frame   0x0000000000001050       0xe0 zephyr/kernel/libkernel.a(device.c.obj)
- .debug_frame   0x0000000000001130       0x20 zephyr/kernel/libkernel.a(errno.c.obj)
- .debug_frame   0x0000000000001150       0xc8 zephyr/kernel/libkernel.a(fatal.c.obj)
- .debug_frame   0x0000000000001218       0xc4 zephyr/kernel/libkernel.a(init.c.obj)
- .debug_frame   0x00000000000012dc      0x1b4 zephyr/kernel/libkernel.a(thread.c.obj)
- .debug_frame   0x0000000000001490       0x38 zephyr/kernel/libkernel.a(idle.c.obj)
- .debug_frame   0x00000000000014c8       0x90 zephyr/kernel/libkernel.a(mutex.c.obj)
- .debug_frame   0x0000000000001558      0x778 zephyr/kernel/libkernel.a(sched.c.obj)
- .debug_frame   0x0000000000001cd0      0x224 zephyr/kernel/libkernel.a(timeout.c.obj)
- .debug_frame   0x0000000000001ef4       0xd0 zephyr/kernel/libkernel.a(atomic_c.c.obj)
- .debug_frame   0x0000000000001fc4       0xc4 zephyr/kernel/libkernel.a(mempool.c.obj)
- .debug_frame   0x0000000000002088       0x20 zephyr/kernel/libkernel.a(banner.c.obj)
- .debug_frame   0x00000000000020a8       0xd0 zephyr/kernel/libkernel.a(kheap.c.obj)
- .debug_frame   0x0000000000002178       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_clzsi2.o)
- .debug_frame   0x0000000000002198       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_ctzsi2.o)
- .debug_frame   0x00000000000021b8       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divdf3.o)
- .debug_frame   0x0000000000002210       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(gedf2.o)
- .debug_frame   0x0000000000002230       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(muldf3.o)
- .debug_frame   0x0000000000002284       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(subdf3.o)
- .debug_frame   0x00000000000022c8       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatunsidf.o)
- .debug_frame   0x00000000000022fc       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(addsf3.o)
- .debug_frame   0x000000000000233c       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divsf3.o)
- .debug_frame   0x0000000000002388       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(mulsf3.o)
- .debug_frame   0x00000000000023d0       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(subsf3.o)
- .debug_frame   0x0000000000002410       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatsisf.o)
- .debug_frame   0x0000000000002448       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(extendsfdf2.o)
- .debug_frame   0x0000000000002480       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x00000000000024b0       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00000000000024e8       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x0000000000002528       0xc0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
- .debug_frame   0x00000000000025e8       0x90 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x0000000000002678       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-printf.o)
- .debug_frame   0x00000000000026d0       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x0000000000002704       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strlen.o)
- .debug_frame   0x0000000000002724       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strncpy.o)
- .debug_frame   0x0000000000002744       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strnlen.o)
- .debug_frame   0x0000000000002764       0xa0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
- .debug_frame   0x0000000000002804      0x17c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
- .debug_frame   0x0000000000002980       0x8c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fwalk.o)
- .debug_frame   0x0000000000002a0c       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-localeconv.o)
- .debug_frame   0x0000000000002a4c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-memchr.o)
- .debug_frame   0x0000000000002a6c       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x0000000000002a9c      0x2f8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
- .debug_frame   0x0000000000002d94       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-callocr.o)
- .debug_frame   0x0000000000002dc4       0xd4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
- .debug_frame   0x0000000000002e98       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-reent.o)
- .debug_frame   0x0000000000002f0c       0xa4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
- .debug_frame   0x0000000000002fb0       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wbuf.o)
- .debug_frame   0x0000000000003000       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-writer.o)
- .debug_frame   0x0000000000003034       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wsetup.o)
- .debug_frame   0x0000000000003074       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
- .debug_frame   0x00000000000030b4       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-closer.o)
- .debug_frame   0x00000000000030e8       0x78 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
- .debug_frame   0x0000000000003160       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fprintf.o)
- .debug_frame   0x00000000000031a8       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
- .debug_frame   0x0000000000003200       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-lseekr.o)
- .debug_frame   0x0000000000003234       0x68 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
- .debug_frame   0x000000000000329c       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mbtowc_r.o)
- .debug_frame   0x00000000000032d4       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-readr.o)
- .debug_frame   0x0000000000003308       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wctomb_r.o)
- .debug_frame   0x0000000000003338       0x28 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-abort.o)
- .debug_frame   0x0000000000003360       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fstatr.o)
- .debug_frame   0x0000000000003394       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-isattyr.o)
- .debug_frame   0x00000000000033c8       0xec /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
- .debug_frame   0x00000000000034b4       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
- .debug_frame   0x00000000000034f8       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(adddf3.o)
- .debug_frame   0x000000000000353c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(eqdf2.o)
- .debug_frame   0x000000000000355c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(ledf2.o)
- .debug_frame   0x000000000000357c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(unorddf2.o)
- .debug_frame   0x000000000000359c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(fixdfsi.o)
- .debug_frame   0x00000000000035bc       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatsidf.o)
- .debug_frame   0x00000000000035f4       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(trunctfdf2.o)
+ .debug_frame   0x0000000000000020       0x9c app/libapp.a(main.c.obj)
+ .debug_frame   0x00000000000000bc      0x1c4 app/libapp.a(matrix.c.obj)
+ .debug_frame   0x0000000000000280       0x6c app/libapp.a(multiply.c.obj)
+ .debug_frame   0x00000000000002ec      0x100 zephyr/libzephyr.a(printk.c.obj)
+ .debug_frame   0x00000000000003ec       0x28 zephyr/libzephyr.a(thread_entry.c.obj)
+ .debug_frame   0x0000000000000414      0x32c zephyr/libzephyr.a(heap.c.obj)
+ .debug_frame   0x0000000000000740       0xec zephyr/libzephyr.a(cbprintf_complete.c.obj)
+ .debug_frame   0x000000000000082c       0x20 zephyr/libzephyr.a(configs.c.obj)
+ .debug_frame   0x000000000000084c       0x20 zephyr/libzephyr.a(irq.c.obj)
+ .debug_frame   0x000000000000086c       0x20 zephyr/libzephyr.a(soc.c.obj)
+ .debug_frame   0x000000000000088c       0x30 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(cpu_idle.c.obj)
+ .debug_frame   0x00000000000008bc       0x40 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(fatal.c.obj)
+ .debug_frame   0x00000000000008fc       0x48 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(irq_manage.c.obj)
+ .debug_frame   0x0000000000000944       0x28 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(prep_c.c.obj)
+ .debug_frame   0x000000000000096c       0x20 zephyr/arch/arch/riscv/core/libarch__riscv__core.a(thread.c.obj)
+ .debug_frame   0x000000000000098c      0x298 zephyr/lib/libc/newlib/liblib__libc__newlib.a(libc-hooks.c.obj)
+ .debug_frame   0x0000000000000c24       0x60 zephyr/subsys/random/libsubsys__random.a(rand32_timer.c.obj)
+ .debug_frame   0x0000000000000c84       0xc0 zephyr/drivers/interrupt_controller/libdrivers__interrupt_controller.a(intc_swerv_pic.c.obj)
+ .debug_frame   0x0000000000000d44       0x54 zephyr/drivers/console/libdrivers__console.a(uart_console.c.obj)
+ .debug_frame   0x0000000000000d98       0x90 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_mmio32.c.obj)
+ .debug_frame   0x0000000000000e28       0x90 zephyr/drivers/gpio/libdrivers__gpio.a(gpio_veerwolf.c.obj)
+ .debug_frame   0x0000000000000eb8       0x70 zephyr/drivers/serial/libdrivers__serial.a(uart_ns16550.c.obj)
+ .debug_frame   0x0000000000000f28       0x70 zephyr/drivers/timer/libdrivers__timer.a(sys_clock_init.c.obj)
+ .debug_frame   0x0000000000000f98       0xb4 zephyr/drivers/timer/libdrivers__timer.a(riscv_machine_timer.c.obj)
+ .debug_frame   0x000000000000104c       0xe0 zephyr/kernel/libkernel.a(device.c.obj)
+ .debug_frame   0x000000000000112c       0x20 zephyr/kernel/libkernel.a(errno.c.obj)
+ .debug_frame   0x000000000000114c       0xc8 zephyr/kernel/libkernel.a(fatal.c.obj)
+ .debug_frame   0x0000000000001214       0xc4 zephyr/kernel/libkernel.a(init.c.obj)
+ .debug_frame   0x00000000000012d8      0x1b4 zephyr/kernel/libkernel.a(thread.c.obj)
+ .debug_frame   0x000000000000148c       0x38 zephyr/kernel/libkernel.a(idle.c.obj)
+ .debug_frame   0x00000000000014c4       0x90 zephyr/kernel/libkernel.a(mutex.c.obj)
+ .debug_frame   0x0000000000001554      0x778 zephyr/kernel/libkernel.a(sched.c.obj)
+ .debug_frame   0x0000000000001ccc      0x224 zephyr/kernel/libkernel.a(timeout.c.obj)
+ .debug_frame   0x0000000000001ef0       0xd0 zephyr/kernel/libkernel.a(atomic_c.c.obj)
+ .debug_frame   0x0000000000001fc0       0xc4 zephyr/kernel/libkernel.a(mempool.c.obj)
+ .debug_frame   0x0000000000002084       0x20 zephyr/kernel/libkernel.a(banner.c.obj)
+ .debug_frame   0x00000000000020a4       0xd0 zephyr/kernel/libkernel.a(kheap.c.obj)
+ .debug_frame   0x0000000000002174       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_clzsi2.o)
+ .debug_frame   0x0000000000002194       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(_ctzsi2.o)
+ .debug_frame   0x00000000000021b4       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divdf3.o)
+ .debug_frame   0x000000000000220c       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(gedf2.o)
+ .debug_frame   0x000000000000222c       0x54 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(muldf3.o)
+ .debug_frame   0x0000000000002280       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(subdf3.o)
+ .debug_frame   0x00000000000022c4       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatunsidf.o)
+ .debug_frame   0x00000000000022f8       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(addsf3.o)
+ .debug_frame   0x0000000000002338       0x4c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(divsf3.o)
+ .debug_frame   0x0000000000002384       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(mulsf3.o)
+ .debug_frame   0x00000000000023cc       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(subsf3.o)
+ .debug_frame   0x000000000000240c       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatsisf.o)
+ .debug_frame   0x0000000000002444       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(extendsfdf2.o)
+ .debug_frame   0x000000000000247c       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x00000000000024ac       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000000000024e4       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000002524       0xc0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_float.o)
+ .debug_frame   0x00000000000025e4       0x90 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x0000000000002674       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-printf.o)
+ .debug_frame   0x00000000000026cc       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000000000002700       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strlen.o)
+ .debug_frame   0x0000000000002720       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strncpy.o)
+ .debug_frame   0x0000000000002740       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-strnlen.o)
+ .debug_frame   0x0000000000002760       0xa0 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-dtoa.o)
+ .debug_frame   0x0000000000002800      0x17c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-findfp.o)
+ .debug_frame   0x000000000000297c       0x8c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fwalk.o)
+ .debug_frame   0x0000000000002a08       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-localeconv.o)
+ .debug_frame   0x0000000000002a48       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-memchr.o)
+ .debug_frame   0x0000000000002a68       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x0000000000002a98      0x2f8 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mprec.o)
+ .debug_frame   0x0000000000002d90       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-callocr.o)
+ .debug_frame   0x0000000000002dc0       0xd4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-nano-vfprintf.o)
+ .debug_frame   0x0000000000002e94       0x74 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x0000000000002f08       0xa4 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-stdio.o)
+ .debug_frame   0x0000000000002fac       0x50 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wbuf.o)
+ .debug_frame   0x0000000000002ffc       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-writer.o)
+ .debug_frame   0x0000000000003030       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wsetup.o)
+ .debug_frame   0x0000000000003070       0x40 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-assert.o)
+ .debug_frame   0x00000000000030b0       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-closer.o)
+ .debug_frame   0x00000000000030e4       0x78 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fflush.o)
+ .debug_frame   0x000000000000315c       0x48 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fprintf.o)
+ .debug_frame   0x00000000000031a4       0x58 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-locale.o)
+ .debug_frame   0x00000000000031fc       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-lseekr.o)
+ .debug_frame   0x0000000000003230       0x68 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-makebuf.o)
+ .debug_frame   0x0000000000003298       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-mbtowc_r.o)
+ .debug_frame   0x00000000000032d0       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-readr.o)
+ .debug_frame   0x0000000000003304       0x30 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-wctomb_r.o)
+ .debug_frame   0x0000000000003334       0x28 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-abort.o)
+ .debug_frame   0x000000000000335c       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-fstatr.o)
+ .debug_frame   0x0000000000003390       0x34 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-isattyr.o)
+ .debug_frame   0x00000000000033c4       0xec /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signal.o)
+ .debug_frame   0x00000000000034b0       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/riscv64-zephyr-elf/lib/./libc_nano.a(lib_a-signalr.o)
+ .debug_frame   0x00000000000034f4       0x44 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(adddf3.o)
+ .debug_frame   0x0000000000003538       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(eqdf2.o)
+ .debug_frame   0x0000000000003558       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(ledf2.o)
+ .debug_frame   0x0000000000003578       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(unorddf2.o)
+ .debug_frame   0x0000000000003598       0x20 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(fixdfsi.o)
+ .debug_frame   0x00000000000035b8       0x38 /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(floatsidf.o)
+ .debug_frame   0x00000000000035f0       0x3c /home/rui/zephyr-sdk-0.13.1/riscv64-zephyr-elf/bin/../lib/gcc/riscv64-zephyr-elf/10.3.0/libgcc.a(trunctfdf2.o)
 
 .debug_str      0x0000000000000000     0x48e6
  *(SORT_BY_ALIGNMENT(.debug_str))
