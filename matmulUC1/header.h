@@ -11,6 +11,8 @@
 #include "matrix.h"
 #include "multiply.h"
 
+struct matmul *head, *calculatingNode;
+
 void my_isr_installer(void);
 void my_isr(const void *arg);
 void thread_accelerator();
