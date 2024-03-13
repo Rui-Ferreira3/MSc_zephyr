@@ -14,7 +14,6 @@
 void my_isr_installer(void);
 void my_isr(const void *arg);
 void thread_accelerator();
-void thread_software();
 void init_mats();
 void define_mats();
 

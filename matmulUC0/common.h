@@ -5,25 +5,7 @@
 
 #define NUM_MATMULS 100
 
-#define NUM_MATS 3
-
-#define MATI_BASE_ADDRESS 0x02000000
-#define MATI_ROWS 8
-#define MATI_COLS 8
-
-#define MAT1_BASE_ADDRESS 0x02001000
-#define MAT1_ROWS 8
-#define MAT1_COLS 8
-
-#define MAT2_BASE_ADDRESS 0x02002000
-#define MAT2_ROWS 8
-#define MAT2_COLS 8
-
-#define MAT3_BASE_ADDRESS 0x02003000
-#define MAT3_ROWS 8
-#define MAT3_COLS 8
-
-#define RESULT_SW_BASE_ADDRESS 0x02004000
-#define RESULT_HW_BASE_ADDRESS 0x02005000
+/* size of stack area used by each thread */
+#define STACKSIZE 1024
 
 #endif //DEFINES_H

@@ -4,7 +4,7 @@ void create_mat(float *matrix, int rows, int cols)
 {
     for (int i=0; i<rows; i++) {
         for (int j=0; j<cols; j++) {
-            int random_integer = sys_rand32_get()%1000;
+            int random_integer = sys_rand32_get()%100;
             matrix[i*cols+j] = (float)random_integer / 10;
             // matrix[i*cols+j] = 1;
         }
