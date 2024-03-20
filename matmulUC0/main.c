@@ -23,7 +23,7 @@ int main()
             printf("Could not allocate space for matmul %d!\n", i);
             break;
         }
-        int err = init_matmul(newNode, 8, 8, 8);
+        int err = init_matmul(newNode, MAT1ROWS, MAT1COLS, MAT2COLS);
         if(err == -1) {
             printf("Could not allocate space for matmul %d!\n", i);
             break;
@@ -39,6 +39,7 @@ int main()
     node = head->next;
     start_sw_ms = k_uptime_get();
     for(int i=0; i<NUM_MATMULS; i++) {
+        printf("SW %d\n", i);
         multiply_mat_sw(node->resultSW, node->mat1, node->mat2, node->mat1Rows, node->mat1Cols, node->mat2Cols);
         // print_mat(node->resultSW, node->mat1Rows, node->mat2Cols);
         node = node->next;
@@ -53,6 +54,7 @@ int main()
     node = head->next;
     start_hw_ms = k_uptime_get();
     for(int i=0; i<NUM_MATMULS; i++) {
+        printf("HW %d\n", i);
         multiply_mat_hw((int)node->mat1, (int)node->mat2, (int)node->resultHW, node->mat1Rows, node->mat1Cols, node->mat2Cols);
         // print_mat(node->resultHW, node->mat1Rows, node->mat2Cols);
         node = node->next;

@@ -27,7 +27,7 @@ void fill_matmul(struct matmul *node);
 void push_matmul(struct matmul *head, struct matmul *newNode);
 void pop_matmul(struct matmul *head, struct matmul **node);
 void pop2_matmul(struct matmul *head, struct matmul **node);
-void save_matmul(struct matmul *node);
+// void save_matmul(struct matmul *node);
 void perform_matmul(struct matmul *calculatingNode);
 void free_matmul(struct matmul *node);
 void free_queue(struct matmul *head);

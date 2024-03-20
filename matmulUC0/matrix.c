@@ -160,20 +160,18 @@ void pop2_matmul(struct matmul *head, struct matmul **node)
 }
 
 
-void save_matmul(struct matmul *node)
-{
-    float *resultHW = (float *)RESULT_HW_ADDRESS;
+// void save_matmul(struct matmul *node)
+// {
+//     for(int i=0; i<node->mat1Rows; i++) {
+//         for(int j=0; j<node->mat2Cols; j++) {
+//             node->resultHW[i*node->mat2Cols+j] = resultHW[i*node->mat2Cols+j];
+//         }
+//     }
 
-    for(int i=0; i<node->mat1Rows; i++) {
-        for(int j=0; j<node->mat2Cols; j++) {
-            node->resultHW[i*node->mat2Cols+j] = resultHW[i*node->mat2Cols+j];
-        }
-    }
+//     // int numErrors = verify_matmul(node->resultHW, node->resultSW, node->mat1Rows, node->mat2Cols);
 
-    // int numErrors = verify_matmul(node->resultHW, node->resultSW, node->mat1Rows, node->mat2Cols);
-
-    // printf("Hardware matmul done with %d errors!\n", numErrors);
-}
+//     // printf("Hardware matmul done with %d errors!\n", numErrors);
+// }
 
 /**
  * @brief multiply matrixes in node
@@ -213,5 +211,4 @@ void free_queue(struct matmul *head)
         pop2_matmul(head, &node);
         free_matmul(node);
     }
-    free_matmul(head);
 }

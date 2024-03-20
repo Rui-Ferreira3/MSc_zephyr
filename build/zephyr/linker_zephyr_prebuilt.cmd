@@ -92,6 +92,11 @@ SECTIONS
   __device_SMP_start = .; KEEP(*(SORT(.z_device_SMP[0-9]_*))); KEEP(*(SORT(.z_device_SMP[1-9][0-9]_*)));
   __device_end = .;
  } > RAM
+ sw_isr_table :
+ {
+  . = ALIGN(0);
+  *(.gnu.linkonce.sw_isr_table*)
+ } > RAM
  initlevel_error :
  {
   KEEP(*(SORT(.z_init_[_A-Z0-9]*)))
@@ -195,11 +200,6 @@ noinit (NOLOAD) :
  __data_size = __data_end - __data_start;
  __data_load_start = LOADADDR(datas);
  __data_region_load_start = LOADADDR(datas);
- sw_isr_table :
- {
-  . = ALIGN(0);
-  *(.gnu.linkonce.sw_isr_table*)
- } > RAM
         device_states :
         {
                 __device_states_start = .;
