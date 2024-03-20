@@ -13,11 +13,9 @@ void multiply_mat_sw(float *result, float *mat1, float *mat2, int rows1, int col
     }
 }
 
-void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+void multiply_mat_hw_pool(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
     volatile int *do_matp_mem = (int *)(ACCELERATOR_BASE_ADDRESS + 0x00);
-    volatile int *acceleratorGIER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x04);
-    volatile int *acceleratorIP_IER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x08);
     volatile int *a = (int *)(ACCELERATOR_BASE_ADDRESS + 0x10);
 	volatile int *b = (int *)(ACCELERATOR_BASE_ADDRESS + 0x18);
 	volatile int *c = (int *)(ACCELERATOR_BASE_ADDRESS + 0x20);
@@ -25,17 +23,29 @@ void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int ro
 	volatile int *colsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x30);
 	volatile int *colsB = (int *)(ACCELERATOR_BASE_ADDRESS + 0x38);
 
-    int *acceleratorBusyFlag = (int *)ACCELERATOR_BUSY_FLAG_ADDR;
+    *a = mat1Address;
+    *b = mat2Address;
+    *c = resultAddress;
+    *rowsA = rows1;
+    *colsA = cols1;
+    *colsB = cols2;
 
-    if(*acceleratorBusyFlag) {
-        printf("Accelerator busy!\n");
-        return;
-    }
+    *do_matp_mem = 1;
 
-    *acceleratorBusyFlag = 1;
+    while ((*do_matp_mem & 2) == 0);
+}
 
-    *acceleratorGIER = 1;
-    *acceleratorIP_IER = 1;
+void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+{
+    volatile int *do_matp_mem = (int *)(ACCELERATOR_BASE_ADDRESS + 0x00);
+    // volatile int *GIER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x04);
+    // volatile int *IP_IER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x08);
+    volatile int *a = (int *)(ACCELERATOR_BASE_ADDRESS + 0x10);
+	volatile int *b = (int *)(ACCELERATOR_BASE_ADDRESS + 0x18);
+	volatile int *c = (int *)(ACCELERATOR_BASE_ADDRESS + 0x20);
+	volatile int *rowsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x28);
+	volatile int *colsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x30);
+	volatile int *colsB = (int *)(ACCELERATOR_BASE_ADDRESS + 0x38);
 
     *a = mat1Address;
     *b = mat2Address;
