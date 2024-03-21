@@ -4,10 +4,10 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(my_first_app)
 
 target_sources(app PRIVATE
-    matmulUC2/main.c
-    matmulUC2/header.h
-    matmulUC2/common.h
-    matmulUC2/matrix.c
-    matmulUC2/matrix.h
-    matmulUC2/multiply.c
-    matmulUC2/multiply.h)
+    matmulUC3/main.c
+    matmulUC3/header.h
+    matmulUC3/common.h
+    matmulUC3/matrix.c
+    matmulUC3/matrix.h
+    matmulUC3/multiply.c
+    matmulUC3/multiply.h)

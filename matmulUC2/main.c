@@ -24,7 +24,7 @@ static struct k_thread threads[NUM_THREADS+1];
 
 int main()
 {
-    printf("*** Starting matmul UC 1 ***\n\n");
+    printf("*** Starting matmul UC 2 ***\n\n");
 
     printf("Installing ISR...\n");
     my_isr_installer();
