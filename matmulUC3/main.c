@@ -17,6 +17,7 @@ k_tid_t thread_ids[NUM_THREADS];
 // struct k_pipe pipe_array[NUM_THREADS];
 // K_PIPE_DEFINE(accel_pipe, 0, 4);
 K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 10, 4);
+K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 10, 4);
 
 K_SEM_DEFINE(reset_thread_sem, 0, 1);	/* starts off "not available" */
 K_SEM_DEFINE(accel_thread_sem, 0, 1);	/* starts off "not available" */
@@ -78,8 +79,6 @@ int main()
                     ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
             snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "accelerator");
         }else {
-            // k_pipe_init(&pipe_array[i], NULL, 0);
-
             thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
                     thread_software, INT_TO_POINTER(i), NULL, NULL,
                     SOFTWARE_THREAD_PRIO, K_USER, K_FOREVER);
@@ -125,8 +124,6 @@ void thread_reset(void *id, void *unused1, void *unused2) {
 
     int resetHead;
 
-    printf("Inside thread reset!\n");
-
     while(1) {
         resetHead = 0;
         for(int i=0; i<NUM_THREADS; i++)
@@ -139,11 +136,11 @@ void thread_reset(void *id, void *unused1, void *unused2) {
 
             /* check if pooling and usecase matmul match */
             printf("\nVerifying results...\n");
-            int numErrors = verify_queue(completedHead, NUM_MATMULS);
+            verify_queue(completedHead, NUM_MATMULS);
+
             printf("\nReseting the queue...\n");
             reset_queue(head, completedHead);
 
-            printf("\n%d matmuls done with %d errors!\n", NUM_MATMULS, numErrors);
             printf("Pooling took %u miliseconds\n", time_p);
             printf("Hardware took %u miliseconds\n", time_hw);
 
@@ -164,41 +161,46 @@ void thread_software(void *id, void *unused1, void *unused2)
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
 
-    int resetHead=0;
+    int resetHead=0, msgReceived;
     int my_id = POINTER_TO_INT(id);
 
-    unsigned char buffer[70000];
-    struct message *msg = (struct message *)buffer;
-    msg->sender_id = my_id;
-    size_t bytes_written, bytes_read;
-
-    
-    printf("Inside thread software %d!\n", my_id);
+    struct message msg;
+    msg.sender_id = my_id;
 
     while(1) {
-        // k_mutex_lock(&head_mutex, K_FOREVER);
-        // if(head->next == NULL) {
-        //     resetHead = 1;
-        // }else {
-        //     resetHead = 0;
-        //     pop2_matmul(head, &msg->node);
-        // }
-        // k_mutex_unlock(&head_mutex);
+        k_mutex_lock(&head_mutex, K_FOREVER);
+        if(head->next == NULL) {
+            resetHead = 1;
+        }else {
+            resetHead = 0;
+            pop2_matmul(head, &msg.node);
+        }
+        k_mutex_unlock(&head_mutex);
 
-        // if(resetHead) {
-        //     completed[my_id] = 1;
-        //     k_thread_suspend(thread_ids[my_id]);
-        // }else {
-        //     k_pipe_put(&pipe_central, (void *)msg, sizeof(msg), &bytes_written, sizeof(struct message), K_NO_WAIT);
-        //     printf("Thread %d sent message to central thread!\n", my_id);
+        if(resetHead) {
+            completed[my_id] = 1;
+            k_thread_suspend(thread_ids[my_id]);
+        }else {
+            while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {}
+            // printf("Thread %d sent message to central thread!\n", my_id);
 
-        //     k_pipe_get(&pipe_array[my_id], buffer, sizeof(buffer), &bytes_read, sizeof(struct message), K_FOREVER);
-        //     printf("Thread %d received a reply!\n", my_id);
+            msgReceived = 0;
+            while(!msgReceived) {
+                while (k_msgq_peek(&reply_msgq, &msg) != 0) {
+                    k_yield();
+                }
+                if (msg.sender_id != my_id)
+                    k_yield();
+                else
+                    msgReceived = 1;
+            }
+            k_msgq_get(&reply_msgq, &msg, K_FOREVER);
+            // printf("Thread %d received a reply: %d!\n", my_id, msg.sender_id);
 
-        //     k_mutex_lock(&completedHead_mutex, K_FOREVER);
-        //     push2_matmul(completedHead, msg->node);
-        //     k_mutex_unlock(&completedHead_mutex);
-        // }
+            k_mutex_lock(&completedHead_mutex, K_FOREVER);
+            push2_matmul(completedHead, msg.node);
+            k_mutex_unlock(&completedHead_mutex);
+        }
     }
     
 }
@@ -207,20 +209,16 @@ void thread_accelerator(void *id, void *unused1, void *unused2) {
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
 
-    unsigned char buffer[70000];
-    struct message *msg = (struct message *)buffer;
-    size_t bytes_written, bytes_read;
-
-    printf("Inside thread accelerator!\n");
+    struct message msg;
 
     while(1) {
-        // k_pipe_get(&accel_pipe, buffer, sizeof(buffer), &bytes_read, sizeof(struct message), K_FOREVER);
-        // printf("Received message from %d\n", msg->sender_id);
+        k_msgq_get(&accel_msgq, &msg, K_FOREVER);
+        // printf("Received message from %d\n", msg.sender_id);
 
-        // hardware_matmul(msg->node);
-        // k_sem_take(&accel_sem, K_FOREVER);
+        hardware_matmul(msg.node);
+        k_sem_take(&accel_sem, K_FOREVER);
 
-        // k_pipe_put(&pipe_array[msg->sender_id], (void *)msg, sizeof(msg), &bytes_written, sizeof(struct message), K_NO_WAIT);
-        // printf("Sending reply to %d...\n", msg->sender_id);
+        while (k_msgq_put(&reply_msgq, &msg, K_NO_WAIT) != 0) {}
+        // printf("Sending reply to %d...\n", msg.sender_id);
     }
 }

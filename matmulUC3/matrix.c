@@ -154,12 +154,14 @@ int verify_queue(struct matmul *head, int num_matmuls)
     int numErrors=0, totalErrors=0;
     int i=0;
     while(node != NULL) {
+        i++;
         numErrors += verify_matmul(node);
         totalErrors += numErrors;
         // printf("\nmat1: %f mat2: %f result: %f\n", node->mat1[0], node->mat2[0], node->resultSW[0]);
         // printf("result %p: %f\n", node->resultHW, node->resultHW[0]);
         node = node->next;
     }
+    printf("\n%d matmuls done with %d errors!\n", i, totalErrors);
     return numErrors;
 }
 
