@@ -11,7 +11,4 @@
 #include "matrix.h"
 #include "multiply.h"
 
-// void init_mats();
-// void define_mats();
-
 #endif //HEADER_H

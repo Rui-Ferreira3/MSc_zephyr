@@ -39,7 +39,7 @@ int main()
     node = head->next;
     start_sw_ms = k_uptime_get();
     for(int i=0; i<NUM_MATMULS; i++) {
-        printf("SW %d\n", i);
+        // printf("SW %d\n", i);
         multiply_mat_sw(node->resultSW, node->mat1, node->mat2, node->mat1Rows, node->mat1Cols, node->mat2Cols);
         // print_mat(node->resultSW, node->mat1Rows, node->mat2Cols);
         node = node->next;
@@ -50,18 +50,18 @@ int main()
 
 
     /* perform NUM_MATMULS in hardware*/
-    printf("\nPerforming hardware matrix multiplication...\n");
+    printf("\nPerforming pooling matrix multiplication...\n");
     node = head->next;
     start_hw_ms = k_uptime_get();
     for(int i=0; i<NUM_MATMULS; i++) {
-        printf("HW %d\n", i);
+        // printf("HW %d\n", i);
         multiply_mat_hw((int)node->mat1, (int)node->mat2, (int)node->resultHW, node->mat1Rows, node->mat1Cols, node->mat2Cols);
         // print_mat(node->resultHW, node->mat1Rows, node->mat2Cols);
         node = node->next;
     }
     finish_hw_ms = k_uptime_get();
     time_hw = finish_hw_ms - start_hw_ms;
-    printf("Completed hardware matrix multiplication!\n");
+    printf("Completed pooling matrix multiplication!\n");
 
 
     /* check if software and hardware matmul match */
@@ -84,47 +84,3 @@ int main()
 
     return 0;
 }
-
-// void init_mats() {
-//     for(int i=0; i<MATI_ROWS ; i++)
-//         for(int j=0; j<MATI_COLS; j++) {
-//             if(i == j) matI[i*MATI_COLS + j] = 1;
-//             else matI[i*MATI_COLS + j] = 0;
-//             mat1[i*MATI_COLS + j] = 1;
-//             mat2[i*MATI_COLS + j] = 2;
-//             mat3[i*MATI_COLS + j] = i;
-//         }
-// }
-
-// void define_mats() {
-//     mat_address_2 = MATI_BASE_ADDRESS;
-//     mat_rows_2 = MATI_ROWS;
-//     mat_cols_2 = MATI_COLS;
-//     matrix2 = matI;
-
-//     switch (matrixID) {
-//     case 1:
-//         mat_address_1 = MAT1_BASE_ADDRESS;
-//         mat_rows_1 = MAT1_ROWS;
-//         mat_cols_1 = MAT1_COLS;
-//         matrix1 = mat1;
-//         break;
-//     case 2:
-//         mat_address_1 = MAT2_BASE_ADDRESS;
-//         mat_rows_1 = MAT2_ROWS;
-//         mat_cols_1 = MAT2_COLS;
-//         matrix1 = mat2;
-//         break;
-//     case 3:
-//         mat_address_1 = MAT3_BASE_ADDRESS;
-//         mat_rows_1 = MAT3_ROWS;
-//         mat_cols_1 = MAT3_COLS;
-//         matrix1 = mat3;
-//         break;
-//     default:
-//         mat_address_1 = MATI_BASE_ADDRESS;
-//         mat_rows_1 = MATI_ROWS;
-//         mat_cols_1 = MATI_COLS;
-//         matrix1 = matI;
-//     }
-// }

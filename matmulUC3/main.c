@@ -14,14 +14,9 @@ static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS+2, STACKSIZE);
 static struct k_thread threads[NUM_THREADS+2];
 k_tid_t thread_ids[NUM_THREADS];
 
-// struct k_pipe pipe_array[NUM_THREADS];
-// K_PIPE_DEFINE(accel_pipe, 0, 4);
 K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 10, 4);
 K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 10, 4);
 
-K_SEM_DEFINE(reset_thread_sem, 0, 1);	/* starts off "not available" */
-K_SEM_DEFINE(accel_thread_sem, 0, 1);	/* starts off "not available" */
-K_SEM_DEFINE(sw_thread_sem, 1, 1);	/* starts off "available" */
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
 
 K_MUTEX_DEFINE(head_mutex);
@@ -115,7 +110,6 @@ void accel_isr(const void *arg) {
     *acceleratorIP_ISR = 0x1;
     
     k_sem_give(&accel_sem);
-    // k_sem_give(&accel_thread_sem);
 }
 
 void thread_reset(void *id, void *unused1, void *unused2) {
@@ -161,7 +155,7 @@ void thread_software(void *id, void *unused1, void *unused2)
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
 
-    int resetHead=0, msgReceived;
+    int resetHead=0;
     int my_id = POINTER_TO_INT(id);
 
     struct message msg;
@@ -181,18 +175,13 @@ void thread_software(void *id, void *unused1, void *unused2)
             completed[my_id] = 1;
             k_thread_suspend(thread_ids[my_id]);
         }else {
-            while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {}
+            while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
+                k_yield();
+            }
             // printf("Thread %d sent message to central thread!\n", my_id);
 
-            msgReceived = 0;
-            while(!msgReceived) {
-                while (k_msgq_peek(&reply_msgq, &msg) != 0) {
-                    k_yield();
-                }
-                if (msg.sender_id != my_id)
-                    k_yield();
-                else
-                    msgReceived = 1;
+            while (k_msgq_peek(&reply_msgq, &msg) != 0 || msg.sender_id != my_id) {
+                k_yield();
             }
             k_msgq_get(&reply_msgq, &msg, K_FOREVER);
             // printf("Thread %d received a reply: %d!\n", my_id, msg.sender_id);
@@ -202,7 +191,6 @@ void thread_software(void *id, void *unused1, void *unused2)
             k_mutex_unlock(&completedHead_mutex);
         }
     }
-    
 }
 
 void thread_accelerator(void *id, void *unused1, void *unused2) {

@@ -71,27 +71,11 @@ int main()
             thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
                     thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
                     ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
-            snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "Philosopher %d", i);
+            snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
         }
 		k_thread_name_set(&threads[i], tname);
         k_thread_start(&threads[i]);
     }
-
-    // printf("\nPerforming hardware matrix multiplication...\n");
-    // struct matmul *node;
-    // while(head->next != NULL) {
-    //     pop2_matmul(head, &node);
-    //     node->next=NULL;
-    //     printf("\nmat1: %f mat2: %f result: %f\n", node->mat1[0], node->mat2[0], node->resultSW[0]);
-    //     hardware_matmul(node);
-    //     k_sem_take(&accel_sem, K_FOREVER);
-    //     printf("result %p: %f\n", node->resultHW, node->resultHW[0]);
-    //     push2_matmul(completedHead, node);
-    //     node=NULL;
-    // }
-
-    // int numErrors = verify_queue(completedHead, NUM_MATMULS);
-    // printf("Completed hardware matrix multiplication with %d errors!\n", numErrors);
 
     return 0;
 }
