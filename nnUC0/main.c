@@ -1,8 +1,5 @@
 #include "header.h"
 
-int digity, prediction;
-float digit[DIGIT_SIZE];
-
 int main()
 {
     uint32_t start_sw_ms, finish_sw_ms, time_sw=0;
@@ -14,11 +11,14 @@ int main()
     float *a2 = (float *) (A2_BASE_ADDRESS);
     float *yhat = (float *) (YHAT_BASE_ADDRESS);
 
+    int digity, prediction;
+    float *digit;
+
     printf("*** Starting NN UC 0 ***\n\n");
 
     printf("Performing feed forward neural network using software only\n");
     for(int i=0; i<DIGITS; i++) {
-        get_digit(i);
+        digity = get_digit(i, &digit);
 
         start_sw_ms = k_uptime_get();
 
@@ -34,7 +34,7 @@ int main()
         finish_sw_ms = k_uptime_get();
         time_sw += finish_sw_ms - start_sw_ms;
         
-        prediction = get_prediction(yhat, DIGITS);
+        prediction = get_prediction(yhat, 10);
         printf("Digit: %d\n", digity);
         printf("Predicted digit: %d\n", prediction);
 
@@ -45,11 +45,12 @@ int main()
 
     printf("\nPerforming feed forward neural network using hardware\n");
     for(int i=0; i<DIGITS; i++) {
-        get_digit(i);
+        printf("Prediction number: %d\n", i);
+        digity = get_digit(i, &digit);
 
         start_hw_ms = k_uptime_get();
 
-        dot(A1_BASE_ADDRESS, (int)&digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
+        dot(A1_BASE_ADDRESS, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
 
         dot(A2_BASE_ADDRESS, A1_BASE_ADDRESS, (int)&W2, 1, W1_COLS, W2_COLS);
@@ -61,7 +62,7 @@ int main()
         finish_hw_ms = k_uptime_get();
         time_hw += finish_hw_ms - start_hw_ms;
 
-        prediction = get_prediction(yhat, DIGITS);
+        prediction = get_prediction(yhat, 10);
         printf("Digit: %d\n", digity);
         printf("Predicted digit: %d\n", prediction);
 
@@ -76,70 +77,9 @@ int main()
     return 0;
 }
 
-void get_digit(int num)
+int get_digit(int num, float **digit)
 {
-    switch(num) {
-        case 0:
-            digity = digit0y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit0[i];
-            }
-            break;
-        case 1:
-            digity = digit1y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit1[i];
-            }
-            break;
-        case 2:
-            digity = digit2y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit2[i];
-            }
-            break;
-        case 3:
-            digity = digit3y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit3[i];
-            }
-            break;
-        case 4:
-            digity = digit4y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit4[i];
-            }
-            break;
-        case 5:
-            digity = digit5y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit5[i];
-            }
-            break;
-        case 6:
-            digity = digit6y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit6[i];
-            }
-            break;
-        case 7:
-            digity = digit7y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit7[i];
-            }
-            break;
-        case 8:
-            digity = digit8y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit8[i];
-            }
-            break;
-        case 9:
-            digity = digit9y;
-            for(int i=0; i<DIGIT_SIZE; i++) {
-                digit[i] = digit9[i];
-            }
-            break;
-        default:
-            break;
-    }
+    *digit = &digits[num][0];
+    
+    return digitsy[num];
 }

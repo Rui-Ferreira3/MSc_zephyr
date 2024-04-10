@@ -59,9 +59,9 @@ int main()
         finish_pool_ms = k_uptime_get();
         time_pool += finish_pool_ms - start_pool_ms;
 
-        prediction = get_prediction(yhat, DIGITS);
-        printf("Digit: %d\n", digity);
-        printf("Predicted digit: %d\n", prediction);
+        prediction = get_prediction(yhat, 10);
+        // printf("Digit: %d\n", digity);
+        // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_pool++;
     }
@@ -146,7 +146,6 @@ void thread_software()
             break;
         }
         k_mutex_unlock(&digitID_mutex);
-        printf("Digit: %d\n", digity);
 
         multiply_mat_sw(a1, digit, W1, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
@@ -157,8 +156,9 @@ void thread_software()
         multiply_mat_sw(yhat, a2, W3, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
-        prediction = get_prediction(yhat, DIGITS);
-        printf("Predicted digit: %d\n", prediction);
+        prediction = get_prediction(yhat, 10);
+        // printf("Digit: %d\n", digity);
+        // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_hw++;
     }
@@ -197,7 +197,7 @@ void thread_accelerator()
         dot_(YHAT_BASE_ADDRESS, A2_BASE_ADDRESS, (int)&W3, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
-        prediction = get_prediction(yhat, DIGITS);
+        prediction = get_prediction(yhat, 10);
         printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_hw++;
@@ -245,52 +245,7 @@ void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int co
 
 int get_digit(int num, float **digit)
 {
-    int digity;
-    switch(num) {
-        case 0:
-            digity = digit0y;
-            *digit = &digit0[0];
-            break;
-        case 1:
-            digity = digit1y;
-            *digit = &digit1[0];
-            break;
-        case 2:
-            digity = digit2y;
-            *digit = &digit2[0];
-            break;
-        case 3:
-            digity = digit3y;
-            *digit = &digit3[0];
-            break;
-        case 4:
-            digity = digit4y;
-            *digit = &digit4[0];
-            break;
-        case 5:
-            digity = digit5y;
-            *digit = &digit5[0];
-            break;
-        case 6:
-            digity = digit6y;
-            *digit = &digit6[0];
-            break;
-        case 7:
-            digity = digit7y;
-            *digit = &digit7[0];
-            break;
-        case 8:
-            digity = digit8y;
-            *digit = &digit8[0];
-            break;
-        case 9:
-            digity = digit9y;
-            *digit = &digit9[0];
-            break;
-        default:
-            digity = digit0y;
-            *digit = &digit0[0];
-            break;
-    }
-    return digity;
+    *digit = &digits[num][0];
+    
+    return digitsy[num];
 }

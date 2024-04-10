@@ -2,19 +2,20 @@
 
 #define ACCEL_IRQ  15       /* device uses IRQ 15 */
 #define ACCEL_PRIO 7       /* device uses interrupt priority 5 */
+
 #define ACCEL_THREAD_PRIO 5
 #define SW_THREAD_PRIO 10
 
-int hwCount=0;
+K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 10, 4);
+K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 10, 4);
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
-K_SEM_DEFINE(executing_sem, 0, 1);	/* starts off "not available" */
 
 K_MUTEX_DEFINE(digitID_mutex);
 
-static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS, STACKSIZE);
-static struct k_thread threads[NUM_THREADS];
-k_tid_t thread_ids[NUM_THREADS];
+static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS+1, STACKSIZE);
+static struct k_thread threads[NUM_THREADS+1];
+k_tid_t thread_ids[NUM_THREADS+1];
 
 int digitID=0;
 int accuracy_hw=0;
@@ -34,7 +35,7 @@ int main()
     float *a2 = (float *) (A2_BASE_ADDRESS);
     float *yhat = (float *) (YHAT_BASE_ADDRESS);
 
-    printf("*** Starting NN UC 2 ***\n\n");
+    printf("*** Starting NN UC 3 ***\n\n");
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -70,13 +71,21 @@ int main()
     printf("Accuracy: %f\n", (float)accuracy_pool/DIGITS);
 
     /* start all accelerator threads */
-    for(int i=0; i<NUM_THREADS; i++) {
+    for(int i=0; i<NUM_THREADS+1; i++) {
         char tname[CONFIG_THREAD_MAX_NAME_LEN];
 
-        thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
-                thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
-                ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
-        snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
+        if(i == NUM_THREADS) {
+            k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
+                    thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
+                    ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
+            snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "accelerator");
+        }else {
+            thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
+                    thread_software, INT_TO_POINTER(i), NULL, NULL,
+                    ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
+            snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
+        }
+
 		k_thread_name_set(&threads[i], tname);
         k_thread_start(&threads[i]);
     }
@@ -93,7 +102,7 @@ int main()
     printf("Execution time: %d ms\n", time_hw);
     printf("Accuracy: %f\n", (float)accuracy_hw/DIGITS);
 
-    printf("\n*** Exiting NN UC 2 ***\n");
+    printf("\n*** Exiting NN UC 3 ***\n");
 
     return 0;
 }
@@ -123,7 +132,7 @@ void my_isr(const void *arg) {
     k_sem_give(&accel_sem);
 }
 
-void thread_accelerator(void *id, void *unused1, void *unused2)
+void thread_software(void *id, void *unused1, void *unused2)
 {
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
@@ -145,13 +154,13 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
     for(int i=0; i<DIGITS/NUM_THREADS; i++) {
         digity = get_digit(my_id+i*NUM_THREADS, &digit);
 
-        dot_(my_a1_address, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
+        send_msg(my_id, my_a1_address, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
 
-        dot_(my_a2_address, my_a1_address, (int)&W2, 1, W1_COLS, W2_COLS);
+        send_msg(my_id, my_a2_address, my_a1_address, (int)&W2, 1, W1_COLS, W2_COLS);
         relu(a2, W2_COLS);
 
-        dot_(my_yhat_address, my_a2_address, (int)&W3, 1, W2_COLS, W3_COLS);
+        send_msg(my_id, my_yhat_address, my_a2_address, (int)&W3, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
         prediction = get_prediction(yhat, 10);
@@ -160,6 +169,25 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
         // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_hw++;
+    }
+}
+
+void thread_accelerator(void *id, void *unused1, void *unused2)
+{
+    ARG_UNUSED(unused1);
+	ARG_UNUSED(unused2);
+
+    struct message msg;
+
+    while(1) {
+        k_msgq_get(&accel_msgq, &msg, K_FOREVER);
+        // printf("Received message from %d\n", msg.sender_id);
+
+        dot_(msg.result_address, msg.mat1_address, msg.mat2_address, msg.rows1, msg.cols1, msg.cols2);
+
+        while (k_msgq_put(&reply_msgq, &msg, K_NO_WAIT) != 0)
+            k_yield();
+        // printf("Sending reply to %d...\n", msg.sender_id);
     }
 }
 
@@ -198,6 +226,29 @@ void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int co
         multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
         k_sem_take(&accel_sem, K_FOREVER);
     }
+}
+
+void send_msg(int id, int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2)
+{
+    struct message msg;
+
+    msg.sender_id = id;
+    msg.result_address = resultAddress;
+    msg.mat1_address = mat1Address;
+    msg.mat2_address = mat2Address;
+    msg.rows1 = rows1;
+    msg.cols1 = cols1;
+    msg.cols2 = cols2;
+
+    while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
+        k_yield();
+    }
+    // printf("Thread %d sent message to central thread!\n", id);
+    while (k_msgq_peek(&reply_msgq, &msg) != 0 || msg.sender_id != id) {
+        k_yield();
+    }
+    k_msgq_get(&reply_msgq, &msg, K_FOREVER);
+    // printf("Thread %d received a reply: %d!\n", id, msg.sender_id);
 }
 
 int get_digit(int num, float **digit)

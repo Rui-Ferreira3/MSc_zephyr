@@ -4,12 +4,12 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(my_first_app)
 
 target_sources(app PRIVATE
-    nnUC2/main.c
-    nnUC2/header.h
-    nnUC2/common.h
-    nnUC2/data.h
-    nnUC2/weights.h
-    nnUC2/nn.c
-    nnUC2/nn.h
-    nnUC2/multiply.c
-    nnUC2/multiply.h)
+    nnUC3/main.c
+    nnUC3/header.h
+    nnUC3/common.h
+    nnUC3/data100.h
+    nnUC3/weights.h
+    nnUC3/nn.c
+    nnUC3/nn.h
+    nnUC3/multiply.c
+    nnUC3/multiply.h)

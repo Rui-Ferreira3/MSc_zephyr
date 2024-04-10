@@ -32,7 +32,7 @@ void multiply_mat_hw_pool(int mat1Address, int mat2Address, int resultAddress, i
 
     *do_matp_mem = 1;
 
-    while ((*do_matp_mem & 2) == 0);
+    while ((*do_matp_mem & 4) == 0);
 }
 
 void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)

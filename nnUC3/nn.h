@@ -1,8 +1,7 @@
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef NN_H
+#define NN_H
 
 #include <stdio.h>
-#include <string.h>
 #include <math.h>
 #include <zephyr.h>
 #include <kernel.h>
@@ -10,11 +9,12 @@
 #include <random/rand32.h>
 
 #include "common.h"
-#include "data100.h"
-#include "weights.h"
-#include "nn.h"
 #include "multiply.h"
 
-int get_digit(int num, float **digit);
+void relu(float *m, int size);
+void softmax(float *m, int size);
 
-#endif //HEADER_H
+int get_prediction(float yhat[DIGITS], int size);
+
+
+#endif //NN_H

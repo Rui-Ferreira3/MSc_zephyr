@@ -12,7 +12,7 @@
 #define COLUMN_BASE_ADDRESS                 0x05000000
 
 
-#define DIGITS 10
+#define DIGITS 100
 #define DIGIT_SIZE 784
 #define W1_ROWS DIGIT_SIZE
 #define W1_COLS 128
