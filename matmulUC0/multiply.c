@@ -1,7 +1,11 @@
 #include "multiply.h"
 
-void multiply_mat_sw(float *result, float *mat1, float *mat2, int rows1, int cols1, int cols2)
+void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
+    float *mat1 = (float *)mat1Address;
+    float *mat2 = (float *)mat2Address;
+    float *result = (float *)resultAddress;
+
     for (int i=0; i<rows1; i++) {
         for (int j=0; j<cols2; j++) {
             float val = 0;
@@ -32,5 +36,5 @@ void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int ro
 
     *do_matp_mem = 1;
 
-    while ((*do_matp_mem & 2) == 0);
+    while ((*do_matp_mem & 4) == 0);
 }

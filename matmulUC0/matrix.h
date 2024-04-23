@@ -18,18 +18,8 @@ struct matmul {
 };
 
 
-void create_mat(float *matrix, int rows, int cols);
-void print_mat(float *matrix, int rows, int cols);
-int verify_matmul(float *mat1, float *mat2, int rows, int cols);
-
-int init_matmul(struct matmul *node, int rows1, int cols1, int cols2);
-void fill_matmul(struct matmul *node);
-void push_matmul(struct matmul *head, struct matmul *newNode);
-void pop_matmul(struct matmul *head, struct matmul **node);
-void pop2_matmul(struct matmul *head, struct matmul **node);
-// void save_matmul(struct matmul *node);
-void perform_matmul(struct matmul *calculatingNode);
-void free_matmul(struct matmul *node);
-void free_queue(struct matmul *head);
+void create_mat(int matrixAddr, int rows, int cols);
+void print_mat(int matrixAddr, int rows, int cols);
+int verify(int mat1Addr, int mat2Addr, int rows, int cols);
 
 #endif //MATRIX_H

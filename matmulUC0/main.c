@@ -2,83 +2,71 @@
 
 int main()
 {
-    int numErrors = 0, totalErrors;
-    uint32_t start_sw_ms, finish_sw_ms, time_sw=0;
-    uint32_t start_hw_ms, finish_hw_ms, time_hw=0;
-    struct matmul *head, *node;
-
     printf("*** Starting matmul UC 0 ***\n\n");
-
-    /* initialize matmul queue head */
-    head = (struct matmul *)k_malloc(sizeof(struct matmul));
-    if(head == NULL) printf("Error allocating memory for matmul linked list head!\n");
-    init_matmul(head, 0, 0, 0);
-
     
-    /* fill the accelerator inputs inside the matmul structure, and push the new node into the queue */
-    printf("Defining %d matmuls and adding them to the queue...\n", NUM_MATMULS);
-    for(int i=0; i<NUM_MATMULS; i++) {
-        struct matmul *newNode = (struct matmul *)k_malloc(sizeof(struct matmul));
-        if(newNode == NULL) {
-            printf("Could not allocate space for matmul %d!\n", i);
-            break;
-        }
-        int err = init_matmul(newNode, MAT1ROWS, MAT1COLS, MAT2COLS);
-        if(err == -1) {
-            printf("Could not allocate space for matmul %d!\n", i);
-            break;
-        }
-        fill_matmul(newNode);
-        push_matmul(head, newNode);
+    int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_SW_SIZE + RESULT_POOL_SIZE;
+
+    /* initialize the queue */
+    printf("Saving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        create_mat(mat1Addr, MAT1ROWS, MAT1COLS);
+
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        create_mat(mat2Addr, MAT1ROWS, MAT1COLS);
     }
-    printf("%d matmuls added to the queue!\n", NUM_MATMULS);
+    printf("%d saved to memory!\n", NUM_MULTIPLICATIONS);
 
 
-    /* perform NUM_MATMULS in software */
+    /* perform NUM_MULTIPLICATIONS in software */
     printf("\nPerforming software matrix multiplication...\n");
-    node = head->next;
-    start_sw_ms = k_uptime_get();
-    for(int i=0; i<NUM_MATMULS; i++) {
-        // printf("SW %d\n", i);
-        multiply_mat_sw(node->resultSW, node->mat1, node->mat2, node->mat1Rows, node->mat1Cols, node->mat2Cols);
-        // print_mat(node->resultSW, node->mat1Rows, node->mat2Cols);
-        node = node->next;
+    int start_sw_ms = k_uptime_get();
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultAddr = mat2Addr + MATRIX2_SIZE;
+
+        multiply_mat_sw(mat1Addr, mat2Addr, resultAddr, MAT1ROWS, MAT1COLS, MAT2COLS);
     }
-    finish_sw_ms = k_uptime_get();
-    time_sw = finish_sw_ms - start_sw_ms;
+
+    int finish_sw_ms = k_uptime_get();
+    int time_sw = finish_sw_ms - start_sw_ms;
+
     printf("Completed software matrix multiplication!\n");
+    printf("Execution time: %d ms\n", time_sw);
 
 
-    /* perform NUM_MATMULS in hardware*/
-    printf("\nPerforming pooling matrix multiplication...\n");
-    node = head->next;
-    start_hw_ms = k_uptime_get();
-    for(int i=0; i<NUM_MATMULS; i++) {
-        // printf("HW %d\n", i);
-        multiply_mat_hw((int)node->mat1, (int)node->mat2, (int)node->resultHW, node->mat1Rows, node->mat1Cols, node->mat2Cols);
-        // print_mat(node->resultHW, node->mat1Rows, node->mat2Cols);
-        node = node->next;
+    /* perform NUM_MULTIPLICATIONS with pooling */
+    printf("\nPerforming matrix multiplication with pooling...\n");
+    int start_p_ms = k_uptime_get();
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultAddr = mat2Addr + MATRIX2_SIZE + RESULT_SW_SIZE;
+
+        multiply_mat_hw(mat1Addr, mat2Addr, resultAddr, MAT1ROWS, MAT1COLS, MAT2COLS);
     }
-    finish_hw_ms = k_uptime_get();
-    time_hw = finish_hw_ms - start_hw_ms;
-    printf("Completed pooling matrix multiplication!\n");
+
+    int finish_p_ms = k_uptime_get();
+    int time_p = finish_p_ms - start_p_ms;
+
+    printf("Completed matrix multiplication with pooling!\n");
+    printf("Execution time: %d ms\n", time_p);
 
 
     /* check if software and hardware matmul match */
-    node = head->next;
-    for(int i=0; i<NUM_MATMULS; i++) {
-        numErrors = verify_matmul(node->resultHW, node->resultSW, node->mat1Rows, node->mat2Cols);
-        totalErrors += numErrors;
-        node = node->next;
+    printf("\nChecking if software and hardware results match...\n");
+    int numErrors = 0;
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultSWAddr = mat2Addr + MATRIX2_SIZE;
+        int resultPoolAddr = resultSWAddr + RESULT_SW_SIZE;
+
+        numErrors += verify(resultSWAddr, resultPoolAddr, MAT1ROWS, MAT2COLS);
     }
 
-
-    printf("\n%d matmuls done with %d errors!\n", NUM_MATMULS, numErrors);
-    printf("Software took %u miliseconds\n", time_sw);
-    printf("Hardware took %u miliseconds\n", time_hw);
-
-    printf("\nFreeing memory...\n");
-    free_queue(head);
+    printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
 
     printf("\n*** Exiting matmul UC 0 ***\n");
 

@@ -77,13 +77,7 @@ int main()
         ACCEL_THREAD_PRIO, 0, K_FOREVER);
     k_thread_name_set(&threadA_data, "thread_a");
     k_thread_start(&threadA_data);
-
-    // k_thread_create(&threadB_data, threadB_stack_area,
-    //     K_THREAD_STACK_SIZEOF(threadB_stack_area),
-    //     thread_software, NULL, NULL, NULL,
-    //     SW_THREAD_PRIO, 0, K_FOREVER);
-    // k_thread_name_set(&threadB_data, "thread_b");
-    // k_thread_start(&threadB_data);
+    
     printf("\nPerforming feed forward neural network using the hardware accelerator\n");
 
     start_hw_ms = k_uptime_get();

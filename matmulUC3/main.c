@@ -1,87 +1,116 @@
 #include "header.h"
 
 #define ACCEL_IRQ  15       /* device uses IRQ 15 */
-#define ACCEL_PRIO 7       /* device uses interrupt priority 7 */
-
+#define ACCEL_PRIO 7       /* device uses interrupt priority 5 */
 #define ACCEL_THREAD_PRIO 5
-#define SOFTWARE_THREAD_PRIO 8
-#define RESET_THREAD_PRIO 10
-
-int finish_hw_ms, start_hw_ms, time_hw=0, time_p=0;
-int completed[NUM_THREADS];
-
-static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS+2, STACKSIZE);
-static struct k_thread threads[NUM_THREADS+2];
-k_tid_t thread_ids[NUM_THREADS];
+#define SW_THREAD_PRIO 10
 
 K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 10, 4);
 K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 10, 4);
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
 
-K_MUTEX_DEFINE(head_mutex);
-K_MUTEX_DEFINE(completedHead_mutex);
+K_MUTEX_DEFINE(completed_mutex);
 
+static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS+1, STACKSIZE);
+static struct k_thread threads[NUM_THREADS+1];
+k_tid_t thread_ids[NUM_THREADS+1];
 
+int completed[NUM_THREADS];
 
 int main()
 {
     printf("*** Starting matmul UC 3 ***\n\n");
 
     printf("Installing ISR...\n");
-    isr_installer();
+    my_isr_installer();
+    
+    int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_POOL_SIZE + RESULT_HW_SIZE;
 
-    /* initialize matmul overal queue head */
-    head = (struct matmul *)k_malloc(sizeof(struct matmul));
-    if(head == NULL) printf("Error allocating memory for matmul linked list head!\n");
-    init_matmul(head, 0, 0, 0);
+    /* initialize the queue */
+    printf("\nSaving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        create_mat(mat1Addr, MAT1ROWS, MAT1COLS);
 
-    /* fill the queue with a set of matmulls */
-    printf("\nDefining %d matmuls and adding them to the queue...\n", NUM_MATMULS);
-    fill_queue(head, NUM_MATMULS);
-    printf("%d matmuls added to the queue!\n", NUM_MATMULS);
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        create_mat(mat2Addr, MAT1ROWS, MAT1COLS);
+    }
+    printf("%d saved to memory!\n", NUM_MULTIPLICATIONS);
 
-
-    /* initialize completed matmul queue head */
-    completedHead = (struct matmul *)k_malloc(sizeof(struct matmul));
-    if(completedHead == NULL) printf("Error allocating memory for completed matmul linked list head!\n");
-    init_matmul(completedHead, 0, 0, 0);
-
-
-    /* perform NUM_MATMULS in software */
+    /* perform NUM_MULTIPLICATIONS with pooling */
     printf("\nPerforming matrix multiplication with pooling...\n");
-    time_p = pooling_matmul(head);
+
+    /* disable accelerator interrupts */
+    *acceleratorGIER = 0x0;
+
+    int start_p_ms = k_uptime_get();
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultAddr = mat2Addr + MATRIX2_SIZE;
+
+        multiply_mat_hw_pool(mat1Addr, mat2Addr, resultAddr, MAT1ROWS, MAT1COLS, MAT2COLS);
+    }
+
+    int finish_p_ms = k_uptime_get();
+    int time_p = finish_p_ms - start_p_ms;
+
+    /* enable accelerator interrupts */
+    *acceleratorIP_ISR = 0x1;
+    *acceleratorGIER = 0x1;
+
     printf("Completed matrix multiplication with pooling!\n");
+    printf("Execution time: %d ms\n", time_p);
 
-    for(int i=0; i<NUM_THREADS; i++)
-        completed[i] = 0;
-
-    printf("\nPerforming hardware matrix multiplication...\n");
-    start_hw_ms = k_uptime_get();
-
-    /* start all threads */
-    for(int i=0; i<NUM_THREADS+2; i++) {
+    /* start all accelerator threads */
+    for(int i=0; i<NUM_THREADS+1; i++) {
         char tname[CONFIG_THREAD_MAX_NAME_LEN];
 
         if(i == NUM_THREADS) {
-            k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
-                    thread_reset, INT_TO_POINTER(i), NULL, NULL,
-                    RESET_THREAD_PRIO, K_USER, K_FOREVER);
-            snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "reset");
-        }else if(i == NUM_THREADS+1) {
             k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
                     thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
                     ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
             snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "accelerator");
         }else {
             thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
-                    thread_software, INT_TO_POINTER(i), NULL, NULL,
-                    SOFTWARE_THREAD_PRIO, K_USER, K_FOREVER);
+                    thread_software, k_current_get(), INT_TO_POINTER(i), NULL,
+                    ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
             snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
         }
+
 		k_thread_name_set(&threads[i], tname);
         k_thread_start(&threads[i]);
     }
+
+    printf("\nPerforming matrix multiplication using the hardware accelerator...\n");
+
+    int start_hw_ms = k_uptime_get();
+
+    k_thread_suspend(k_current_get());
+
+    int finish_hw_ms = k_uptime_get();
+    int time_hw = finish_hw_ms - start_hw_ms;
+
+    printf("Completed matrix multiplication using the hardware accelerator!\n");
+    printf("Execution time: %d ms\n", time_hw);
+
+
+    /* check if software and hardware matmul match */
+    printf("\nChecking if results match...\n");
+    int numErrors = 0;
+    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultPoolAddr = mat2Addr + MATRIX2_SIZE;
+        int resultHWAddr = resultPoolAddr + RESULT_POOL_SIZE;
+
+        numErrors += verify(resultPoolAddr, resultHWAddr, MAT1ROWS, MAT2COLS);
+    }
+
+    printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
+
+    printf("\n*** Exiting matmul UC 3 ***\n");
 
     return 0;
 }
@@ -90,11 +119,10 @@ int main()
  * @brief installs accelerator isr
  * 
  */
-void isr_installer(void) {
+void my_isr_installer(void) {
     *acceleratorGIER = 0x1;
     *acceleratorIP_IER = 0x1;
-
-    ARCH_IRQ_CONNECT(ACCEL_IRQ, ACCEL_PRIO, accel_isr, NULL, 0);
+    ARCH_IRQ_CONNECT(ACCEL_IRQ, ACCEL_PRIO, my_isr, NULL, 0);
     arch_irq_enable(ACCEL_IRQ);
 }
 
@@ -106,94 +134,14 @@ void isr_installer(void) {
  * 
  * @param arg 
  */
-void accel_isr(const void *arg) {
+void my_isr(const void *arg) {
     *acceleratorIP_ISR = 0x1;
     
     k_sem_give(&accel_sem);
 }
 
-void thread_reset(void *id, void *unused1, void *unused2) {
-    ARG_UNUSED(unused1);
-	ARG_UNUSED(unused2);
-
-    int resetHead;
-
-    while(1) {
-        resetHead = 0;
-        for(int i=0; i<NUM_THREADS; i++)
-            if(completed[i] == 1) resetHead++;
-
-        if(resetHead == NUM_THREADS) {
-            finish_hw_ms = k_uptime_get();
-            time_hw = finish_hw_ms - start_hw_ms;
-            printf("Completed hardware matrix multiplication!\n");
-
-            /* check if pooling and usecase matmul match */
-            printf("\nVerifying results...\n");
-            verify_queue(completedHead, NUM_MATMULS);
-
-            printf("\nReseting the queue...\n");
-            reset_queue(head, completedHead);
-
-            printf("Pooling took %u miliseconds\n", time_p);
-            printf("Hardware took %u miliseconds\n", time_hw);
-
-            k_thread_priority_set(k_current_get(), ACCEL_THREAD_PRIO-1);
-            for(int i=0; i<NUM_THREADS; i++) {
-                k_thread_resume(thread_ids[i]);
-                completed[i] = 0;
-            }
-            printf("\nPerforming hardware matrix multiplication...\n");
-            start_hw_ms = k_uptime_get();
-            k_thread_priority_set(k_current_get(), RESET_THREAD_PRIO);
-        }
-    }
-}
-
-void thread_software(void *id, void *unused1, void *unused2)
+void thread_accelerator(void *id, void *unused1, void *unused2)
 {
-    ARG_UNUSED(unused1);
-	ARG_UNUSED(unused2);
-
-    int resetHead=0;
-    int my_id = POINTER_TO_INT(id);
-
-    struct message msg;
-    msg.sender_id = my_id;
-
-    while(1) {
-        k_mutex_lock(&head_mutex, K_FOREVER);
-        if(head->next == NULL) {
-            resetHead = 1;
-        }else {
-            resetHead = 0;
-            pop2_matmul(head, &msg.node);
-        }
-        k_mutex_unlock(&head_mutex);
-
-        if(resetHead) {
-            completed[my_id] = 1;
-            k_thread_suspend(thread_ids[my_id]);
-        }else {
-            while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
-                k_yield();
-            }
-            // printf("Thread %d sent message to central thread!\n", my_id);
-
-            while (k_msgq_peek(&reply_msgq, &msg) != 0 || msg.sender_id != my_id) {
-                k_yield();
-            }
-            k_msgq_get(&reply_msgq, &msg, K_FOREVER);
-            // printf("Thread %d received a reply: %d!\n", my_id, msg.sender_id);
-
-            k_mutex_lock(&completedHead_mutex, K_FOREVER);
-            push2_matmul(completedHead, msg.node);
-            k_mutex_unlock(&completedHead_mutex);
-        }
-    }
-}
-
-void thread_accelerator(void *id, void *unused1, void *unused2) {
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
 
@@ -203,10 +151,64 @@ void thread_accelerator(void *id, void *unused1, void *unused2) {
         k_msgq_get(&accel_msgq, &msg, K_FOREVER);
         // printf("Received message from %d\n", msg.sender_id);
 
-        hardware_matmul(msg.node);
+        multiply_mat_hw(msg.mat1_address, msg.mat2_address, msg.result_address, msg.rows1, msg.cols1, msg.cols2);
         k_sem_take(&accel_sem, K_FOREVER);
 
-        while (k_msgq_put(&reply_msgq, &msg, K_NO_WAIT) != 0) {}
+        while (k_msgq_put(&reply_msgq, &msg, K_NO_WAIT) != 0)
+            k_yield();
         // printf("Sending reply to %d...\n", msg.sender_id);
     }
+}
+
+void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
+{
+    k_tid_t mainId = (k_tid_t) mainIdPtr;
+    int myId = POINTER_TO_INT(myIdPtr);
+	ARG_UNUSED(unused);
+
+    int totalCompleted = 0;
+    completed[myId] = 0;
+
+    int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_POOL_SIZE + RESULT_HW_SIZE;
+
+    for(int i=myId; i<NUM_MULTIPLICATIONS; i+=NUM_THREADS) {
+        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
+        int mat2Addr = mat1Addr + MATRIX1_SIZE;
+        int resultAddr = mat2Addr + MATRIX2_SIZE + RESULT_POOL_SIZE;
+
+        send_msg(myId, mat1Addr, mat2Addr, resultAddr, MAT1ROWS, MAT1COLS, MAT2COLS);
+    }
+
+    completed[myId] = 1;
+
+    k_mutex_lock(&completed_mutex, K_FOREVER);
+    for(int i=0; i<NUM_THREADS; i++)
+        totalCompleted += completed[i];
+    k_mutex_unlock(&completed_mutex);
+
+    if(totalCompleted == NUM_THREADS)
+        k_thread_resume(mainId);
+}
+
+void send_msg(int id, int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+{
+    struct message msg;
+
+    msg.sender_id = id;
+    msg.result_address = resultAddress;
+    msg.mat1_address = mat1Address;
+    msg.mat2_address = mat2Address;
+    msg.rows1 = rows1;
+    msg.cols1 = cols1;
+    msg.cols2 = cols2;
+
+    while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
+        k_yield();
+    }
+    // printf("Thread %d sent message to central thread!\n", id);
+    while (k_msgq_peek(&reply_msgq, &msg) != 0 || msg.sender_id != id) {
+        k_yield();
+    }
+    k_msgq_get(&reply_msgq, &msg, K_FOREVER);
+    // printf("Thread %d received a reply: %d!\n", id, msg.sender_id);
 }

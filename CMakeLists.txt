@@ -4,6 +4,42 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(my_first_app)
 
 # target_sources(app PRIVATE
+#     matmulUC0/main.c
+#     matmulUC0/header.h
+#     matmulUC0/common.h
+#     matmulUC0/matrix.c
+#     matmulUC0/matrix.h
+#     matmulUC0/multiply.c
+#     matmulUC0/multiply.h)
+
+# target_sources(app PRIVATE
+#     matmulUC1/main.c
+#     matmulUC1/header.h
+#     matmulUC1/common.h
+#     matmulUC1/matrix.c
+#     matmulUC1/matrix.h
+#     matmulUC1/multiply.c
+#     matmulUC1/multiply.h)
+
+# target_sources(app PRIVATE
+#     matmulUC2/main.c
+#     matmulUC2/header.h
+#     matmulUC2/common.h
+#     matmulUC2/matrix.c
+#     matmulUC2/matrix.h
+#     matmulUC2/multiply.c
+#     matmulUC2/multiply.h)
+
+target_sources(app PRIVATE
+    matmulUC3/main.c
+    matmulUC3/header.h
+    matmulUC3/common.h
+    matmulUC3/matrix.c
+    matmulUC3/matrix.h
+    matmulUC3/multiply.c
+    matmulUC3/multiply.h)
+
+# target_sources(app PRIVATE
 #     nnUC0/main.c
 #     nnUC0/header.h
 #     nnUC0/common.h
@@ -25,16 +61,16 @@ project(my_first_app)
 #     nnUC1/multiply.c
 #     nnUC1/multiply.h)
 
-target_sources(app PRIVATE
-    nnUC2/main.c
-    nnUC2/header.h
-    nnUC2/common.h
-    nnUC2/data100.h
-    nnUC2/weights.h
-    nnUC2/nn.c
-    nnUC2/nn.h
-    nnUC2/multiply.c
-    nnUC2/multiply.h)
+# target_sources(app PRIVATE
+#     nnUC2/main.c
+#     nnUC2/header.h
+#     nnUC2/common.h
+#     nnUC2/data100.h
+#     nnUC2/weights.h
+#     nnUC2/nn.c
+#     nnUC2/nn.h
+#     nnUC2/multiply.c
+#     nnUC2/multiply.h)
 
 # target_sources(app PRIVATE
 #     nnUC3/main.c

@@ -10,14 +10,14 @@ ELF Header:
   Version:                           0x1
   Entry point address:               0x0
   Start of program headers:          52 (bytes into file)
-  Start of section headers:          1148360 (bytes into file)
+  Start of section headers:          458904 (bytes into file)
   Flags:                             0x0
   Size of this header:               52 (bytes)
   Size of program headers:           32 (bytes)
   Number of program headers:         3
   Size of section headers:           40 (bytes)
-  Number of section headers:         29
-  Section header string table index: 28
+  Number of section headers:         30
+  Section header string table index: 29
 
 Section Headers:
   [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
@@ -25,31 +25,32 @@ Section Headers:
   [ 1] vector            PROGBITS        00000000 000094 000024 00  AX  0   0  4
   [ 2] rom_start         NOBITS          00000024 0000b8 00000c 00  WA  0   0  1
   [ 3] exceptions        PROGBITS        00000030 0000c0 0002c0 00  AX  0   0  4
-  [ 4] text              PROGBITS        000002f0 000380 00c100 00  AX  0   0  4
-  [ 5] initlevel         PROGBITS        0000c3f0 00c480 000040 00   A  0   0  4
-  [ 6] devices           PROGBITS        0000c430 00c4c0 000060 00   A  0   0  4
-  [ 7] sw_isr_table      PROGBITS        0000c490 00c520 000200 00  WA  0   0  4
-  [ 8] device_handles    PROGBITS        0000c690 00c720 000018 00   A  0   0  2
-  [ 9] rodata            PROGBITS        0000c6a8 00c738 000a20 00   A  0   0  8
-  [10] bss               NOBITS          0000d0c8 00d158 000400 00  WA  0   0  8
-  [11] noinit            NOBITS          0000d4d0 00d158 002200 00  WA  0   0 16
-  [12] datas             PROGBITS        0000f6d0 00d158 0b7690 00  WA  0   0  4
-  [13] device_states     PROGBITS        000c6d60 0c47e8 000010 00  WA  0   0  4
-  [14] k_mutex_area      PROGBITS        000c6d70 0c47f8 00003c 00  WA  0   0  4
-  [15] k_sem_area        PROGBITS        000c6dac 0c4834 000010 00  WA  0   0  4
-  [16] .comment          PROGBITS        00000000 0c4844 00002e 01  MS  0   0  1
-  [17] .debug_aranges    PROGBITS        00000000 0c4878 000b78 00      0   0  8
-  [18] .debug_info       PROGBITS        00000000 0c53f0 020ab1 00      0   0  1
-  [19] .debug_abbrev     PROGBITS        00000000 0e5ea1 005cb5 00      0   0  1
-  [20] .debug_line       PROGBITS        00000000 0ebb56 01367f 00      0   0  1
-  [21] .debug_frame      PROGBITS        00000000 0ff1d8 003060 00      0   0  4
-  [22] .debug_str        PROGBITS        00000000 102238 004173 01  MS  0   0  1
-  [23] .debug_loc        PROGBITS        00000000 1063ab 0092c4 00      0   0  1
-  [24] .debug_ranges     PROGBITS        00000000 10f670 002aa8 00      0   0  8
-  [25] .riscv.attributes RISCV_ATTRIBUTE 00000000 112118 00002a 00      0   0  1
-  [26] .symtab           SYMTAB          00000000 112144 0030c0 10     27 240  4
-  [27] .strtab           STRTAB          00000000 115204 00329a 00      0   0  1
-  [28] .shstrtab         STRTAB          00000000 11849e 000129 00      0   0  1
+  [ 4] text              PROGBITS        000002f0 000380 00bfec 00  AX  0   0  4
+  [ 5] initlevel         PROGBITS        0000c2dc 00c36c 000048 00   A  0   0  4
+  [ 6] devices           PROGBITS        0000c324 00c3b4 000060 00   A  0   0  4
+  [ 7] sw_isr_table      PROGBITS        0000c384 00c414 000200 00  WA  0   0  4
+  [ 8] device_handles    PROGBITS        0000c584 00c614 000018 00   A  0   0  2
+  [ 9] rodata            PROGBITS        0000c5a0 00c630 000a64 00   A  0   0  8
+  [10] bss               NOBITS          0000d008 00d094 000300 00  WA  0   0  8
+  [11] noinit            NOBITS          0000d310 00d094 001c30 00  WA  0   0 16
+  [12] datas             PROGBITS        0000ef40 00d094 0001fc 00  WA  0   0  4
+  [13] device_states     PROGBITS        0000f13c 00d290 000010 00  WA  0   0  4
+  [14] k_mutex_area      PROGBITS        0000f14c 00d2a0 000050 00  WA  0   0  4
+  [15] k_msgq_area       PROGBITS        0000f19c 00d2f0 000050 00  WA  0   0  4
+  [16] k_sem_area        PROGBITS        0000f1ec 00d340 000010 00  WA  0   0  4
+  [17] .comment          PROGBITS        00000000 00d350 00002e 01  MS  0   0  1
+  [18] .debug_aranges    PROGBITS        00000000 00d380 000d48 00      0   0  8
+  [19] .debug_info       PROGBITS        00000000 00e0c8 0259ac 00      0   0  1
+  [20] .debug_abbrev     PROGBITS        00000000 033a74 006d28 00      0   0  1
+  [21] .debug_line       PROGBITS        00000000 03a79c 017938 00      0   0  1
+  [22] .debug_frame      PROGBITS        00000000 0520d4 003594 00      0   0  4
+  [23] .debug_str        PROGBITS        00000000 055668 00496a 01  MS  0   0  1
+  [24] .debug_loc        PROGBITS        00000000 059fd2 00c504 00      0   0  1
+  [25] .debug_ranges     PROGBITS        00000000 0664d8 003608 00      0   0  8
+  [26] .riscv.attributes RISCV_ATTRIBUTE 00000000 069ae0 00002a 00      0   0  1
+  [27] .symtab           SYMTAB          00000000 069b0c 0030f0 10     28 248  4
+  [28] .strtab           STRTAB          00000000 06cbfc 003364 00      0   0  1
+  [29] .shstrtab         STRTAB          00000000 06ff60 000135 00      0   0  1
 Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
   L (link order), O (extra OS processing required), G (group), T (TLS),
@@ -59,11 +60,11 @@ Key to Flags:
 Program Headers:
   Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
   LOAD           0x000094 0x00000000 0x00000000 0x00024 0x00030 RWE 0x4
-  LOAD           0x0000c0 0x00000030 0x00000030 0x0d098 0x0f6a0 RWE 0x10
-  LOAD           0x00d158 0x0000f6d0 0x0000f6d0 0xb76ec 0xb76ec RW  0x4
+  LOAD           0x0000c0 0x00000030 0x00000030 0x0cfd4 0x0ef10 RWE 0x10
+  LOAD           0x00d094 0x0000ef40 0x0000ef40 0x002bc 0x002bc RW  0x4
 
  Section to Segment mapping:
   Segment Sections...
    00     vector rom_start 
    01     exceptions text initlevel devices sw_isr_table device_handles rodata bss noinit 
-   02     datas device_states k_mutex_area k_sem_area 
+   02     datas device_states k_mutex_area k_msgq_area k_sem_area 
