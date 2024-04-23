@@ -202,12 +202,15 @@ void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int col
     /* disable accelerator interrupts */
     *acceleratorGIER = 0x0;
 
-    for(int i=0; i<cols2; i++) {
-        for(int j=0; j<784; j++)
-            column[j] = mat2[j*cols2+i];
-            
-        multiply_mat_hw_pool(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
-    }
+    if(cols1*cols2 > MAX_MATRIX_SIZE) {
+        for(int i=0; i<cols2; i++) {
+            for(int j=0; j<cols1; j++)
+                column[j] = mat2[j*cols2+i];
+                
+            multiply_mat_hw_pool(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+        }
+    }else
+        multiply_mat_hw_pool(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
 
     /* enable accelerator interrupts */
     *acceleratorIP_ISR = 0x1;
@@ -219,11 +222,16 @@ void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int co
     float *column = (float *)COLUMN_BASE_ADDRESS;
     float *mat2 = (float *)mat2Address;
 
-    for(int i=0; i<cols2; i++) {
-        for(int j=0; j<784; j++)
-            column[j] = mat2[j*cols2+i];
-            
-        multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+    if(cols1*cols2 > MAX_MATRIX_SIZE) {
+        for(int i=0; i<cols2; i++) {
+            for(int j=0; j<cols1; j++)
+                column[j] = mat2[j*cols2+i];
+                
+            multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+            k_sem_take(&accel_sem, K_FOREVER);
+        }
+    }else {
+        multiply_mat_hw(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
         k_sem_take(&accel_sem, K_FOREVER);
     }
 }

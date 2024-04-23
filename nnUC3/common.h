@@ -20,6 +20,8 @@
 #define W3_ROWS W2_COLS
 #define W3_COLS 10
 
+#define MAX_MATRIX_SIZE 1024
+
 #define NUM_THREADS 5
 
 #define CONFIG_THREAD_MAX_NAME_LEN 100

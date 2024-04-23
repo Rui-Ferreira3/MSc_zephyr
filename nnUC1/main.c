@@ -8,13 +8,13 @@
 int hwCount=0;
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
-K_SEM_DEFINE(executing_sem, 0, 1);	/* starts off "not available" */
+// K_SEM_DEFINE(executing_sem, 0, 1);	/* starts off "not available" */
 
 K_THREAD_STACK_DEFINE(threadA_stack_area, STACKSIZE);
 static struct k_thread threadA_data;
 
-K_THREAD_STACK_DEFINE(threadB_stack_area, STACKSIZE);
-static struct k_thread threadB_data;
+// K_THREAD_STACK_DEFINE(threadB_stack_area, STACKSIZE);
+// static struct k_thread threadB_data;
 
 K_MUTEX_DEFINE(digitID_mutex);
 
@@ -42,10 +42,11 @@ int main()
     my_isr_installer();
 
     printf("\nPerforming feed forward neural network using the hardware accelerator with pooling\n");
+    
+    start_pool_ms = k_uptime_get();
+
     for(int i=0; i<DIGITS; i++) {
         digity = get_digit(i, &digit);
-
-        start_pool_ms = k_uptime_get();
 
         dot(A1_BASE_ADDRESS, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
@@ -56,15 +57,16 @@ int main()
         dot(YHAT_BASE_ADDRESS, A2_BASE_ADDRESS, (int)&W3, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
-        finish_pool_ms = k_uptime_get();
-        time_pool += finish_pool_ms - start_pool_ms;
-
         prediction = get_prediction(yhat, 10);
         // printf("Digit: %d\n", digity);
         // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_pool++;
     }
+
+    finish_pool_ms = k_uptime_get();
+    time_pool = finish_pool_ms - start_pool_ms;
+
     printf("Execution time: %d ms\n", time_pool);
     printf("Accuracy: %f\n", (float)accuracy_pool/DIGITS);
 
@@ -76,20 +78,20 @@ int main()
     k_thread_name_set(&threadA_data, "thread_a");
     k_thread_start(&threadA_data);
 
-    k_thread_create(&threadB_data, threadB_stack_area,
-        K_THREAD_STACK_SIZEOF(threadB_stack_area),
-        thread_software, NULL, NULL, NULL,
-        SW_THREAD_PRIO, 0, K_FOREVER);
-    k_thread_name_set(&threadB_data, "thread_b");
-    k_thread_start(&threadB_data);
-
-    start_hw_ms = k_uptime_get();
+    // k_thread_create(&threadB_data, threadB_stack_area,
+    //     K_THREAD_STACK_SIZEOF(threadB_stack_area),
+    //     thread_software, NULL, NULL, NULL,
+    //     SW_THREAD_PRIO, 0, K_FOREVER);
+    // k_thread_name_set(&threadB_data, "thread_b");
+    // k_thread_start(&threadB_data);
     printf("\nPerforming feed forward neural network using the hardware accelerator\n");
 
-    k_sem_take(&executing_sem, K_FOREVER);
+    start_hw_ms = k_uptime_get();
+
+    k_thread_priority_set(k_current_get(), 15);
 
     finish_hw_ms = k_uptime_get();
-    time_hw += finish_hw_ms - start_hw_ms;
+    time_hw = finish_hw_ms - start_hw_ms;
 
     printf("Execution time: %d ms\n", time_hw);
     printf("Accuracy: %f\n", (float)accuracy_hw/DIGITS);
@@ -186,7 +188,6 @@ void thread_accelerator()
             break;
         }
         k_mutex_unlock(&digitID_mutex);
-        printf("Digit: %d\n", digity);
 
         dot_(A1_BASE_ADDRESS, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
@@ -198,12 +199,11 @@ void thread_accelerator()
         softmax(yhat, W3_COLS);
 
         prediction = get_prediction(yhat, 10);
-        printf("Predicted digit: %d\n", prediction);
+        // printf("Digit: %d\n", digity);
+        // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_hw++;
     }
-    k_sem_give(&executing_sem);
-    
 }
 
 void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2)
@@ -217,12 +217,15 @@ void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int col
     /* disable accelerator interrupts */
     *acceleratorGIER = 0x0;
 
-    for(int i=0; i<cols2; i++) {
-        for(int j=0; j<784; j++)
-            column[j] = mat2[j*cols2+i];
-            
-        multiply_mat_hw_pool(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
-    }
+    if(cols1*cols2 > MAX_MATRIX_SIZE) {
+        for(int i=0; i<cols2; i++) {
+            for(int j=0; j<cols1; j++)
+                column[j] = mat2[j*cols2+i];
+                
+            multiply_mat_hw_pool(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+        }
+    }else
+        multiply_mat_hw_pool(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
 
     /* enable accelerator interrupts */
     *acceleratorIP_ISR = 0x1;
@@ -234,11 +237,16 @@ void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int co
     float *column = (float *)COLUMN_BASE_ADDRESS;
     float *mat2 = (float *)mat2Address;
 
-    for(int i=0; i<cols2; i++) {
-        for(int j=0; j<784; j++)
-            column[j] = mat2[j*cols2+i];
-            
-        multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+    if(cols1*cols2 > MAX_MATRIX_SIZE) {
+        for(int i=0; i<cols2; i++) {
+            for(int j=0; j<cols1; j++)
+                column[j] = mat2[j*cols2+i];
+                
+            multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+            k_sem_take(&accel_sem, K_FOREVER);
+        }
+    }else {
+        multiply_mat_hw(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
         k_sem_take(&accel_sem, K_FOREVER);
     }
 }
