@@ -28,6 +28,38 @@ void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int ro
 }
 
 /**
+ * @brief Perform matrix multiplication in hardware with pooling
+ * 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
+void multiply_mat_hw_pool(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
+{
+    volatile int *do_matp_mem = (int *)(ACCELERATOR_BASE_ADDRESS + 0x00);
+    volatile int *a = (int *)(ACCELERATOR_BASE_ADDRESS + 0x10);
+	volatile int *b = (int *)(ACCELERATOR_BASE_ADDRESS + 0x18);
+	volatile int *c = (int *)(ACCELERATOR_BASE_ADDRESS + 0x20);
+	volatile int *rowsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x28);
+	volatile int *colsA = (int *)(ACCELERATOR_BASE_ADDRESS + 0x30);
+	volatile int *colsB = (int *)(ACCELERATOR_BASE_ADDRESS + 0x38);
+
+    *a = mat1Address;
+    *b = mat2Address;
+    *c = resultAddress;
+    *rowsA = rows1;
+    *colsA = cols1;
+    *colsB = cols2;
+
+    *do_matp_mem = 1;
+
+    while ((*do_matp_mem & 4) == 0);
+}
+
+/**
  * @brief Perform matrix multiplication in hardware without waiting for result
  * 
  * @param mat1Address 

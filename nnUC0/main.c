@@ -73,7 +73,7 @@ int main()
 }
 
 /**
- * @brief dot product of two matrices
+ * @brief dot product of two matrices using the hardware accelerator
  * @brief if the size of the matrices is greater than MAX_MATRIX_SIZE,
  * @brief the function will split the second matrix into columns and multiply each column with the first matrix
  * 

@@ -22,8 +22,6 @@
 
 #define MAX_MATRIX_SIZE 1024
 
-#define NUM_THREADS 1
-
 #define CONFIG_THREAD_MAX_NAME_LEN 100
 
 /* size of stack area used by each thread */

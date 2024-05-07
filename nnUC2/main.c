@@ -5,10 +5,8 @@
 #define ACCEL_THREAD_PRIO 5
 #define SW_THREAD_PRIO 10
 
-int hwCount=0;
-
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
-K_SEM_DEFINE(executing_sem, 0, 1);	/* starts off "not available" */
+K_SEM_DEFINE(thread_sem, 1, 1);	/* starts off "available" */
 
 K_MUTEX_DEFINE(digitID_mutex);
 
@@ -18,6 +16,8 @@ k_tid_t thread_ids[NUM_THREADS];
 
 int digitID=0;
 int accuracy_hw=0;
+
+int completed[NUM_THREADS];
 
 int main()
 {
@@ -34,7 +34,7 @@ int main()
     float *a2 = (float *) (A2_BASE_ADDRESS);
     float *yhat = (float *) (YHAT_BASE_ADDRESS);
 
-    printf("*** Starting NN UC 2 ***\n\n");
+    printf("*** Starting NN UC 2 with %d threads***\n\n", NUM_THREADS);
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -46,19 +46,16 @@ int main()
     for(int i=0; i<DIGITS; i++) {
         digity = get_digit(i, &digit);
 
-        dot(A1_BASE_ADDRESS, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
+        dot((int)digit, (int)&W1, A1_BASE_ADDRESS, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
 
-        dot(A2_BASE_ADDRESS, A1_BASE_ADDRESS, (int)&W2, 1, W1_COLS, W2_COLS);
+        dot(A1_BASE_ADDRESS, (int)&W2, A2_BASE_ADDRESS, 1, W1_COLS, W2_COLS);
         relu(a2, W2_COLS);
 
-        dot(YHAT_BASE_ADDRESS, A2_BASE_ADDRESS, (int)&W3, 1, W2_COLS, W3_COLS);
+        dot(A2_BASE_ADDRESS, (int)&W3, YHAT_BASE_ADDRESS, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
         prediction = get_prediction(yhat, 10);
-        // printf("Prediction number: %d\n", i);
-        // printf("Digit: %d\n", digity);
-        // printf("Predicted digit: %d\n", prediction);
 
         if(prediction == digity) accuracy_pool++;
     }
@@ -74,7 +71,7 @@ int main()
         char tname[CONFIG_THREAD_MAX_NAME_LEN];
 
         thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
-                thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
+                thread_accelerator, k_current_get(), INT_TO_POINTER(i), NULL,
                 ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
         snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
 		k_thread_name_set(&threads[i], tname);
@@ -120,18 +117,29 @@ void my_isr_installer(void) {
 void my_isr(const void *arg) {
     *acceleratorIP_ISR = 0x1;
     
+    k_sem_give(&thread_sem);
     k_sem_give(&accel_sem);
 }
 
-void thread_accelerator(void *id, void *unused1, void *unused2)
+/**
+ * @brief thread that performs feed forward neural network using the hardware accelerator
+ * 
+ * @param mainIdPtr 
+ * @param unused1 
+ * @param unused2 
+ */
+void thread_accelerator(void *mainIdPtr, void *myIdPtr, void *unused)
 {
-    ARG_UNUSED(unused1);
-	ARG_UNUSED(unused2);
-    int my_id = POINTER_TO_INT(id);
+    k_tid_t mainId = (k_tid_t) mainIdPtr;
+    int myId = POINTER_TO_INT(myIdPtr);
+	ARG_UNUSED(unused);
 
-    int my_a1_address = A1_BASE_ADDRESS+my_id*0x1000;
-    int my_a2_address = A2_BASE_ADDRESS+my_id*0x1000;
-    int my_yhat_address = YHAT_BASE_ADDRESS+my_id*0x1000;
+    int totalCompleted = 0;
+    completed[myId] = 0;
+
+    int my_a1_address = A1_BASE_ADDRESS+myId*0x1000;
+    int my_a2_address = A2_BASE_ADDRESS+myId*0x1000;
+    int my_yhat_address = YHAT_BASE_ADDRESS+myId*0x1000;
 
     float *digit;
     int digity;
@@ -143,27 +151,46 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
     float *yhat = (float *) (my_yhat_address);
 
     for(int i=0; i<DIGITS/NUM_THREADS; i++) {
-        digity = get_digit(my_id+i*NUM_THREADS, &digit);
+        digity = get_digit(myId+i*NUM_THREADS, &digit);
 
-        dot_(my_a1_address, (int)digit, (int)&W1, 1, DIGIT_SIZE, W1_COLS);
+        dot_((int)digit, (int)&W1, my_a1_address, 1, DIGIT_SIZE, W1_COLS, myId);
         relu(a1, W1_COLS);
 
-        dot_(my_a2_address, my_a1_address, (int)&W2, 1, W1_COLS, W2_COLS);
+        dot_(my_a1_address, (int)&W2, my_a2_address, 1, W1_COLS, W2_COLS, myId);
         relu(a2, W2_COLS);
 
-        dot_(my_yhat_address, my_a2_address, (int)&W3, 1, W2_COLS, W3_COLS);
+        dot_(my_a2_address, (int)&W3, my_yhat_address, 1, W2_COLS, W3_COLS, myId);
         softmax(yhat, W3_COLS);
 
         prediction = get_prediction(yhat, 10);
 
-        // printf("Digit: %d\n", digity);
-        // printf("Predicted digit: %d\n", prediction);
-
         if(prediction == digity) accuracy_hw++;
     }
+
+    completed[myId] = 1;
+
+    k_mutex_lock(&completed_mutex, K_FOREVER);
+    for(int i=0; i<NUM_THREADS; i++)
+        totalCompleted += completed[i];
+    k_mutex_unlock(&completed_mutex);
+
+    if(totalCompleted == NUM_THREADS)
+        k_thread_resume(mainId);
 }
 
-void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2)
+/**
+ * @brief dot product of two matrices using the hardware accelerator with pooling
+ * @brief if the size of the matrices is greater than MAX_MATRIX_SIZE,
+ * @brief the function will split the second matrix into columns and multiply each column with the first matrix
+ * 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
     float *column = (float *)COLUMN_BASE_ADDRESS;
     float *mat2 = (float *)mat2Address;
@@ -189,9 +216,21 @@ void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int col
     *acceleratorGIER = 0x1;
 }
 
-void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2)
+/**
+ * @brief dot product of two matrices using the hardware accelerator with interrupts
+ * @brief if the size of the matrices is greater than MAX_MATRIX_SIZE,
+ * @brief the function will split the second matrix into columns and multiply each column with the first matrix
+ * 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
+void dot_(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId)
 {
-    float *column = (float *)COLUMN_BASE_ADDRESS;
+    float *column = (float *)COLUMN_BASE_ADDRESS+myId*MAX_MATRIX_SIZE*sizeof(float);
     float *mat2 = (float *)mat2Address;
 
     if(cols1*cols2 > MAX_MATRIX_SIZE) {
@@ -199,15 +238,24 @@ void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int co
             for(int j=0; j<cols1; j++)
                 column[j] = mat2[j*cols2+i];
                 
-            multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
+            k_sem_take(&thread_sem, K_FOREVER);
+            multiply_mat_hw(mat1Address, (int)column, resultAddress+i*sizeof(float), rows1, cols1, 1);
             k_sem_take(&accel_sem, K_FOREVER);
         }
     }else {
+        k_sem_take(&thread_sem, K_FOREVER);
         multiply_mat_hw(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
         k_sem_take(&accel_sem, K_FOREVER);
     }
 }
 
+/**
+ * @brief Get the digit object
+ * 
+ * @param num 
+ * @param digit 
+ * @return int 
+ */
 int get_digit(int num, float **digit)
 {
     *digit = &digits[num][0];

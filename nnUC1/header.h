@@ -22,11 +22,10 @@ volatile int *acceleratorIP_ISR = (int *)(ACCELERATOR_BASE_ADDRESS + 0x0c);
 void my_isr_installer(void);
 void my_isr(const void *arg);
 
-void thread_software();
-void thread_accelerator();
+void thread_accelerator(void *mainIdPtr, void *unused1, void *unused2);
 
-void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2);
-void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2);
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
+void dot_(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
 int get_digit(int num, float **digit);
 
 #endif //HEADER_H

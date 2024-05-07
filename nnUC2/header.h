@@ -10,7 +10,7 @@
 #include <random/rand32.h>
 
 #include "common.h"
-#include "data100.h"
+#include "data.h"
 #include "weights.h"
 #include "nn.h"
 #include "multiply.h"
@@ -22,10 +22,10 @@ volatile int *acceleratorIP_ISR = (int *)(ACCELERATOR_BASE_ADDRESS + 0x0c);
 void my_isr_installer(void);
 void my_isr(const void *arg);
 
-void thread_accelerator(void *id, void *unused1, void *unused2);
+void thread_accelerator(void *mainIdPtr, void *myIdPtr, void *unused);
 
-void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2);
-void dot_(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2);
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
+void dot_(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId);
 int get_digit(int num, float **digit);
 
 #endif //HEADER_H

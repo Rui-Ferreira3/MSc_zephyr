@@ -20,7 +20,7 @@ int completed[NUM_THREADS];
 
 int main()
 {
-    printf("*** Starting matrix multiplication UC 3 with %d threads***\n\n", NUM_THREADS);
+    printf("*** Starting matrix multiplication UC 3 with %d threads ***\n\n", NUM_THREADS);
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -75,7 +75,7 @@ int main()
         }else {
             thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
                     thread_software, k_current_get(), INT_TO_POINTER(i), NULL,
-                    ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
+                    SW_THREAD_PRIO, K_USER, K_FOREVER);
             snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
         }
 
