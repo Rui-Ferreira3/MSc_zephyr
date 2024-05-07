@@ -11,7 +11,7 @@ static struct k_thread threadA_data;
 
 int main()
 {
-    printf("*** Starting matmul UC 1 ***\n\n");
+    printf("*** Starting matrix multiplication UC 1 ***\n\n");
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -89,7 +89,7 @@ int main()
 
     printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
 
-    printf("\n*** Exiting matmul UC 1 ***\n");
+    printf("\n*** Exiting matrix multiplication UC 1 ***\n");
 
     return 0;
 }
@@ -119,6 +119,13 @@ void my_isr(const void *arg) {
     k_sem_give(&accel_sem);
 }
 
+/**
+ * @brief Single thread that performs matrix multiplication using the hardware accelerator and interrupts
+ * 
+ * @param mainId 
+ * @param unused1 
+ * @param unused2 
+ */
 void thread_accelerator(k_tid_t mainId, void *unused1, void *unused2)
 {
     ARG_UNUSED(unused1);

@@ -13,7 +13,6 @@
 
 void relu(float *m, int size);
 void softmax(float *m, int size);
-
 int get_prediction(float yhat[DIGITS], int size);
 
 

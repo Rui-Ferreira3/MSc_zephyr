@@ -30,31 +30,31 @@ project(my_first_app)
 #     matmulUC2/multiply.c
 #     matmulUC2/multiply.h)
 
-target_sources(app PRIVATE
-    matmulUC3/main.c
-    matmulUC3/header.h
-    matmulUC3/common.h
-    matmulUC3/matrix.c
-    matmulUC3/matrix.h
-    matmulUC3/multiply.c
-    matmulUC3/multiply.h)
-
 # target_sources(app PRIVATE
-#     nnUC0/main.c
-#     nnUC0/header.h
-#     nnUC0/common.h
-#     nnUC0/data100.h
-#     nnUC0/weights.h
-#     nnUC0/nn.c
-#     nnUC0/nn.h
-#     nnUC0/multiply.c
-#     nnUC0/multiply.h)
+#     matmulUC3/main.c
+#     matmulUC3/header.h
+#     matmulUC3/common.h
+#     matmulUC3/matrix.c
+#     matmulUC3/matrix.h
+#     matmulUC3/multiply.c
+#     matmulUC3/multiply.h)
+
+target_sources(app PRIVATE
+    nnUC0/main.c
+    nnUC0/header.h
+    nnUC0/common.h
+    nnUC0/data.h
+    nnUC0/weights.h
+    nnUC0/nn.c
+    nnUC0/nn.h
+    nnUC0/multiply.c
+    nnUC0/multiply.h)
 
 # target_sources(app PRIVATE
 #     nnUC1/main.c
 #     nnUC1/header.h
 #     nnUC1/common.h
-#     nnUC1/data100.h
+#     nnUC1/data.h
 #     nnUC1/weights.h
 #     nnUC1/nn.c
 #     nnUC1/nn.h

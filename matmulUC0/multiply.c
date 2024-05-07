@@ -1,5 +1,15 @@
 #include "multiply.h"
 
+/**
+ * @brief Perform matrix multiplication in software
+ * 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
 void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
     float *mat1 = (float *)mat1Address;
@@ -17,6 +27,16 @@ void multiply_mat_sw(int mat1Address, int mat2Address, int resultAddress, int ro
     }
 }
 
+/**
+ * @brief Perform matrix multiplication in hardware
+ * 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
 void multiply_mat_hw(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
     volatile int *do_matp_mem = (int *)(ACCELERATOR_BASE_ADDRESS + 0x00);

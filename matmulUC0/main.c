@@ -2,7 +2,7 @@
 
 int main()
 {
-    printf("*** Starting matmul UC 0 ***\n\n");
+    printf("*** Starting matrix multiplication UC 0 ***\n\n");
     
     int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_SW_SIZE + RESULT_POOL_SIZE;
 
@@ -68,7 +68,7 @@ int main()
 
     printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
 
-    printf("\n*** Exiting matmul UC 0 ***\n");
+    printf("\n*** Exiting matrix multiplication UC 0 ***\n");
 
     return 0;
 }

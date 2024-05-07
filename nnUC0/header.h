@@ -10,11 +10,12 @@
 #include <random/rand32.h>
 
 #include "common.h"
-#include "data100.h"
+#include "data.h"
 #include "weights.h"
 #include "nn.h"
 #include "multiply.h"
 
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
 int get_digit(int num, float **digit);
 
 #endif //HEADER_H

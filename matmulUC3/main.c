@@ -20,7 +20,7 @@ int completed[NUM_THREADS];
 
 int main()
 {
-    printf("*** Starting matmul UC 3 ***\n\n");
+    printf("*** Starting matrix multiplication UC 3 with %d threads***\n\n", NUM_THREADS);
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -110,7 +110,7 @@ int main()
 
     printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
 
-    printf("\n*** Exiting matmul UC 3 ***\n");
+    printf("\n*** Exiting matrix multiplication UC 3 ***\n");
 
     return 0;
 }
@@ -140,6 +140,16 @@ void my_isr(const void *arg) {
     k_sem_give(&accel_sem);
 }
 
+/**
+ * @brief accelerator thread
+ * @brief gets message from message queue
+ * @brief performs matrix multiplication
+ * @brief sends reply to software thread
+ * 
+ * @param id 
+ * @param unused1 
+ * @param unused2 
+ */
 void thread_accelerator(void *id, void *unused1, void *unused2)
 {
     ARG_UNUSED(unused1);
@@ -160,6 +170,15 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
     }
 }
 
+/**
+ * @brief software thread
+ * @brief sends message to accelerator thread
+ * @brief wakes main thread when all threads are complete
+ * 
+ * @param mainIdPtr 
+ * @param myIdPtr 
+ * @param unused 
+ */
 void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
 {
     k_tid_t mainId = (k_tid_t) mainIdPtr;
@@ -190,6 +209,18 @@ void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
         k_thread_resume(mainId);
 }
 
+/**
+ * @brief sends message to accelerator thread
+ * @brief waits for reply
+ * 
+ * @param id 
+ * @param mat1Address 
+ * @param mat2Address 
+ * @param resultAddress 
+ * @param rows1 
+ * @param cols1 
+ * @param cols2 
+ */
 void send_msg(int id, int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
     struct message msg;

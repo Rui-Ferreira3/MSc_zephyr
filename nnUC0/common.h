@@ -11,8 +11,7 @@
 #define YHAT_SIZE                           sizeof(float)*W3_COLS
 #define COLUMN_BASE_ADDRESS                 0x05000000
 
-
-#define DIGITS 100
+#define DIGITS 50
 #define DIGIT_SIZE 784
 #define W1_ROWS DIGIT_SIZE
 #define W1_COLS 128
@@ -22,10 +21,6 @@
 #define W3_COLS 10
 
 #define MAX_MATRIX_SIZE 1024
-
-#define NUM_THREADS 5
-
-#define CONFIG_THREAD_MAX_NAME_LEN 100
 
 /* size of stack area used by each thread */
 #define STACKSIZE 1024

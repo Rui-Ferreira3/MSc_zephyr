@@ -17,7 +17,7 @@ int completed[NUM_THREADS];
 
 int main()
 {
-    printf("*** Starting matmul UC 2 ***\n\n");
+    printf("*** Starting matrix multiplication UC 2 with %d threads***\n\n", NUM_THREADS);
 
     printf("Installing ISR...\n");
     my_isr_installer();
@@ -99,7 +99,7 @@ int main()
 
     printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
 
-    printf("\n*** Exiting matmul UC 2 ***\n");
+    printf("\n*** Exiting matrix multiplication UC 2 ***\n");
 
     return 0;
 }
@@ -130,6 +130,15 @@ void my_isr(const void *arg) {
     k_sem_give(&accel_sem);
 }
 
+/**
+ * @brief thread function for the accelerator
+ * @brief performs matrix multiplication using the hardware accelerator
+ * @brief wakes the main thread when all threads finish execution
+ * 
+ * @param mainIdPtr 
+ * @param myIdPtr 
+ * @param unused 
+ */
 void thread_accelerator(void *mainIdPtr, void *myIdPtr, void *unused)
 {
     k_tid_t mainId = (k_tid_t) mainIdPtr;

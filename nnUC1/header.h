@@ -10,7 +10,7 @@
 #include <random/rand32.h>
 
 #include "common.h"
-#include "data100.h"
+#include "data.h"
 #include "weights.h"
 #include "nn.h"
 #include "multiply.h"

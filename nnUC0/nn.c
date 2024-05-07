@@ -1,21 +1,11 @@
 #include "nn.h"
 
-void dot(int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2)
-{
-    float *column = (float *)COLUMN_BASE_ADDRESS;
-    float *mat2 = (float *)mat2Address;
-
-    if(cols1*cols2 > MAX_MATRIX_SIZE) {
-        for(int i=0; i<cols2; i++) {
-            for(int j=0; j<cols1; j++)
-                column[j] = mat2[j*cols2+i];
-                
-            multiply_mat_hw_pool(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
-        }
-    }else
-        multiply_mat_hw_pool(mat1Address, mat2Address, resultAddress, rows1, cols1, cols2);
-}
-
+/**
+ * @brief relu activation function
+ * 
+ * @param m 
+ * @param size 
+ */
 void relu(float *m, int size)
 {
     for (int i=0; i<size; i++) {
@@ -25,6 +15,12 @@ void relu(float *m, int size)
     }
 }
 
+/**
+ * @brief softmax activation function
+ * 
+ * @param m 
+ * @param size 
+ */
 void softmax(float *m, int size)
 {
     float max = 0;
@@ -44,6 +40,13 @@ void softmax(float *m, int size)
     }
 }
 
+/**
+ * @brief get prediction from yhat
+ * 
+ * @param yhat 
+ * @param size 
+ * @return int 
+ */
 int get_prediction(float yhat[DIGITS], int size)
 {
     int prediction = 0;
