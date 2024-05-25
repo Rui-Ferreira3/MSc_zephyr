@@ -6,7 +6,6 @@
 #include <math.h>
 #include <zephyr.h>
 #include <kernel.h>
-#include <sys/printk.h>
 #include <random/rand32.h>
 
 #include "common.h"
@@ -24,8 +23,8 @@ void my_isr(const void *arg);
 
 void thread_accelerator(void *mainIdPtr, void *myIdPtr, void *unused);
 
-void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
-void dot_(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId);
+void dot_pooling(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId);
 int get_digit(int num, float **digit);
 
 #endif //HEADER_H

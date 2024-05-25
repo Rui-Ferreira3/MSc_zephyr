@@ -11,7 +11,7 @@
 #define YHAT_SIZE                           sizeof(float)*W3_COLS
 #define COLUMN_BASE_ADDRESS                 0x05000000
 
-#define DIGITS 50
+#define DIGITS 256
 #define DIGIT_SIZE 784
 #define W1_ROWS DIGIT_SIZE
 #define W1_COLS 128

@@ -14,7 +14,7 @@
 #define RESULT_POOL_SIZE                     MAT1ROWS*MAT2COLS*sizeof(float)
 #define RESULT_HW_SIZE                       MAT1ROWS*MAT2COLS*sizeof(float)
 
-#define NUM_THREADS 64
+#define NUM_THREADS 1
 
 #define CONFIG_THREAD_MAX_NAME_LEN 100
 

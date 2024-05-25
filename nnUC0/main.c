@@ -2,11 +2,6 @@
 
 int main()
 {
-    uint32_t start_sw_ms, finish_sw_ms, time_sw=0;
-    uint32_t start_hw_ms, finish_hw_ms, time_hw=0;
-
-    int accuracy_sw=0, accuracy_hw=0;
-    
     float *a1 = (float *) (A1_BASE_ADDRESS);
     float *a2 = (float *) (A2_BASE_ADDRESS);
     float *yhat = (float *) (YHAT_BASE_ADDRESS);
@@ -16,11 +11,13 @@ int main()
 
     printf("*** Starting NN UC 0 ***\n\n");
 
+#ifdef PERFORM_SW_ONLY
+    uint32_t start_sw_ms, finish_sw_ms, time_sw, accuracy_sw=0;
     printf("Performing feed forward neural network using software only\n");
+
+    start_sw_ms = k_uptime_get();
     for(int i=0; i<DIGITS; i++) {
         digity = get_digit(i, &digit);
-
-        start_sw_ms = k_uptime_get();
 
         multiply_mat_sw((int)digit, (int)&W1, A1_BASE_ADDRESS, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
@@ -30,22 +27,27 @@ int main()
 
         multiply_mat_sw(A2_BASE_ADDRESS, (int)&W3, YHAT_BASE_ADDRESS, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
-
-        finish_sw_ms = k_uptime_get();
-        time_sw += finish_sw_ms - start_sw_ms;
         
         prediction = get_prediction(yhat, 10);
 
         if(prediction == digity) accuracy_sw++;
     }
+    finish_sw_ms = k_uptime_get();
+    time_sw = finish_sw_ms - start_sw_ms;
+
     printf("Software execution time: %d ms\n", time_sw);
     printf("Accuracy: %f\n", (float)accuracy_sw/DIGITS);
+#endif //PERFORM_SW_ONLY
 
+k_msleep(10000);
+
+#ifdef PERFORM_POOLING
+    uint32_t start_hw_ms, finish_hw_ms, time_hw, accuracy_hw=0;
     printf("\nPerforming feed forward neural network using hardware\n");
+
+    start_hw_ms = k_uptime_get();
     for(int i=0; i<DIGITS; i++) {
         digity = get_digit(i, &digit);
-
-        start_hw_ms = k_uptime_get();
 
         dot((int)digit, (int)&W1, A1_BASE_ADDRESS, 1, DIGIT_SIZE, W1_COLS);
         relu(a1, W1_COLS);
@@ -56,15 +58,16 @@ int main()
         dot(A2_BASE_ADDRESS, (int)&W3, YHAT_BASE_ADDRESS, 1, W2_COLS, W3_COLS);
         softmax(yhat, W3_COLS);
 
-        finish_hw_ms = k_uptime_get();
-        time_hw += finish_hw_ms - start_hw_ms;
-
         prediction = get_prediction(yhat, 10);
 
         if(prediction == digity) accuracy_hw++;
     }
+    finish_hw_ms = k_uptime_get();
+    time_hw = finish_hw_ms - start_hw_ms;
+
     printf("Hardware execution time: %d ms\n", time_hw);
     printf("Accuracy: %f\n", (float)accuracy_hw/DIGITS);
+#endif //PERFORM_POOLING
 
 
     printf("\n*** Exiting NN UC 0 ***\n");

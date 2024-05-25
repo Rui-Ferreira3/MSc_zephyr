@@ -12,14 +12,11 @@ static struct k_thread threadA_data;
 int main()
 {
     printf("*** Starting matrix multiplication UC 1 ***\n\n");
-
-    printf("Installing ISR...\n");
-    my_isr_installer();
     
     int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_POOL_SIZE + RESULT_HW_SIZE;
 
     /* initialize the queue */
-    printf("\nSaving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
+    printf("Saving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
     for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
         int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
         create_mat(mat1Addr, MAT1ROWS, MAT1COLS);
@@ -30,10 +27,8 @@ int main()
     printf("%d saved to memory!\n", NUM_MULTIPLICATIONS);
 
     /* perform NUM_MULTIPLICATIONS with pooling */
+#ifdef PERFORM_POOLING
     printf("\nPerforming matrix multiplication with pooling...\n");
-
-    /* disable accelerator interrupts */
-    *acceleratorGIER = 0x0;
 
     int start_p_ms = k_uptime_get();
     for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
@@ -47,12 +42,12 @@ int main()
     int finish_p_ms = k_uptime_get();
     int time_p = finish_p_ms - start_p_ms;
 
-    /* enable accelerator interrupts */
-    *acceleratorIP_ISR = 0x1;
-    *acceleratorGIER = 0x1;
-
     printf("Completed matrix multiplication with pooling!\n");
     printf("Execution time: %d ms\n", time_p);
+#endif //PERFORM_POOLING
+
+    printf("\nInstalling ISR...\n");
+    my_isr_installer();
 
     /* starting accelerator thread */
     k_thread_create(&threadA_data, threadA_stack_area,
@@ -76,6 +71,7 @@ int main()
 
 
     /* check if software and hardware matmul match */
+#ifdef PERFORM_POOLING
     printf("\nChecking if results match...\n");
     int numErrors = 0;
     for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
@@ -88,6 +84,7 @@ int main()
     }
 
     printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
+#endif //PERFORM_POOLING
 
     printf("\n*** Exiting matrix multiplication UC 1 ***\n");
 

@@ -11,6 +11,8 @@
 #include "matrix.h"
 #include "multiply.h"
 
+// #define PERFORM_POOLING // Uncomment to perform hardware acceleration with pooling
+
 struct message {
     int sender_id;
     int mat1_address;

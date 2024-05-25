@@ -22,7 +22,7 @@
 
 #define MAX_MATRIX_SIZE 1024
 
-#define NUM_THREADS 8
+#define NUM_THREADS 64
 
 #define CONFIG_THREAD_MAX_NAME_LEN 100
 

@@ -15,6 +15,8 @@
 #include "nn.h"
 #include "multiply.h"
 
+#define PERFORM_POOLING // Uncomment to perform hardware acceleration with pooling
+
 struct message {
     int sender_id;
     int mat1_address;
@@ -34,8 +36,8 @@ void my_isr(const void *arg);
 void thread_accelerator(void *id, void *unused1, void *unused2);
 void thread_software(void *mainIdPtr, void *myIdPtr, void *unused);
 
-void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
-void dot_(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId);
+void dot_pooling(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2);
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId);
 int get_digit(int num, float **digit);
 void send_msg(int id, int resultAddress, int mat1Address, int mat2Address, int rows1, int cols1, int cols2);
 
