@@ -2,11 +2,11 @@
 
 #define ACCEL_IRQ  15       /* device uses IRQ 15 */
 #define ACCEL_PRIO 15       /* device uses interrupt priority 15 */
-#define ACCEL_THREAD_PRIO 5
+#define ACCEL_THREAD_PRIO 8
 #define SW_THREAD_PRIO 10
 
-K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 10, 4);
-K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 10, 4);
+K_MSGQ_DEFINE(accel_msgq, sizeof(struct message), 8, 4);
+K_MSGQ_DEFINE(reply_msgq, sizeof(struct message), 8, 4);
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
 
@@ -15,9 +15,12 @@ K_MUTEX_DEFINE(completed_mutex);
 static K_THREAD_STACK_ARRAY_DEFINE(stacks, NUM_THREADS+1, STACKSIZE);
 static struct k_thread threads[NUM_THREADS+1];
 k_tid_t thread_ids[NUM_THREADS+1];
-
 int accuracy_hw=0;
+
 int completed[NUM_THREADS];
+
+uint32_t thread_ms, time_thread=0;
+uint32_t sw_ms, time_sw=0;
 
 int main()
 {
@@ -25,7 +28,7 @@ int main()
 
     uint32_t start_hw_ms, finish_hw_ms, time_hw;
 
-    printf("\nInstalling ISR...\n");
+    printf("Installing ISR...\n");
     my_isr_installer();
 
     /* start all accelerator threads */
@@ -33,7 +36,7 @@ int main()
         char tname[CONFIG_THREAD_MAX_NAME_LEN];
 
         if(i == NUM_THREADS) {
-            thread_ids[i] = k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
+            k_thread_create(&threads[i], &stacks[i][0], STACKSIZE,
                     thread_accelerator, INT_TO_POINTER(i), NULL, NULL,
                     ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
             snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "accelerator");
@@ -49,13 +52,12 @@ int main()
 
     printf("\nPerforming feed forward neural network using the hardware accelerator\n");
 
-    k_msleep(30000);
+    k_msleep(10000);
 
     for(int i=0; i<NUM_THREADS+1; i++)
         k_thread_start(&threads[i]);
 
     start_hw_ms = k_uptime_get();
-    printf("starting timer\n");
 
     k_thread_suspend(k_current_get());
 
@@ -124,9 +126,9 @@ void dot_pooling(int mat1Address, int mat2Address, int resultAddress, int rows1,
  * @param cols1 
  * @param cols2 
  */
-void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2, int myId)
+void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int cols1, int cols2)
 {
-    float *column = (float *)COLUMN_BASE_ADDRESS+myId*MAX_MATRIX_SIZE*sizeof(float);
+    float *column = (float *)COLUMN_BASE_ADDRESS;
     float *mat2 = (float *)mat2Address;
 
     if(cols1*cols2 > MAX_MATRIX_SIZE) {
@@ -134,7 +136,7 @@ void dot(int mat1Address, int mat2Address, int resultAddress, int rows1, int col
             for(int j=0; j<cols1; j++)
                 column[j] = mat2[j*cols2+i];
                 
-            multiply_mat_hw(mat1Address, (int)column, resultAddress+i*sizeof(float), rows1, cols1, 1);
+            multiply_mat_hw(mat1Address, COLUMN_BASE_ADDRESS, resultAddress+i*sizeof(float), rows1, cols1, 1);
             k_sem_take(&accel_sem, K_FOREVER);
         }
     }else {
@@ -180,7 +182,6 @@ void my_isr(const void *arg) {
  */
 void thread_accelerator(void *id, void *unused1, void *unused2)
 {
-    printf("Accelerator thread started\n");
     ARG_UNUSED(unused1);
 	ARG_UNUSED(unused2);
 
@@ -189,7 +190,7 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
     while(1) {
         k_msgq_get(&accel_msgq, &msg, K_FOREVER);
 
-        dot(msg.mat1_address, msg.mat2_address, msg.result_address, msg.rows1, msg.cols1, msg.cols2, msg.sender_id);
+        dot(msg.mat1_address, msg.mat2_address, msg.result_address, msg.rows1, msg.cols1, msg.cols2);
 
         k_msgq_put(&reply_msgq, &msg, K_FOREVER);
     }
@@ -206,7 +207,6 @@ void thread_accelerator(void *id, void *unused1, void *unused2)
  */
 void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
 {
-    printf("Software thread %d started\n", (int)POINTER_TO_INT(myIdPtr));
     k_tid_t mainId = (k_tid_t) mainIdPtr;
     int myId = POINTER_TO_INT(myIdPtr);
 	ARG_UNUSED(unused);
@@ -220,14 +220,14 @@ void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
     int my_a2_address = A2_BASE_ADDRESS+myId*addressOffset;
     int my_yhat_address = YHAT_BASE_ADDRESS+myId*addressOffset;
 
+    float *a1 = (float *) (my_a1_address);
+    float *a2 = (float *) (my_a2_address);
+    float *yhat = (float *) (my_yhat_address);
+
     float *digit;
     int digity;
 
     int prediction;
-
-    float *a1 = (float *) (my_a1_address);
-    float *a2 = (float *) (my_a2_address);
-    float *yhat = (float *) (my_yhat_address);
 
     for(int i=0; i<DIGITS/NUM_THREADS; i++) {
         digity = get_digit(myId+i*NUM_THREADS, &digit);
@@ -245,14 +245,9 @@ void thread_software(void *mainIdPtr, void *myIdPtr, void *unused)
 
         if(prediction == digity) accuracy_hw++;
     }
-        
-    printf("Software thread %d finished\n", (int)POINTER_TO_INT(myIdPtr));
 
     k_mutex_lock(&completed_mutex, K_FOREVER);
     completed[myId] = 1;
-    k_mutex_unlock(&completed_mutex);
-
-    k_mutex_lock(&completed_mutex, K_FOREVER);
     for(int i=0; i<NUM_THREADS; i++)
         totalCompleted += completed[i];
     k_mutex_unlock(&completed_mutex);
@@ -285,12 +280,9 @@ void send_msg(int id, int resultAddress, int mat1Address, int mat2Address, int r
     msg.cols1 = cols1;
     msg.cols2 = cols2;
 
-    k_msgq_put(&accel_msgq, &msg, K_FOREVER);
-    // k_yield();
-
-    // while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
-    //     k_yield();
-    // }
+    while (k_msgq_put(&accel_msgq, &msg, K_NO_WAIT) != 0) {
+        k_yield();
+    }
 
     while (k_msgq_peek(&reply_msgq, &msg) != 0 || msg.sender_id != id) {
         k_yield();

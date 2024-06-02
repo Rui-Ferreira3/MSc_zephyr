@@ -4,14 +4,11 @@
 #include <stdio.h>
 #include <zephyr.h>
 #include <kernel.h>
-#include <sys/printk.h>
 #include <random/rand32.h>
 
 #include "common.h"
 #include "matrix.h"
 #include "multiply.h"
-
-// #define PERFORM_POOLING // Uncomment to perform hardware acceleration with pooling
 
 struct message {
     int sender_id;

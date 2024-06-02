@@ -3,7 +3,6 @@
 #define ACCEL_IRQ  15       /* device uses IRQ 15 */
 #define ACCEL_PRIO 15       /* device uses interrupt priority 15 */
 #define ACCEL_THREAD_PRIO 10
-#define MAX_THREAD_PRIO 15
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
 

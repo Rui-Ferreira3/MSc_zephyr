@@ -11,8 +11,6 @@
 #include "matrix.h"
 #include "multiply.h"
 
-// #define PERFORM_POOLING // Uncomment to perform hardware acceleration with pooling
-
 volatile int *acceleratorGIER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x04);
 volatile int *acceleratorIP_IER = (int *)(ACCELERATOR_BASE_ADDRESS + 0x08);
 volatile int *acceleratorIP_ISR = (int *)(ACCELERATOR_BASE_ADDRESS + 0x0c);
@@ -20,6 +18,6 @@ volatile int *acceleratorIP_ISR = (int *)(ACCELERATOR_BASE_ADDRESS + 0x0c);
 void my_isr_installer(void);
 void my_isr(const void *arg);
 
-void thread_accelerator(k_tid_t mainId, void *unused1, void *unused2);
+void thread_accelerator(void *mainIdPtr, void *unused1, void *unused2);
 
 #endif //HEADER_H

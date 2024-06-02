@@ -37,6 +37,7 @@ int main()
     printf("Execution time: %d ms\n", time_sw);
 #endif //PERFORM_SW_ONLY
 
+k_msleep(10000);
 
     /* perform NUM_MULTIPLICATIONS with pooling */
 #ifdef PERFORM_POOLING

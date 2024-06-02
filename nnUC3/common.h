@@ -3,12 +3,14 @@
 
 #define ACCELERATOR_BASE_ADDRESS            0x90000000
 #define MEMORY_BASE_ADDRESS                 0x04000000
+
 #define A1_BASE_ADDRESS                     MEMORY_BASE_ADDRESS
 #define A1_SIZE                             sizeof(float)*W1_COLS
 #define A2_BASE_ADDRESS                     A1_BASE_ADDRESS + A1_SIZE
 #define A2_SIZE                             sizeof(float)*W2_COLS
 #define YHAT_BASE_ADDRESS                   A2_BASE_ADDRESS + A2_SIZE
 #define YHAT_SIZE                           sizeof(float)*W3_COLS
+
 #define COLUMN_BASE_ADDRESS                 0x05000000
 
 #define DIGITS 256
@@ -22,7 +24,7 @@
 
 #define MAX_MATRIX_SIZE 1024
 
-#define NUM_THREADS 4
+#define NUM_THREADS 64
 
 #define CONFIG_THREAD_MAX_NAME_LEN 100
 

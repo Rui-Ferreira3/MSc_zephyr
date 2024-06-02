@@ -1,8 +1,8 @@
 #include "header.h"
 
 #define ACCEL_IRQ  15       /* device uses IRQ 15 */
-#define ACCEL_PRIO 7       /* device uses interrupt priority 5 */
-#define ACCEL_THREAD_PRIO 5
+#define ACCEL_PRIO 15       /* device uses interrupt priority 15 */
+#define ACCEL_THREAD_PRIO 10
 
 K_SEM_DEFINE(accel_sem, 0, 1);	/* starts off "not available" */
 K_SEM_DEFINE(thread_sem, 1, 1);	/* starts off "available" */
@@ -17,12 +17,16 @@ int completed[NUM_THREADS];
 
 int main()
 {
-    printf("*** Starting matrix multiplication UC 2 with %d threads***\n\n", NUM_THREADS);
-    
+    printf("*** Starting matrix multiplication UC 2 with %d threads ***\n", NUM_THREADS);
+
+    uint32_t start_hw_ms, finish_hw_ms, time_hw;
     int addressOffset = MATRIX1_SIZE + MATRIX2_SIZE + RESULT_POOL_SIZE + RESULT_HW_SIZE;
 
+    printf("\nInstalling ISR...\n");
+    my_isr_installer();
+
     /* initialize the queue */
-    printf("Saving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
+    printf("\nSaving %d matrix pairs to memory...\n", NUM_MULTIPLICATIONS);
     for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
         int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
         create_mat(mat1Addr, MAT1ROWS, MAT1COLS);
@@ -30,30 +34,7 @@ int main()
         int mat2Addr = mat1Addr + MATRIX1_SIZE;
         create_mat(mat2Addr, MAT1ROWS, MAT1COLS);
     }
-    printf("%d saved to memory!\n", NUM_MULTIPLICATIONS);
-
-    /* perform NUM_MULTIPLICATIONS with pooling */
-#ifdef PERFORM_POOLING
-    printf("\nPerforming matrix multiplication with pooling...\n");
-
-    int start_p_ms = k_uptime_get();
-    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
-        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
-        int mat2Addr = mat1Addr + MATRIX1_SIZE;
-        int resultAddr = mat2Addr + MATRIX2_SIZE;
-
-        multiply_mat_hw_pool(mat1Addr, mat2Addr, resultAddr, MAT1ROWS, MAT1COLS, MAT2COLS);
-    }
-
-    int finish_p_ms = k_uptime_get();
-    int time_p = finish_p_ms - start_p_ms;
-
-    printf("Completed matrix multiplication with pooling!\n");
-    printf("Execution time: %d ms\n", time_p);
-#endif //PERFORM_POOLING
-
-    printf("\nInstalling ISR...\n");
-    my_isr_installer();
+    printf("%d pairs saved to memory!\n", NUM_MULTIPLICATIONS);
 
     /* start all accelerator threads */
     for(int i=0; i<NUM_THREADS; i++) {
@@ -64,36 +45,23 @@ int main()
                 ACCEL_THREAD_PRIO, K_USER, K_FOREVER);
         snprintk(tname, CONFIG_THREAD_MAX_NAME_LEN, "thread %d", i);
 		k_thread_name_set(&threads[i], tname);
-        k_thread_start(&threads[i]);
     }
 
     printf("\nPerforming matrix multiplication using the hardware accelerator...\n");
 
-    int start_hw_ms = k_uptime_get();
+    k_msleep(10000);
+
+    for(int i=0; i<NUM_THREADS; i++)
+        k_thread_start(&threads[i]);
+
+    start_hw_ms = k_uptime_get();
 
     k_thread_suspend(k_current_get());
 
-    int finish_hw_ms = k_uptime_get();
-    int time_hw = finish_hw_ms - start_hw_ms;
+    finish_hw_ms = k_uptime_get();
+    time_hw = finish_hw_ms - start_hw_ms;
 
-    printf("Completed matrix multiplication using the hardware accelerator!\n");
     printf("Execution time: %d ms\n", time_hw);
-
-#ifdef PERFORM_POOLING
-    /* check if software and hardware matmul match */
-    printf("\nChecking if results match...\n");
-    int numErrors = 0;
-    for(int i=0; i<NUM_MULTIPLICATIONS; i++) {
-        int mat1Addr = MEMORY_BASE_ADDRESS + i*addressOffset;
-        int mat2Addr = mat1Addr + MATRIX1_SIZE;
-        int resultPoolAddr = mat2Addr + MATRIX2_SIZE;
-        int resultHWAddr = resultPoolAddr + RESULT_POOL_SIZE;
-
-        numErrors += verify(resultPoolAddr, resultHWAddr, MAT1ROWS, MAT2COLS);
-    }
-
-    printf("\n%d operations done with %d errors!\n", NUM_MULTIPLICATIONS, numErrors);
-#endif //PERFORM_POOLING
 
     printf("\n*** Exiting matrix multiplication UC 2 ***\n");
 
@@ -156,7 +124,9 @@ void thread_accelerator(void *mainIdPtr, void *myIdPtr, void *unused)
         k_sem_take(&accel_sem, K_FOREVER);
     }
 
+    k_mutex_lock(&completed_mutex, K_FOREVER);
     completed[myId] = 1;
+    k_mutex_unlock(&completed_mutex);
 
     k_mutex_lock(&completed_mutex, K_FOREVER);
     for(int i=0; i<NUM_THREADS; i++)
